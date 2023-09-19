@@ -308,6 +308,7 @@ public class Buscar extends javax.swing.JFrame {
             }
         ej5_Coneccion.BuscarCod.arrayAlumno.clear();
         }
+        
     }//GEN-LAST:event_jDateChooser_buscarPropertyChange
 
     private void jDateChooser_buscarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jDateChooser_buscarMousePressed

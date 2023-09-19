@@ -88,4 +88,33 @@ public class BuscarCod {
             JOptionPane.showMessageDialog(null, "Error busqueda");
         }
     }
+    
+    public void alumnosXmateria (int idMateria){
+        AlumnoData();
+        String sql;
+        sql = "SELECT * FROM alumno INNER JOIN inscripcion ON alumno.idAlumno = inscripcion.idAlumno WHERE inscripcion.idMateria = ?";
+       
+        PreparedStatement ps = null;
+
+        try {
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, idMateria);
+            ResultSet rs = ps.executeQuery();
+           
+            while (rs.next()) {
+               Alumno alumno = new Alumno();
+                alumno.setIdAlumno(rs.getInt("idAlumno"));
+                alumno.setDni(rs.getInt("dni"));
+                alumno.setApellido(rs.getString("apellido"));
+                alumno.setNombre(rs.getString("nombre"));
+                alumno.setFechaNacimiento(rs.getDate("fechaNacimiento").toLocalDate());
+                alumno.setAnio(rs.getInt("año"));
+                alumno.setEstado(rs.getBoolean("estado"));
+                arrayAlumno.add(alumno);
+            }
+            
+        } catch (SQLException sqlE) {
+            JOptionPane.showMessageDialog(null, "Error busqueda");
+        }  
+    }
 }
