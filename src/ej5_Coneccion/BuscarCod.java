@@ -25,13 +25,13 @@ public class BuscarCod {
         AlumnoData();
         String sql;
 
-        sql = switch (codigo) {
-            case "ID ALUMNO" -> "SELECT * FROM alumno WHERE iDAlumno LIKE (?)"; //reemplazar *
-            case "APELLIDO" -> "SELECT * FROM alumno WHERE apellido LIKE (?)";
-            case "NOMBRE" -> "SELECT * FROM alumno WHERE nombre LIKE (?)";
-            case "DNI" -> "SELECT * FROM alumno WHERE dni LIKE (?)";
-            case "FECHA NACIMIENTO" -> "SELECT * FROM alumno WHERE fechaNacimiento LIKE (?)";
-            default -> "SELECT * FROM alumno WHERE estado LIKE (?)";
+        switch (codigo) {
+            case "ID ALUMNO": sql = "SELECT * FROM alumno WHERE iDAlumno LIKE (?)"; break; //reemplazar *
+            case "APELLIDO":sql = "SELECT * FROM alumno WHERE apellido LIKE (?)";break;
+            case "NOMBRE": sql = "SELECT * FROM alumno WHERE nombre LIKE (?)";break;
+            case "DNI": sql = "SELECT * FROM alumno WHERE dni LIKE (?)";break;
+            case "FECHA NACIMIENTO": sql = "SELECT * FROM alumno WHERE fechaNacimiento LIKE (?)";break;
+            default: sql = "SELECT * FROM alumno WHERE estado LIKE (?)";break;
         };
         PreparedStatement ps = null;
 
@@ -63,11 +63,11 @@ public class BuscarCod {
     public void buscarMateria(String data, String codigo) {
         AlumnoData();
         String sql;
-        sql = switch (codigo) {
-            case "ID MATERIA" -> "SELECT * FROM materia WHERE idMateria LIKE (?)";
-            case "AÑO" -> "SELECT * FROM materia WHERE año LIKE (?)";
-            case "NOMBRE" -> "SELECT * FROM materia WHERE nombre LIKE (?)";
-            default -> "SELECT * FROM materia WHERE estado LIKE (?)";
+        switch (codigo) {
+            case "ID MATERIA": sql = "SELECT * FROM materia WHERE idMateria LIKE (?)";break;
+            case "AÑO": sql = "SELECT * FROM materia WHERE año LIKE (?)";break;
+            case "NOMBRE": sql = "SELECT * FROM materia WHERE nombre LIKE (?)";break;
+            default: sql ="SELECT * FROM materia WHERE estado LIKE (?)";break;
         };
         PreparedStatement ps = null;
 
