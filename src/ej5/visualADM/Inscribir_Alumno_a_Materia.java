@@ -10,16 +10,15 @@ public class Inscribir_Alumno_a_Materia extends javax.swing.JFrame {
 
     ej5_Coneccion.Select aD = new ej5_Coneccion.Select();
     ej5_Coneccion.Updates iA = new ej5_Coneccion.Updates();
-    
+
     private int idMateria = 0;
     private int idAlumno = 0;
-    
 
     public Inscribir_Alumno_a_Materia() {
         initComponents();
         armarCabecera();
     }
-        
+
     DefaultTableModel modelo_al = new DefaultTableModel() {
         public boolean isCellEditable(int f, int c) {
             return false;
@@ -254,17 +253,17 @@ public class Inscribir_Alumno_a_Materia extends javax.swing.JFrame {
     }//GEN-LAST:event_jText_insAlumKeyReleased
 
     private void jComboBox_insMatMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jComboBox_insMatMouseEntered
-        
+
     }//GEN-LAST:event_jComboBox_insMatMouseEntered
 
     private void jComboBox_insMatItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox_insMatItemStateChanged
-       jText_insMat.setEnabled(true);
+        jText_insMat.setEnabled(true);
     }//GEN-LAST:event_jComboBox_insMatItemStateChanged
 
     private void jText_insMatKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jText_insMatKeyReleased
         for (Materia m1 : aD.buscarMateria(jText_insMat.getText(), jComboBox_insMat.getSelectedItem().toString())) {
-            modelo_mat.addRow(new Object[]{m1.getIdMateria(), m1.getNombre(), m1.getAnio(), m1.isEstado()});
-        }
+               modelo_mat.addRow(new Object[]{m1.getIdMateria(), m1.getNombre(), m1.getAnio(), m1.isEstado()});
+            }
     }//GEN-LAST:event_jText_insMatKeyReleased
 
     private void jTable_insAlumMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable_insAlumMouseClicked
@@ -286,22 +285,25 @@ public class Inscribir_Alumno_a_Materia extends javax.swing.JFrame {
     private void jButton_inscribirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_inscribirActionPerformed
         Alumno alumno = aD.buscarAlumno(Integer.toString(idAlumno), "ID ALUMNO", null).get(0);
         Materia mat = aD.buscarMateria(Integer.toString(idMateria), "ID MATERIA").get(0);
-       
-        String text_Mess = "Desea inscribir a " + alumno.getApellido() + ", " + alumno.getNombre() + ". DNI: " + alumno.getDni() 
+
+        String text_Mess = "Desea inscribir a " + alumno.getApellido() + ", " + alumno.getNombre() + ". DNI: " + alumno.getDni()
                 + " en " + mat.getNombre() + ". Año: " + mat.getAnio();
-       
-        switch(JOptionPane.showConfirmDialog(rootPane, text_Mess)){
-            case 0: iA.inscribirAlumno(idMateria, idAlumno); break;
-            case 1: jText_insAlum.setText("");
-                    jText_insMat.setText("");
-                    break;
-        }     
+
+        switch (JOptionPane.showConfirmDialog(rootPane, text_Mess)) {
+            case 0:
+                iA.inscribirAlumno(idMateria, idAlumno);
+                break;
+            case 1:
+                jText_insAlum.setText("");
+                jText_insMat.setText("");
+                break;
+        }
     }//GEN-LAST:event_jButton_inscribirActionPerformed
 
     private void formKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyReleased
 
     }//GEN-LAST:event_formKeyReleased
-    
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -363,7 +365,7 @@ public class Inscribir_Alumno_a_Materia extends javax.swing.JFrame {
         modelo_al.addColumn("F.Nac");
         modelo_al.addColumn("Estado");
         jTable_insAlum.setModel(modelo_al);
-        
+
         modelo_mat.setColumnCount(0);
         modelo_mat.addColumn("iD Materia");
         modelo_mat.addColumn("Nombre");
