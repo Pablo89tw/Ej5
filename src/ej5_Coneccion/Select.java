@@ -121,4 +121,33 @@ public class Select {
         }  
         return arrayAlumno;
     }
-}
+    
+    public ArrayList<Materia> materiaXalumno (int idAlumno){
+        AlumnoData();
+        String sql;
+        arrayMateria.clear();
+        sql = "SELECT * FROM materia INNER JOIN inscripcion ON materia.idMateria = inscripcion.idMateria WHERE inscripcion.idAlumno = ?";
+       
+        PreparedStatement ps = null;
+
+        try {
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, idAlumno);
+            ResultSet rs = ps.executeQuery();
+           
+            while (rs.next()) {
+              Materia materia = new Materia();
+                materia.setIdMateria(rs.getInt("idMateria"));
+                materia.setAnio(rs.getInt("Año"));
+                materia.setNombre(rs.getString("Nombre"));
+                //          materia.setEstado(rs.getString("Estado")); 
+                arrayMateria.add(materia);
+            }
+            
+        } catch (SQLException sqlE) {
+            JOptionPane.showMessageDialog(null, "Error busqueda");
+        }  
+        return arrayMateria;
+    }
+    }
+

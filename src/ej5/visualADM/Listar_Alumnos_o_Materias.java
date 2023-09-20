@@ -9,7 +9,6 @@ import ej5_Entidades.Materia;
 
 public class Listar_Alumnos_o_Materias extends javax.swing.JFrame {
     ej5_Coneccion.Select aD = new ej5_Coneccion.Select();
-
     
     DefaultTableModel modelo = new DefaultTableModel() {
         public boolean isCellEditable(int f, int c) {
@@ -260,12 +259,10 @@ public class Listar_Alumnos_o_Materias extends javax.swing.JFrame {
         borrarFila();
 
         if (jComboBox_objeto.getSelectedItem().toString().equalsIgnoreCase("Alumno")) {
-            
             for (Alumno a1 : aD.buscarAlumno(jTexto_Buscar1.getText(), jComboBox_busqueda.getSelectedItem().toString(), null)) {
                 modelo.addRow(new Object[]{a1.getIdAlumno(), a1.getApellido(), a1.getNombre(), a1.getDni(), a1.getFechaNacimiento(), a1.isEstado()});
             }
         } else if (jComboBox_objeto.getSelectedItem().toString().equalsIgnoreCase("Materia")) {
-            
             for (Materia m1 : aD.buscarMateria(jTexto_Buscar1.getText(), jComboBox_busqueda.getSelectedItem().toString())) {
                 modelo.addRow(new Object[]{m1.getIdMateria(), m1.getNombre(), m1.getAnio(), m1.isEstado()});
             }
