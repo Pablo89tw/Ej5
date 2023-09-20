@@ -9,7 +9,7 @@ import javax.swing.table.DefaultTableModel;
 
 
 
-public class modificarAlumno extends javax.swing.JFrame {
+public class Modificar_Alumno extends javax.swing.JFrame {
     
     
     private int idAlumno_Mod;
@@ -20,8 +20,8 @@ public class modificarAlumno extends javax.swing.JFrame {
     private int anio;
     private boolean estado;
         
-    ej5_Coneccion.BuscarCod aD = new ej5_Coneccion.BuscarCod();
-    ej5_Coneccion.ModificarAlumnos mA = new  ej5_Coneccion.ModificarAlumnos();
+    ej5_Coneccion.Select aD = new ej5_Coneccion.Select();
+    ej5_Coneccion.Updates mA = new  ej5_Coneccion.Updates();
     
     DefaultTableModel modelo = new DefaultTableModel() {  
         public boolean isCellEditable(int f, int c) {
@@ -29,7 +29,7 @@ public class modificarAlumno extends javax.swing.JFrame {
         }
     };
     
-    public modificarAlumno() {
+    public Modificar_Alumno() {
         initComponents();
         armarCabecera();
     }
@@ -184,7 +184,7 @@ public class modificarAlumno extends javax.swing.JFrame {
                                     .addComponent(jS_nA))))))
                 .addGap(79, 79, 79)
                 .addComponent(jButton1)
-                .addGap(303, 303, 303))
+                .addGap(20, 20, 20))
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 532, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
@@ -260,15 +260,13 @@ public class modificarAlumno extends javax.swing.JFrame {
 
     private void jTextField4KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField4KeyReleased
         borrarFila();
-            aD.buscarAlumno(jTextField4.getText(), jComboBox1.getSelectedItem().toString(), null);
-            for (Alumno a1 : ej5_Coneccion.BuscarCod.arrayAlumno) {
+           for (Alumno a1 : aD.buscarAlumno(jTextField4.getText(), jComboBox1.getSelectedItem().toString(), null)) {
                 modelo.addRow(new Object[]{a1.getIdAlumno(), a1.getApellido(), a1.getNombre(), a1.getDni(), a1.getFechaNacimiento(),a1.getAnio(),a1.isEstado()});
-            }  
-             ej5_Coneccion.BuscarCod.arrayAlumno.clear();
+            }
     }//GEN-LAST:event_jTextField4KeyReleased
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
-         jCheckBox1.setEnabled(true);jCheckBox2.setEnabled(true); jC_A.setEnabled(true);jC_N.setEnabled(true); jCheckBox5.setEnabled(true);jCheckBox6.setEnabled(true);
+        jCheckBox1.setEnabled(true);jCheckBox2.setEnabled(true); jC_A.setEnabled(true);jC_N.setEnabled(true); jCheckBox5.setEnabled(true);jCheckBox6.setEnabled(true);
         int filaSeleccionada = jTable1.getSelectedRow();
         if (filaSeleccionada >= 0) {      
             idAlumno_Mod = (int) jTable1.getValueAt(filaSeleccionada, 0);
@@ -353,20 +351,21 @@ public class modificarAlumno extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(modificarAlumno.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Modificar_Alumno.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(modificarAlumno.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Modificar_Alumno.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(modificarAlumno.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Modificar_Alumno.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(modificarAlumno.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Modificar_Alumno.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new modificarAlumno().setVisible(true);
+                new Modificar_Alumno().setVisible(true);
             }
         });
     }

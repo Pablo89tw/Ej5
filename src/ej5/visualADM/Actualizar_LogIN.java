@@ -1,11 +1,11 @@
 
 package ej5.visualADM;
 
-public class cargarDNI extends javax.swing.JFrame {
+public class Actualizar_LogIN extends javax.swing.JFrame {
 
-    ej5_Coneccion.CargarLogin cL = new ej5_Coneccion.CargarLogin();
+    ej5_Coneccion.Updates cL = new ej5_Coneccion.Updates();
     
-    public cargarDNI() {
+    public Actualizar_LogIN() {
         initComponents();
     }
 
@@ -50,7 +50,7 @@ public class cargarDNI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void cargarDNIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cargarDNIActionPerformed
-        cL.cargarDNI();
+        cL.cargarDNI_login();
     }//GEN-LAST:event_cargarDNIActionPerformed
 
     /**
@@ -70,20 +70,21 @@ public class cargarDNI extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(cargarDNI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Actualizar_LogIN.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(cargarDNI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Actualizar_LogIN.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(cargarDNI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Actualizar_LogIN.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(cargarDNI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Actualizar_LogIN.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new cargarDNI().setVisible(true);
+                new Actualizar_LogIN().setVisible(true);
             }
         });
     }

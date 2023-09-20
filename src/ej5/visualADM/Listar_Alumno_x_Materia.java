@@ -8,9 +8,9 @@ import ej5_Entidades.Alumno;
 import ej5_Entidades.Materia;
 import javax.swing.table.DefaultTableModel;
 
-public class AlumnoPorMateria extends javax.swing.JFrame {
+public class Listar_Alumno_x_Materia extends javax.swing.JFrame {
 
-    ej5_Coneccion.BuscarCod aD = new ej5_Coneccion.BuscarCod();
+    ej5_Coneccion.Select aD = new ej5_Coneccion.Select();
 
     DefaultTableModel modelo = new DefaultTableModel() {
         public boolean isCellEditable(int f, int c) {
@@ -24,7 +24,7 @@ public class AlumnoPorMateria extends javax.swing.JFrame {
         }
     };
 
-    public AlumnoPorMateria() {
+    public Listar_Alumno_x_Materia() {
         initComponents();
         armarCabecera();
     }
@@ -158,8 +158,7 @@ public class AlumnoPorMateria extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowOpened
 
     private void jTextField1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyReleased
-        aD.buscarMateria(jTextField1.getText(), "NOMBRE");
-        for (Materia m1 : ej5_Coneccion.BuscarCod.arrayMateria) {
+        for (Materia m1 : aD.buscarMateria(jTextField1.getText(), "NOMBRE")) {
             modelo.addRow(new Object[]{m1.getIdMateria(), m1.getNombre(), m1.getAnio(), m1.isEstado()});
         }
 
@@ -173,12 +172,9 @@ public class AlumnoPorMateria extends javax.swing.JFrame {
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
         borrarFila();
         int idMateria = (int) jTable1.getValueAt(jTable1.getSelectedRow(), 0);
-        aD.alumnosXmateria(idMateria);
-
-        for (Alumno a1 : ej5_Coneccion.BuscarCod.arrayAlumno) {
+        for (Alumno a1 : aD.alumnosXmateria(idMateria)) {
             modelo2.addRow(new Object[]{a1.getIdAlumno(), a1.getApellido(), a1.getNombre(), a1.getDni(), a1.getFechaNacimiento(), a1.isEstado()});
         }
-        ej5_Coneccion.BuscarCod.arrayAlumno.clear();
     }//GEN-LAST:event_jTable1MouseClicked
 
     public static void main(String args[]) {
@@ -195,20 +191,21 @@ public class AlumnoPorMateria extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(AlumnoPorMateria.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Listar_Alumno_x_Materia.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(AlumnoPorMateria.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Listar_Alumno_x_Materia.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(AlumnoPorMateria.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Listar_Alumno_x_Materia.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(AlumnoPorMateria.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Listar_Alumno_x_Materia.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new AlumnoPorMateria().setVisible(true);
+                new Listar_Alumno_x_Materia().setVisible(true);
             }
         });
     }

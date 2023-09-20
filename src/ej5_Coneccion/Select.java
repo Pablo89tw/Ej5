@@ -10,19 +10,20 @@ import java.sql.ResultSet;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-public class BuscarCod {
+public class Select {
 
     private Connection con;
 
-    public static ArrayList<Alumno> arrayAlumno = new ArrayList<>();
-    public static ArrayList<Materia> arrayMateria = new ArrayList<>();
+    private ArrayList<Alumno> arrayAlumno = new ArrayList<>();
+    private ArrayList<Materia> arrayMateria = new ArrayList<>();
 
     public void AlumnoData() {
-        con = Conexion.getConectar();
+        con = Conectar.getConectar();
     }
 
-    public void buscarAlumno(String data, String codigo, LocalDate fecha) {
+    public ArrayList<Alumno> buscarAlumno(String data, String codigo, LocalDate fecha) {
         AlumnoData();
+        arrayAlumno.clear();
         String sql;
 
         switch (codigo) {
@@ -57,12 +58,13 @@ public class BuscarCod {
             }
         } catch (SQLException sqlE) {
             JOptionPane.showMessageDialog(null, "Error busqueda");
-        }
+        } return arrayAlumno;
     }
 
-    public void buscarMateria(String data, String codigo) {
+    public ArrayList<Materia> buscarMateria(String data, String codigo) {
         AlumnoData();
         String sql;
+        arrayMateria.clear();
         switch (codigo) {
             case "ID MATERIA": sql = "SELECT * FROM materia WHERE idMateria LIKE (?)";break;
             case "AÑO": sql = "SELECT * FROM materia WHERE año LIKE (?)";break;
@@ -86,12 +88,13 @@ public class BuscarCod {
             }
         } catch (SQLException sqlE) {
             JOptionPane.showMessageDialog(null, "Error busqueda");
-        }
+        } return arrayMateria;
     }
     
-    public void alumnosXmateria (int idMateria){
+    public ArrayList<Alumno> alumnosXmateria (int idMateria){
         AlumnoData();
         String sql;
+        arrayAlumno.clear();
         sql = "SELECT * FROM alumno INNER JOIN inscripcion ON alumno.idAlumno = inscripcion.idAlumno WHERE inscripcion.idMateria = ?";
        
         PreparedStatement ps = null;
@@ -116,5 +119,6 @@ public class BuscarCod {
         } catch (SQLException sqlE) {
             JOptionPane.showMessageDialog(null, "Error busqueda");
         }  
+        return arrayAlumno;
     }
 }

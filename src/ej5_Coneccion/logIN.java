@@ -12,10 +12,10 @@ public class logIN {
     private Connection con;
     private int usuario;
     private String clave_in, clave;
-    ej5_Coneccion.BuscarCod bC = new ej5_Coneccion.BuscarCod();
+    ej5_Coneccion.Select bC = new ej5_Coneccion.Select();
     
     public void AlumnoData() {
-        con = Conexion.getConectar();
+        con = Conectar.getConectar();
     }
 
     public void logIN(int usuario, String clave_in) {
@@ -34,7 +34,7 @@ public class logIN {
             
             if (clave.equals(clave_in /*categoria == 0*/)) {
                 System.out.println("pepe1");
-              ej5.visualADM.Inscripcion id = new ej5.visualADM.Inscripcion();
+              ej5.visualADM.Inscribir_Alumno_a_Materia id = new ej5.visualADM.Inscribir_Alumno_a_Materia();
               id.setVisible(true);
               
                

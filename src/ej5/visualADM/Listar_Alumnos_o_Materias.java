@@ -7,8 +7,8 @@ import javax.swing.table.DefaultTableModel;
 import ej5_Entidades.Alumno;
 import ej5_Entidades.Materia;
 
-public class Buscar extends javax.swing.JFrame {
-    ej5_Coneccion.BuscarCod aD = new ej5_Coneccion.BuscarCod();
+public class Listar_Alumnos_o_Materias extends javax.swing.JFrame {
+    ej5_Coneccion.Select aD = new ej5_Coneccion.Select();
 
     
     DefaultTableModel modelo = new DefaultTableModel() {
@@ -23,7 +23,7 @@ public class Buscar extends javax.swing.JFrame {
         }
     };
 
-    public Buscar() {
+    public Listar_Alumnos_o_Materias() {
         initComponents();
         armarCabecera();
     }
@@ -256,21 +256,20 @@ public class Buscar extends javax.swing.JFrame {
 
     private void jTexto_Buscar1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTexto_Buscar1KeyReleased
         jDateChooser_buscar.setEnabled(false);
+        
         borrarFila();
 
         if (jComboBox_objeto.getSelectedItem().toString().equalsIgnoreCase("Alumno")) {
-            aD.buscarAlumno(jTexto_Buscar1.getText(), jComboBox_busqueda.getSelectedItem().toString(), null);
-            for (Alumno a1 : ej5_Coneccion.BuscarCod.arrayAlumno) {
+            
+            for (Alumno a1 : aD.buscarAlumno(jTexto_Buscar1.getText(), jComboBox_busqueda.getSelectedItem().toString(), null)) {
                 modelo.addRow(new Object[]{a1.getIdAlumno(), a1.getApellido(), a1.getNombre(), a1.getDni(), a1.getFechaNacimiento(), a1.isEstado()});
             }
         } else if (jComboBox_objeto.getSelectedItem().toString().equalsIgnoreCase("Materia")) {
-            aD.buscarMateria(jTexto_Buscar1.getText(), jComboBox_busqueda.getSelectedItem().toString());
-            for (Materia m1 : ej5_Coneccion.BuscarCod.arrayMateria) {
+            
+            for (Materia m1 : aD.buscarMateria(jTexto_Buscar1.getText(), jComboBox_busqueda.getSelectedItem().toString())) {
                 modelo.addRow(new Object[]{m1.getIdMateria(), m1.getNombre(), m1.getAnio(), m1.isEstado()});
             }
         }
-        ej5_Coneccion.BuscarCod.arrayAlumno.clear();
-        ej5_Coneccion.BuscarCod.arrayMateria.clear();
     }//GEN-LAST:event_jTexto_Buscar1KeyReleased
 
     private void jComboBox_objetoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox_objetoItemStateChanged
@@ -302,11 +301,9 @@ public class Buscar extends javax.swing.JFrame {
         if (jDateChooser_buscar.getDate() != null) {
         borrarFila();
         LocalDate fechaLD = jDateChooser_buscar.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-        aD.buscarAlumno(null, "FECHA NACIMIENTO", fechaLD);
-            for (Alumno a1 : ej5_Coneccion.BuscarCod.arrayAlumno) {
+            for (Alumno a1 : aD.buscarAlumno(null, "FECHA NACIMIENTO", fechaLD)) {
                 modelo.addRow(new Object[]{a1.getIdAlumno(), a1.getApellido(), a1.getNombre(), a1.getDni(), a1.getFechaNacimiento(), a1.isEstado()});
             }
-        ej5_Coneccion.BuscarCod.arrayAlumno.clear();
         }
         
     }//GEN-LAST:event_jDateChooser_buscarPropertyChange
@@ -327,7 +324,7 @@ public class Buscar extends javax.swing.JFrame {
 
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Buscar().setVisible(true);
+                new Listar_Alumnos_o_Materias().setVisible(true);
             }
         });
     }

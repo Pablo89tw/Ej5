@@ -9,12 +9,12 @@ import java.time.ZoneId;
 import java.util.Date;
 import javax.swing.*;
 
-public class CargarAlumno extends javax.swing.JFrame {
+public class Cargar_Alumno extends javax.swing.JFrame {
 
     /**
      * Creates new form Visual
      */
-    public CargarAlumno() {
+    public Cargar_Alumno() {
         initComponents();
     }
 
@@ -155,7 +155,7 @@ public class CargarAlumno extends javax.swing.JFrame {
             Instant instant = fecha.toInstant();
             LocalDate fechaNacimiento = instant.atZone(ZoneId.systemDefault()).toLocalDate();   
             
-            ej5_Coneccion.CargarAlumno aD = new ej5_Coneccion.CargarAlumno();          
+            ej5_Coneccion.Updates aD = new ej5_Coneccion.Updates();          
             aD.cargarAlumno(Integer.parseInt(TextoDni.getText()), jTextoApellido.getText(), TextoNombre.getText(), fechaNacimiento, true);
                        
         } catch (NumberFormatException nfeE) {
@@ -184,21 +184,23 @@ public class CargarAlumno extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(CargarAlumno.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Cargar_Alumno.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(CargarAlumno.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Cargar_Alumno.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(CargarAlumno.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Cargar_Alumno.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(CargarAlumno.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Cargar_Alumno.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new CargarAlumno().setVisible(true);
+                new Cargar_Alumno().setVisible(true);
             }
         });
     }

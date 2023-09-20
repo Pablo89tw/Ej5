@@ -6,15 +6,16 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
-public class Inscripcion extends javax.swing.JFrame {
+public class Inscribir_Alumno_a_Materia extends javax.swing.JFrame {
 
-    ej5_Coneccion.BuscarCod aD = new ej5_Coneccion.BuscarCod();
-    ej5_Coneccion.Inscripcion iA = new ej5_Coneccion.Inscripcion();
+    ej5_Coneccion.Select aD = new ej5_Coneccion.Select();
+    ej5_Coneccion.Updates iA = new ej5_Coneccion.Updates();
+    
     private int idMateria = 0;
     private int idAlumno = 0;
     
 
-    public Inscripcion() {
+    public Inscribir_Alumno_a_Materia() {
         initComponents();
         armarCabecera();
     }
@@ -247,11 +248,9 @@ public class Inscripcion extends javax.swing.JFrame {
 
     private void jText_insAlumKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jText_insAlumKeyReleased
         borrarFilaAl();
-        aD.buscarAlumno(jText_insAlum.getText(), jComboBox_insAlum.getSelectedItem().toString(), null);
-        for (Alumno a1 : ej5_Coneccion.BuscarCod.arrayAlumno) {
+        for (Alumno a1 : aD.buscarAlumno(jText_insAlum.getText(), jComboBox_insAlum.getSelectedItem().toString(), null)) {
             modelo_al.addRow(new Object[]{a1.getIdAlumno(), a1.getApellido(), a1.getNombre(), a1.getDni(), a1.getFechaNacimiento(), a1.isEstado()});
         }
-        ej5_Coneccion.BuscarCod.arrayAlumno.clear();
     }//GEN-LAST:event_jText_insAlumKeyReleased
 
     private void jComboBox_insMatMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jComboBox_insMatMouseEntered
@@ -263,11 +262,9 @@ public class Inscripcion extends javax.swing.JFrame {
     }//GEN-LAST:event_jComboBox_insMatItemStateChanged
 
     private void jText_insMatKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jText_insMatKeyReleased
-        aD.buscarMateria(jText_insMat.getText(), jComboBox_insMat.getSelectedItem().toString());
-        for (Materia m1 : ej5_Coneccion.BuscarCod.arrayMateria) {
+        for (Materia m1 : aD.buscarMateria(jText_insMat.getText(), jComboBox_insMat.getSelectedItem().toString())) {
             modelo_mat.addRow(new Object[]{m1.getIdMateria(), m1.getNombre(), m1.getAnio(), m1.isEstado()});
         }
-        ej5_Coneccion.BuscarCod.arrayMateria.clear();
     }//GEN-LAST:event_jText_insMatKeyReleased
 
     private void jTable_insAlumMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable_insAlumMouseClicked
@@ -287,11 +284,8 @@ public class Inscripcion extends javax.swing.JFrame {
     }//GEN-LAST:event_jTable_insMatMousePressed
 
     private void jButton_inscribirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_inscribirActionPerformed
-        aD.buscarAlumno(Integer.toString(idAlumno), "ID ALUMNO", null);
-        Alumno alumno = ej5_Coneccion.BuscarCod.arrayAlumno.get(0);
-  
-        aD.buscarMateria(Integer.toString(idMateria), "ID MATERIA");
-        Materia mat = ej5_Coneccion.BuscarCod.arrayMateria.get(0);
+        Alumno alumno = aD.buscarAlumno(Integer.toString(idAlumno), "ID ALUMNO", null).get(0);
+        Materia mat = aD.buscarMateria(Integer.toString(idMateria), "ID MATERIA").get(0);
        
         String text_Mess = "Desea inscribir a " + alumno.getApellido() + ", " + alumno.getNombre() + ". DNI: " + alumno.getDni() 
                 + " en " + mat.getNombre() + ". Año: " + mat.getAnio();
@@ -322,20 +316,21 @@ public class Inscripcion extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Inscripcion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Inscribir_Alumno_a_Materia.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Inscripcion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Inscribir_Alumno_a_Materia.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Inscripcion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Inscribir_Alumno_a_Materia.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Inscripcion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Inscribir_Alumno_a_Materia.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Inscripcion().setVisible(true);
+                new Inscribir_Alumno_a_Materia().setVisible(true);
             }
         });
     }

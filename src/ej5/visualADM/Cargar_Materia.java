@@ -2,11 +2,11 @@ package ej5.visualADM;
 
 import javax.swing.ButtonGroup;
 
-public class CargarMateria extends javax.swing.JFrame {
+public class Cargar_Materia extends javax.swing.JFrame {
 
-    ej5_Coneccion.CargarMateria aD = new ej5_Coneccion.CargarMateria(); 
+    ej5_Coneccion.Updates aD = new ej5_Coneccion.Updates(); 
     
-    public CargarMateria() {
+    public Cargar_Materia() {
         initComponents();
     }
 
@@ -144,20 +144,21 @@ public class CargarMateria extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(CargarMateria.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Cargar_Materia.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(CargarMateria.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Cargar_Materia.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(CargarMateria.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Cargar_Materia.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(CargarMateria.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Cargar_Materia.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new CargarMateria().setVisible(true);
+                new Cargar_Materia().setVisible(true);
             }
         });
     }
