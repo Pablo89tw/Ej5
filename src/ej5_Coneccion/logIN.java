@@ -53,7 +53,7 @@ public class logIN {
         return resultado;
     }
 
-    public void modificarClave(String clave_in, String clave_n1, String clave_n2) {
+    public void modificarClave(String clave_in, String clave_n1, String clave_n2, int usuario) {
         AlumnoData();
         String clave_usuario = "35001"; // Hay que sacarlo de la data del usuario cargada.
         String sq1;
@@ -67,7 +67,7 @@ public class logIN {
             try {
                 ps = con.prepareStatement(sq1);
                 ps.setString(1, clave_n1);
-                ps.setString(2, "3500001");
+                ps.setInt(2, usuario);
 
                 int rowsAffected = ps.executeUpdate();
 
