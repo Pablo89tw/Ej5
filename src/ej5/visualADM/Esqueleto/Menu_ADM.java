@@ -1,8 +1,10 @@
 package ej5.visualADM.Esqueleto;
 
 import ej5.visual.Visual_ADM.Cargar_Alumno;
+import ej5.visual.Visual_ADM.Cargar_Materia;
 import ej5.visual.Visual_ADM.Inscribir_Alumno;
 import ej5.visual.Visual_ADM.Listar_Alumnos_o_Materias;
+import ej5.visual.Visual_ADM.Modificar_Alumno;
 import ej5_Entidades.Alumno;
 
 public class Menu_ADM extends javax.swing.JFrame {
@@ -98,6 +100,11 @@ public class Menu_ADM extends javax.swing.JFrame {
         jMenu2.add(jMenuItem3);
 
         jMenuItem4.setText("Modificar");
+        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem4ActionPerformed(evt);
+            }
+        });
         jMenu2.add(jMenuItem4);
 
         jMenuBar1.add(jMenu2);
@@ -105,6 +112,11 @@ public class Menu_ADM extends javax.swing.JFrame {
         jMenu3.setText("Materia");
 
         jMenuItem5.setText("Agregar");
+        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem5ActionPerformed(evt);
+            }
+        });
         jMenu3.add(jMenuItem5);
 
         jMenuItem6.setText("Modificar");
@@ -155,7 +167,7 @@ public class Menu_ADM extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowOpened
 
     private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_jMenuItem6ActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
@@ -173,8 +185,20 @@ public class Menu_ADM extends javax.swing.JFrame {
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
         Cargar_Alumno cA = new Cargar_Alumno();
         jDesktopPane2.add(cA);
-        cA.add(cA);
+        cA.setVisible(true);
     }//GEN-LAST:event_jMenuItem3ActionPerformed
+
+    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+       Modificar_Alumno mA = new Modificar_Alumno();
+       jDesktopPane2.add(mA);
+       mA.setVisible(true);
+    }//GEN-LAST:event_jMenuItem4ActionPerformed
+
+    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+        Cargar_Materia cM = new Cargar_Materia();
+        jDesktopPane2.add(cM);
+        cM.setVisible(true);
+    }//GEN-LAST:event_jMenuItem5ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane jDesktopPane2;
