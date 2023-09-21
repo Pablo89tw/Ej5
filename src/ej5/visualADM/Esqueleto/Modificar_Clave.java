@@ -136,7 +136,9 @@ public class Modificar_Clave extends javax.swing.JInternalFrame {
         String contraseniaVieja = jP_cV.getText();
         String contraseniaN1 = jP_cN1.getText();
         String contraseniaN2 = jP_cN2.getText();
-        
+        System.out.println(contraseniaVieja);
+        System.out.println(contraseniaN1);
+        System.out.println(contraseniaN2);
         lIn.modificarClave(contraseniaVieja, contraseniaN1, contraseniaN2, usuario);
     }//GEN-LAST:event_jButton1ActionPerformed
 

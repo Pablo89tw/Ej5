@@ -9,7 +9,6 @@ import javax.swing.JOptionPane;
 
 public class logIN {
 
-    private Alumno alumno;
     private Connection con;
     private int usuario;
     private String clave_in, clave;
@@ -20,7 +19,7 @@ public class logIN {
     }
 
     public int logIN(int usuario, String clave_in) {
-        AlumnoData();int resultado = 1;
+        AlumnoData();int resultado = 5;
         
         String sql = "SELECT Clave FROM login WHERE Usuario LIKE (?)";
         PreparedStatement ps = null;
@@ -55,14 +54,26 @@ public class logIN {
 
     public void modificarClave(String clave_in, String clave_n1, String clave_n2, int usuario) {
         AlumnoData();
-        String clave_usuario = "35001"; // Hay que sacarlo de la data del usuario cargada.
-        String sq1;
+        String clave_usuario = null; 
+        String sql = "SELECT Clave FROM login WHERE Usuario LIKE (?)";
+        PreparedStatement ps = null;
+  
+        try {
+            ps = con.prepareStatement(sql);
+            ps.setString(1, Integer.toString(usuario));
+            ResultSet rs = ps.executeQuery();
+                        
+            if (rs.next()) {  
+             clave_usuario = rs.getString("Clave");
+                System.out.println(clave_usuario);
+            }  
+        }catch (SQLException sqlE) {
+                JOptionPane.showMessageDialog(null, "Error busqueda");
+            }    
+       if (clave_in.equals(clave_usuario) && clave_n1.equals(clave_n2)) {
 
-        if (clave_in.equals(clave_usuario) && clave_n1.equals(clave_n2)) {
-
-            sq1 = "UPDATE login SET Clave = ? WHERE Usuario LIKE ?";
-
-            PreparedStatement ps = null;
+            String sq1 = "UPDATE login SET Clave = ? WHERE Usuario LIKE ?";
+            ps = null;
 
             try {
                 ps = con.prepareStatement(sq1);
@@ -74,7 +85,6 @@ public class logIN {
             } catch (SQLException sqlE) {
                 JOptionPane.showMessageDialog(null, "Error busqueda");
             }
-
         }
     }
 }
