@@ -17,7 +17,7 @@ public class Ej5 {
         System.out.println("probando2");
         System.out.println("Listorti");
         
-        System.out.println("CAMBIO 2945");
+        System.out.println("CAMBIO 3:30 A.M.");
 
 
     }
