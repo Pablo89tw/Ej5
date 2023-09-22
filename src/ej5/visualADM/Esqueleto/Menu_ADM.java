@@ -5,6 +5,7 @@ import ej5.visual.Visual_ADM.Cargar_Materia;
 import ej5.visual.Visual_ADM.Inscribir_Alumno;
 import ej5.visual.Visual_ADM.Listar_Alumnos_o_Materias;
 import ej5.visual.Visual_ADM.Modificar_Alumno;
+import ej5.visual.Visual_ADM.Modificar_Materia_FALTA;
 import ej5_Entidades.Alumno;
 
 public class Menu_ADM extends javax.swing.JFrame {
@@ -176,7 +177,9 @@ public class Menu_ADM extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowOpened
 
     private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
-        
+       Modificar_Materia_FALTA mmF = new Modificar_Materia_FALTA();
+       jDesktopPane2.add(mmF);
+       mmF.setVisible(true);
     }//GEN-LAST:event_jMenuItem6ActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
