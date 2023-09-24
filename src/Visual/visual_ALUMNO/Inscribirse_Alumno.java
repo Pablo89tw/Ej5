@@ -2,28 +2,28 @@ package Visual.visual_ALUMNO;
 
 import Entidades.Alumno;
 import Entidades.Materia;
+import java.util.ArrayList;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 public class Inscribirse_Alumno extends javax.swing.JInternalFrame {
-   
+
     Coneccion.AlumnoData aD = new Coneccion.AlumnoData();
     Coneccion.MateriaData mD = new Coneccion.MateriaData();
     Coneccion.InscripcionData iD = new Coneccion.InscripcionData();
-    
+
     private Alumno alumno;
-    private int usuario;
     private int idMateria = 0;
     private int idAlumno;
 
     public Inscribirse_Alumno(int usuario) {
         initComponents();
-        /// this.usuario = usuario;
         armarCabecera();
         alumno = aD.buscarAlumno(Integer.toString(usuario), "DNI", null).get(0);
         jText.setEnabled(false);
         jButton.setEnabled(false);
+        llenarTablaMaterias();
     }
 
     DefaultTableModel modelo_mat = new DefaultTableModel() {
@@ -102,7 +102,7 @@ public class Inscribirse_Alumno extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 385, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 8, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(Salir)
@@ -124,7 +124,7 @@ public class Inscribirse_Alumno extends javax.swing.JInternalFrame {
                     .addComponent(jText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 77, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton)
                     .addComponent(Salir))
@@ -144,10 +144,16 @@ public class Inscribirse_Alumno extends javax.swing.JInternalFrame {
 
     private void jTextKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextKeyReleased
         borrarFila();
+        ArrayList<Materia> materiaNoInscripto = new ArrayList<>(mD.buscarMateria(Integer.toString(alumno.getIdAlumno()),"NO_INSCRIPTO"));
+        
+//        for (int i = 0; i < materiaNoInscripto.size(); i++) {
+//            System.out.println((materiaNoInscripto.get(i).getNombre()));
+//        }
+            
         for (Materia m1 : mD.buscarMateria(jText.getText(), jCB.getSelectedItem().toString())) {
-            if (m1.getAnio() == alumno.getAnio()){
-            modelo_mat.addRow(new Object[]{m1.getIdMateria(), m1.getNombre(), m1.getAnio(), m1.isEstado(),});
-        }
+            if (m1.getAnio() == alumno.getAnio() /*&& (materiaNoInscripto.contains(m1))*/){
+                modelo_mat.addRow(new Object[]{m1.getIdMateria(), m1.getNombre(), m1.getAnio(), m1.isEstado()});
+            }
         }
     }//GEN-LAST:event_jTextKeyReleased
 
@@ -164,8 +170,13 @@ public class Inscribirse_Alumno extends javax.swing.JInternalFrame {
         String text_Mess = "Te deseas inscribir a " + mat.getNombre() + ". Año: " + mat.getAnio();
 
         switch (JOptionPane.showConfirmDialog(rootPane, text_Mess)) {
-            case 0: iD.inscribirAlumno(idMateria, alumno.getIdAlumno());break;
-            case 1:  jText.setText("");  jText.setText(""); break;
+            case 0:
+                iD.inscribirAlumno(idMateria, alumno.getIdAlumno());
+                break;
+            case 1:
+                jText.setText("");
+                jText.setText("");
+                break;
         }
     }//GEN-LAST:event_jButtonActionPerformed
 
@@ -201,5 +212,12 @@ public class Inscribirse_Alumno extends javax.swing.JInternalFrame {
         for (int f = filas; f >= 0; f--) {
             modelo_mat.removeRow(f);
         }
+    }
+    
+    private void llenarTablaMaterias(){
+    for (Materia m1 : mD.buscarMateria(Integer.toString(alumno.getIdAlumno()),"NO_INSCRIPTO")) {
+            if (m1.getAnio() == alumno.getAnio())
+                modelo_mat.addRow(new Object[]{m1.getIdMateria(), m1.getNombre(), m1.getAnio(), m1.isEstado()});
+            }
     }
 }

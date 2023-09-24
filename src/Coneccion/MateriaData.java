@@ -18,7 +18,7 @@ public class MateriaData {
     }
 
     private ArrayList<Materia> arrayMateria = new ArrayList<>();
-
+    
     public ArrayList<Materia> buscarMateria(String data, String codigo) {
         AlumnoData();
         String sql;
@@ -32,6 +32,9 @@ public class MateriaData {
                 break;
             case "NOMBRE":
                 sql = "SELECT * FROM materia WHERE nombre LIKE (?)";
+                break;
+            case "NO_INSCRIPTO": sql = "SELECT * FROM materia WHERE idMateria NOT IN "
+                    + "(SELECT idMateria FROM inscripcion WHERE idAlumno = ?)";
                 break;
             default:
                 sql = "SELECT * FROM materia WHERE estado LIKE (?)";
@@ -132,4 +135,25 @@ public class MateriaData {
         }
 
     }
+      
+      public void eliminarMateria(int idMateria) {
+        AlumnoData();
+        try {
+            String sql = "DELETE FROM materia WHERE idMateria LIKE ?";
+
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, idMateria);
+
+            int fila = ps.executeUpdate();
+
+            if (fila == 1) {
+                JOptionPane.showMessageDialog(null, "Materia Eliminado");
+            } else {
+                JOptionPane.showMessageDialog(null, "No se eliminó la materia");
+            }
+
+        } catch (SQLException sqlE) {
+            JOptionPane.showMessageDialog(null, "No existe materia cono ese id");
+        }
+    }    
 }

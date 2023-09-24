@@ -1,8 +1,8 @@
 package Visual.visual_ADM;
 
-import Visual.visual_ADM.Cargar_Alumno;
+import Visual.visual_ADM.CargarAlumno;
 import Visual.visual_ADM.Cargar_Materia;
-import Visual.visual_ADM.Inscribir_Alumno_iF;
+import Visual.visual_ADM.Inscribir_Alumno;
 import Visual.visual_ADM.Listar_Alumnos_o_Materias;
 import Visual.visual_ADM.ModificarAlumno;
 import Entidades.Alumno;
@@ -198,7 +198,7 @@ public class Menu_ADM extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowOpened
 
     private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
-       ModificarMateria mmF = new ModificarMateria();
+       ModificarMateria mmF = new ModificarMateria(usuario);
        jDesktopPane2.add(mmF);
        mmF.setVisible(true);
     }//GEN-LAST:event_jMenuItem6ActionPerformed
@@ -210,13 +210,13 @@ public class Menu_ADM extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
-        Inscribir_Alumno_iF ia = new Inscribir_Alumno_iF();
+        Inscribir_Alumno ia = new Inscribir_Alumno();
         jDesktopPane2.add(ia);
         ia.setVisible(true);
     }//GEN-LAST:event_jMenuItem7ActionPerformed
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
-        Cargar_Alumno cA = new Cargar_Alumno();
+        CargarAlumno cA = new CargarAlumno();
         jDesktopPane2.add(cA);
         cA.setVisible(true);
     }//GEN-LAST:event_jMenuItem3ActionPerformed

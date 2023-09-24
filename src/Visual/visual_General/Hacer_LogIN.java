@@ -6,7 +6,10 @@ import Coneccion.loginData;
 
 public class Hacer_LogIN extends javax.swing.JInternalFrame {
 
-   
+    private String clave;
+    private int usuario;
+    private int usuario_data = 0;
+    private String clave_data = null;
     
     public Hacer_LogIN() {
         initComponents();
@@ -130,9 +133,9 @@ public class Hacer_LogIN extends javax.swing.JInternalFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
         Coneccion.loginData iN = new Coneccion.loginData();
-        int usuario = Integer.parseInt(jText_usuLIN.getText());
+        usuario = Integer.parseInt(jText_usuLIN.getText());
              
-        String clave = String.valueOf(jPas_logIN.getPassword());
+        clave = String.valueOf(jPas_logIN.getPassword());
         
         
         Entidades.LogIN log1 = new Entidades.LogIN(usuario, clave);

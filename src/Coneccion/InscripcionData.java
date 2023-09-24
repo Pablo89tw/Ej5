@@ -8,11 +8,13 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JOptionPane;
 
 public class InscripcionData {
 
     private Connection con;
+    
     AlumnoData aD = new AlumnoData();
     MateriaData mD = new MateriaData();
     
@@ -20,6 +22,7 @@ public class InscripcionData {
         con = Conectar.getConectar();
     }
     private ArrayList<Inscripcion> arrayInscripciones_x_alumno = new ArrayList<>();
+    
 
     public void inscribirAlumno(int idMateria, int idAlumno) {
         AlumnoData();
@@ -29,13 +32,12 @@ public class InscripcionData {
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, idAlumno);
             ps.setInt(2, idMateria);
-
-             int filasAfectadas = ps.executeUpdate();          
-             ResultSet rs = ps.getGeneratedKeys();
-             if (filasAfectadas > 0){
+           
+             int filasAfectadas = ps.executeUpdate();    
+ 
+             if (filasAfectadas == 1){
                  JOptionPane.showMessageDialog(null, "Se realizaron " + filasAfectadas + " inscripciones.");
              }
-
         } catch (SQLException sqlE) {
             JOptionPane.showMessageDialog(null, "ERROR!");
         }
@@ -104,5 +106,8 @@ public class InscripcionData {
 
         return arrayInscripciones_x_alumno;
     }
+    
+   
+    
 
 }

@@ -12,7 +12,8 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 public class AlumnoData {
-     private Connection con;
+    private Connection con;
+    
     public void AlumnoData() {
         con = Conectar.getConectar();
     }
@@ -41,6 +42,8 @@ public class AlumnoData {
             case "FECHA NACIMIENTO":
                 sql = "SELECT * FROM alumno WHERE fechaNacimiento LIKE (?)";
                 break;
+            case "AÑO":
+                sql = "SELECT * FROM alumno WHERE año LIKE (?)"; break;
             default:
                 sql = "SELECT * FROM alumno WHERE estado LIKE (?)";
                 break;
@@ -73,18 +76,19 @@ public class AlumnoData {
         return arrayAlumno;
     }
     
-    public void cargarAlumno(int dni, String apellido, String nombre, LocalDate fechaNacimiento, boolean estado, int categoria) {
+    public void cargarAlumno(Alumno alumno) {
         AlumnoData();
 
-        String sql = "INSERT INTO alumno (dni,apellido,nombre,fechaNacimiento,estado,categoria) VALUES (?,?,?,?,?,?)";
+        String sql = "INSERT INTO alumno (dni,apellido,nombre,fechaNacimiento,estado,año,categoria) VALUES (?,?,?,?,?,?,?)";
         try {
             PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-            ps.setInt(1, dni);
-            ps.setString(2, apellido);
-            ps.setString(3, nombre);
-            ps.setDate(4, Date.valueOf(fechaNacimiento));
-            ps.setBoolean(5, estado);
-            ps.setInt(6,1);
+            ps.setInt(1, alumno.getDni());
+            ps.setString(2, alumno.getApellido());
+            ps.setString(3, alumno.getNombre());
+            ps.setDate(4, Date.valueOf(alumno.getFechaNacimiento()));
+            ps.setBoolean(5, alumno.isEstado());
+            ps.setInt(6,alumno.getAnio());
+            ps.setInt(7,1);
             ps.executeUpdate();
 
             ResultSet rs = ps.getGeneratedKeys();
@@ -160,8 +164,9 @@ public class AlumnoData {
 
     public void eliminarAlumno(int idAlumno) {
         AlumnoData();
+        System.out.println(idAlumno);
         try {
-            String sql = "UPDATE alumno SET estado = 0 WHERE idAlumno = ?";
+            String sql = "DELETE FROM alumno WHERE idAlumno LIKE ?";
 
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, idAlumno);
@@ -169,9 +174,9 @@ public class AlumnoData {
             int fila = ps.executeUpdate();
 
             if (fila == 1) {
-                JOptionPane.showMessageDialog(null, "Cambio exitoso");
+                JOptionPane.showMessageDialog(null, "Alumno Eliminado");
             } else {
-                JOptionPane.showMessageDialog(null, "No se editó el estado del alumno");
+                JOptionPane.showMessageDialog(null, "No se eliminó el alumno");
             }
 
         } catch (SQLException sqlE) {

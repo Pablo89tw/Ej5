@@ -1,22 +1,23 @@
 package Visual.visual_ADM;
 
-
+import Coneccion.InscripcionData;
 import Entidades.Alumno;
 import Entidades.Materia;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
-public class Inscribir_Alumno_iF extends javax.swing.JInternalFrame {
+public class Inscribir_Alumno extends javax.swing.JInternalFrame {
 
-   Coneccion.AlumnoData aD = new Coneccion.AlumnoData();
+    Coneccion.AlumnoData aD = new Coneccion.AlumnoData();
     Coneccion.MateriaData mD = new Coneccion.MateriaData();
     Coneccion.InscripcionData iD = new Coneccion.InscripcionData();
 
     private int idMateria = 0;
     private int idAlumno = 0;
-    
-    public Inscribir_Alumno_iF() {
+    private Alumno alumno;
+
+    public Inscribir_Alumno() {
         initComponents();
         armarCabecera();
         String[] listaCMAlum = {"ID ALUMNO", "APELLIDO", "NOMBRE", "DNI"};
@@ -149,7 +150,7 @@ public class Inscribir_Alumno_iF extends javax.swing.JInternalFrame {
             }
         });
 
-        jComboBox_insAlum1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox_insAlum1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-" }));
         jComboBox_insAlum1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox_insAlum1ActionPerformed(evt);
@@ -228,8 +229,12 @@ public class Inscribir_Alumno_iF extends javax.swing.JInternalFrame {
     private void jText_insAlumKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jText_insAlumKeyReleased
         borrarFilaAl();
         for (Alumno a1 : aD.buscarAlumno(jText_insAlum.getText(), jComboBox_insAlum1.getSelectedItem().toString(), null)) {
-            modelo_al.addRow(new Object[]{a1.getIdAlumno(), a1.getApellido(), a1.getNombre(), a1.getDni(), a1.getFechaNacimiento(), a1.isEstado()});
+            if (a1.isEstado()) {
+                modelo_al.addRow(new Object[]{a1.getIdAlumno(), a1.getApellido(), a1.getNombre(), a1.getDni(), a1.getFechaNacimiento(), a1.isEstado()});
+            }
         }
+        alumno = aD.buscarAlumno(jText_insAlum.getText(), jComboBox_insAlum1.getSelectedItem().toString(), null).get(0);
+
     }//GEN-LAST:event_jText_insAlumKeyReleased
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -242,6 +247,7 @@ public class Inscribir_Alumno_iF extends javax.swing.JInternalFrame {
         if (filaSeleccionada >= 0) {
             idAlumno = (int) jTable_insAlum.getValueAt(filaSeleccionada, 0);
         }
+        llenarTablaMaterias();
     }//GEN-LAST:event_jTable_insAlumMouseClicked
 
     private void jButton_inscribirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_inscribirActionPerformed
@@ -249,16 +255,16 @@ public class Inscribir_Alumno_iF extends javax.swing.JInternalFrame {
         Materia mat = mD.buscarMateria(Integer.toString(idMateria), "ID MATERIA").get(0);
 
         String text_Mess = "Desea inscribir a " + alumno.getApellido() + ", " + alumno.getNombre() + ". DNI: " + alumno.getDni()
-        + " en " + mat.getNombre() + ". Año: " + mat.getAnio();
+                + " en " + mat.getNombre() + ". Año: " + mat.getAnio();
 
         switch (JOptionPane.showConfirmDialog(rootPane, text_Mess)) {
             case 0:
-            iD.inscribirAlumno(idMateria, idAlumno);
-            break;
+                iD.inscribirAlumno(idMateria, idAlumno);
+                break;
             case 1:
-            jText_insAlum.setText("");
-            jText_insMat.setText("");
-            break;
+                jText_insAlum.setText("");
+                jText_insMat.setText("");
+                break;
         }
     }//GEN-LAST:event_jButton_inscribirActionPerformed
 
@@ -283,8 +289,11 @@ public class Inscribir_Alumno_iF extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jComboBox_insMatMouseEntered
 
     private void jText_insMatKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jText_insMatKeyReleased
-        for (Materia m1 : mD.buscarMateria(jText_insMat.getText(), jComboBox_insMat.getSelectedItem().toString())) {
-            modelo_mat.addRow(new Object[]{m1.getIdMateria(), m1.getNombre(), m1.getAnio(), m1.isEstado()});
+        borrarFilaMat();
+        for (Materia materia : mD.buscarMateria(jText_insMat.getText(), jComboBox_insMat.getSelectedItem().toString())) {
+            if (materia.isEstado()) {
+                modelo_mat.addRow(new Object[]{materia.getIdMateria(), materia.getNombre(), materia.getAnio(), materia.isEstado()});
+            }
         }
     }//GEN-LAST:event_jText_insMatKeyReleased
 
@@ -310,7 +319,7 @@ public class Inscribir_Alumno_iF extends javax.swing.JInternalFrame {
     private javax.swing.JTextField jText_insMat;
     // End of variables declaration//GEN-END:variables
 
-private void armarCabecera() {
+    private void armarCabecera() {
         modelo_al.setColumnCount(0);
         modelo_al.addColumn("iD Alumno");
         modelo_al.addColumn("Apellido");
@@ -341,6 +350,10 @@ private void armarCabecera() {
             modelo_mat.removeRow(f);
         }
     }
+
+    private void llenarTablaMaterias() {
+        for (Materia materia : mD.buscarMateria(Integer.toString(alumno.getIdAlumno()),"NO_INSCRIPTO")) {
+            modelo_mat.addRow(new Object[]{materia.getIdMateria(), materia.getNombre(), materia.getAnio(), materia.isEstado()});
+        }
+    }
 }
-
-

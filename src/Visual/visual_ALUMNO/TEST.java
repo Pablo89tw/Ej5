@@ -1,6 +1,7 @@
 package Visual.visual_ALUMNO;
 
 import Visual.visual_ADM.Listar_Alumno_x_Materia;
+import Visual.visual_ADM.Listar_Alumnos_o_Materias;
 import Visual.visual_General.Hacer_LogIN;
 
 public class TEST extends javax.swing.JFrame {
@@ -59,7 +60,7 @@ public class TEST extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void VamosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VamosActionPerformed
-     Listar_Alumnos_o_Materias_iF iA = new Listar_Alumnos_o_Materias_iF();
+    Inscribirse_Alumno iA = new Inscribirse_Alumno(80000028);
        jDesktopPane1.add(iA);
        iA.setVisible(true);
     }//GEN-LAST:event_VamosActionPerformed

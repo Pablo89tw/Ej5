@@ -5,7 +5,7 @@ import java.awt.Graphics;
 import java.awt.Image;
 import javax.swing.ImageIcon;
 
-import Visual.visual_ADM.Cargar_Alumno;
+import Visual.visual_ADM.CargarAlumno;
 import Visual.visual_ADM.Listar_Alumnos_o_Materias;
 import Visual.visual_ADM.ModificarAlumno;
 import Entidades.Alumno;
@@ -263,7 +263,7 @@ public class Administrador extends javax.swing.JInternalFrame {
         fondo_admin.removeAll();
         fondo_admin.repaint();
 
-        Cargar_Alumno agr_alum = new Cargar_Alumno();
+        CargarAlumno agr_alum = new CargarAlumno();
         agr_alum.setVisible(true);
 
         fondo_admin.add(agr_alum);
