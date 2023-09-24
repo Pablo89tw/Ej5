@@ -5,25 +5,25 @@ import java.awt.Graphics;
 import java.awt.Image;
 import javax.swing.ImageIcon;
 
-import Visual.visual_ADM.Cargar_Alumno_iF;
-import Visual.visual_ADM.Cargar_Materia_iF;
-import Visual.visual_ADM.Inscribir_Alumno_iF;
-import Visual.visual_ADM.Listar_Alumnos_o_Materias_iF;
+import Visual.visual_ADM.Cargar_Alumno;
+import Visual.visual_ADM.Listar_Alumnos_o_Materias;
 import Visual.visual_ADM.ModificarAlumno;
 import Entidades.Alumno;
-import Visual.visual_General.Modificar_Clave;
+
 
 public class Administrador extends javax.swing.JInternalFrame {
 
     private int usuario;
+    Coneccion.AlumnoData aD = new Coneccion.AlumnoData();
+    Coneccion.MateriaData mD = new Coneccion.MateriaData();
+    Coneccion.InscripcionData iD = new Coneccion.InscripcionData();
 
     public Administrador(int usuario) {
         initComponents();
         this.usuario = usuario;
 
-        Coneccion.Select bA = new Coneccion.Select();
         String text = null;
-        for (Alumno a1 : bA.buscarAlumno(Integer.toString(usuario), "DNI", null)) {
+        for (Alumno a1 : aD.buscarAlumno(Integer.toString(usuario), "DNI", null)) {
             text = ("Bienvenido " + a1.getNombre() + ", " + a1.getApellido());
         }
         jLabel2.setText(text);
@@ -263,7 +263,7 @@ public class Administrador extends javax.swing.JInternalFrame {
         fondo_admin.removeAll();
         fondo_admin.repaint();
 
-        Cargar_Alumno_iF agr_alum = new Cargar_Alumno_iF();
+        Cargar_Alumno agr_alum = new Cargar_Alumno();
         agr_alum.setVisible(true);
 
         fondo_admin.add(agr_alum);
@@ -283,7 +283,7 @@ public class Administrador extends javax.swing.JInternalFrame {
         fondo_admin.removeAll();
         fondo_admin.repaint();
 
-        Listar_Alumnos_o_Materias_iF adminBus = new Listar_Alumnos_o_Materias_iF();
+        Listar_Alumnos_o_Materias adminBus = new Listar_Alumnos_o_Materias();
         adminBus.setVisible(true);
 
         fondo_admin.add(adminBus);

@@ -2,7 +2,7 @@ package Visual.visual_General;
 
 public class Modificar_Clave extends javax.swing.JInternalFrame {
 
-    Coneccion.logIN lIn = new Coneccion.logIN();
+    Coneccion.loginData lIn = new Coneccion.loginData();
    
     private int usuario;
     public Modificar_Clave(int usuario) {

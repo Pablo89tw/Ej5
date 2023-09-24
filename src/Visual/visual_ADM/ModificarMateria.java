@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JInternalFrame.java to edit this template
- */
+
 package Visual.visual_ADM;
 
 import Entidades.Materia;
@@ -9,21 +6,18 @@ import javax.swing.ButtonGroup;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.table.DefaultTableModel;
 
-/**
- *
- * @author Pablo
- */
 public class ModificarMateria extends javax.swing.JInternalFrame {
 
+    Coneccion.AlumnoData aD = new Coneccion.AlumnoData();
+    Coneccion.MateriaData mD = new Coneccion.MateriaData();
+    Coneccion.InscripcionData iD = new Coneccion.InscripcionData();
+    
     private int idMateria;
     private int anio;
     private String nombre;
     private boolean estado;
     private int cupo;
         
-    Coneccion.Select aD = new Coneccion.Select();
-    Coneccion.Updates mA = new  Coneccion.Updates();
-    
     DefaultTableModel modelo = new DefaultTableModel() {  
         public boolean isCellEditable(int f, int c) {
             return false;
@@ -221,7 +215,7 @@ public class ModificarMateria extends javax.swing.JInternalFrame {
 
     private void jTextField4KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField4KeyReleased
         borrarFila();
-        for (Materia m1 : aD.buscarMateria(jTextField4.getText(), jComboBox1.getSelectedItem().toString())) {
+        for (Materia m1 : mD.buscarMateria(jTextField4.getText(), jComboBox1.getSelectedItem().toString())) {
             modelo.addRow(new Object[]{m1.getIdMateria(),m1.getNombre(),m1.getAnio(),m1.getCupo(),m1.isEstado()});
         }
     }//GEN-LAST:event_jTextField4KeyReleased
@@ -271,7 +265,7 @@ public class ModificarMateria extends javax.swing.JInternalFrame {
 
         Materia materia = new Materia (nombre, anio, estado, cupo);
         materia.setIdMateria(idMateria);
-        mA.modificarMateria(materia);
+        mD.modificarMateria(materia);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jCheckBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox2ActionPerformed

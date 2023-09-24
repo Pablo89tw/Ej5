@@ -3,6 +3,10 @@ import Entidades.Alumno;
 
 public class Menu_Alumno extends javax.swing.JFrame {
        
+    Coneccion.AlumnoData aD = new Coneccion.AlumnoData();
+    Coneccion.MateriaData mD = new Coneccion.MateriaData();
+    Coneccion.InscripcionData iD = new Coneccion.InscripcionData();
+    
     private int usuario;
     public Menu_Alumno(int usuario) {
         initComponents();
@@ -108,9 +112,8 @@ public class Menu_Alumno extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-       Coneccion.Select bA = new Coneccion.Select();
-       String text = null;
-        for (Alumno a1 : bA.buscarAlumno(Integer.toString(usuario), "DNI", null)) {
+        String text = null;
+        for (Alumno a1 : aD.buscarAlumno(Integer.toString(usuario), "DNI", null)) {
             text = ("Bienvenido " + a1.getNombre() + ", " + a1.getApellido());
         }
         jLabel1.setText(text);

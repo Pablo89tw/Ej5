@@ -2,7 +2,7 @@ package Visual.visual_General;
 
 import Visual.visual_ALUMNO.Menu_Alumno;
 import Visual.visual_ADM.Menu_ADM;
-import Coneccion.logIN;
+import Coneccion.loginData;
 
 public class Hacer_LogIN extends javax.swing.JInternalFrame {
 
@@ -129,7 +129,7 @@ public class Hacer_LogIN extends javax.swing.JInternalFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
-        Coneccion.logIN iN = new Coneccion.logIN();
+        Coneccion.loginData iN = new Coneccion.loginData();
         int usuario = Integer.parseInt(jText_usuLIN.getText());
              
         String clave = String.valueOf(jPas_logIN.getPassword());

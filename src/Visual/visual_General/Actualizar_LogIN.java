@@ -3,7 +3,9 @@ package Visual.visual_General;
 
 public class Actualizar_LogIN extends javax.swing.JFrame {
 
-    Coneccion.Updates cL = new Coneccion.Updates();
+    Coneccion.AlumnoData aD = new Coneccion.AlumnoData();
+    Coneccion.MateriaData mD = new Coneccion.MateriaData();
+    Coneccion.InscripcionData iD = new Coneccion.InscripcionData();
     
     public Actualizar_LogIN() {
         initComponents();

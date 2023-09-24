@@ -9,8 +9,9 @@ import javax.swing.table.DefaultTableModel;
 
 public class Inscribir_Alumno_iF extends javax.swing.JInternalFrame {
 
-    Coneccion.Select aD = new Coneccion.Select();
-    Coneccion.Updates iA = new Coneccion.Updates();
+   Coneccion.AlumnoData aD = new Coneccion.AlumnoData();
+    Coneccion.MateriaData mD = new Coneccion.MateriaData();
+    Coneccion.InscripcionData iD = new Coneccion.InscripcionData();
 
     private int idMateria = 0;
     private int idAlumno = 0;
@@ -245,14 +246,14 @@ public class Inscribir_Alumno_iF extends javax.swing.JInternalFrame {
 
     private void jButton_inscribirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_inscribirActionPerformed
         Alumno alumno = aD.buscarAlumno(Integer.toString(idAlumno), "ID ALUMNO", null).get(0);
-        Materia mat = aD.buscarMateria(Integer.toString(idMateria), "ID MATERIA").get(0);
+        Materia mat = mD.buscarMateria(Integer.toString(idMateria), "ID MATERIA").get(0);
 
         String text_Mess = "Desea inscribir a " + alumno.getApellido() + ", " + alumno.getNombre() + ". DNI: " + alumno.getDni()
         + " en " + mat.getNombre() + ". Año: " + mat.getAnio();
 
         switch (JOptionPane.showConfirmDialog(rootPane, text_Mess)) {
             case 0:
-            iA.inscribirAlumno(idMateria, idAlumno);
+            iD.inscribirAlumno(idMateria, idAlumno);
             break;
             case 1:
             jText_insAlum.setText("");
@@ -282,7 +283,7 @@ public class Inscribir_Alumno_iF extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jComboBox_insMatMouseEntered
 
     private void jText_insMatKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jText_insMatKeyReleased
-        for (Materia m1 : aD.buscarMateria(jText_insMat.getText(), jComboBox_insMat.getSelectedItem().toString())) {
+        for (Materia m1 : mD.buscarMateria(jText_insMat.getText(), jComboBox_insMat.getSelectedItem().toString())) {
             modelo_mat.addRow(new Object[]{m1.getIdMateria(), m1.getNombre(), m1.getAnio(), m1.isEstado()});
         }
     }//GEN-LAST:event_jText_insMatKeyReleased

@@ -7,6 +7,11 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 public class Inscribirse_Alumno extends javax.swing.JInternalFrame {
+   
+    Coneccion.AlumnoData aD = new Coneccion.AlumnoData();
+    Coneccion.MateriaData mD = new Coneccion.MateriaData();
+    Coneccion.InscripcionData iD = new Coneccion.InscripcionData();
+    
     private Alumno alumno;
     private int usuario;
     private int idMateria = 0;
@@ -26,9 +31,6 @@ public class Inscribirse_Alumno extends javax.swing.JInternalFrame {
             return false;
         }
     };
-
-    Coneccion.Select aD = new Coneccion.Select();
-    Coneccion.Updates iA = new Coneccion.Updates();
 
     @SuppressWarnings("unchecked")
 
@@ -142,7 +144,7 @@ public class Inscribirse_Alumno extends javax.swing.JInternalFrame {
 
     private void jTextKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextKeyReleased
         borrarFila();
-        for (Materia m1 : aD.buscarMateria(jText.getText(), jCB.getSelectedItem().toString())) {
+        for (Materia m1 : mD.buscarMateria(jText.getText(), jCB.getSelectedItem().toString())) {
             if (m1.getAnio() == alumno.getAnio()){
             modelo_mat.addRow(new Object[]{m1.getIdMateria(), m1.getNombre(), m1.getAnio(), m1.isEstado(),});
         }
@@ -158,11 +160,11 @@ public class Inscribirse_Alumno extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jTableMousePressed
 
     private void jButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonActionPerformed
-        Materia mat = aD.buscarMateria(Integer.toString(idMateria), "ID MATERIA").get(0);
+        Materia mat = mD.buscarMateria(Integer.toString(idMateria), "ID MATERIA").get(0);
         String text_Mess = "Te deseas inscribir a " + mat.getNombre() + ". Año: " + mat.getAnio();
 
         switch (JOptionPane.showConfirmDialog(rootPane, text_Mess)) {
-            case 0: iA.inscribirAlumno(idMateria, alumno.getIdAlumno());break;
+            case 0: iD.inscribirAlumno(idMateria, alumno.getIdAlumno());break;
             case 1:  jText.setText("");  jText.setText(""); break;
         }
     }//GEN-LAST:event_jButtonActionPerformed

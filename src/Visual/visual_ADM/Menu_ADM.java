@@ -1,9 +1,9 @@
 package Visual.visual_ADM;
 
-import Visual.visual_ADM.Cargar_Alumno_iF;
-import Visual.visual_ADM.Cargar_Materia_iF;
+import Visual.visual_ADM.Cargar_Alumno;
+import Visual.visual_ADM.Cargar_Materia;
 import Visual.visual_ADM.Inscribir_Alumno_iF;
-import Visual.visual_ADM.Listar_Alumnos_o_Materias_iF;
+import Visual.visual_ADM.Listar_Alumnos_o_Materias;
 import Visual.visual_ADM.ModificarAlumno;
 import Entidades.Alumno;
 import Visual.visual_General.Modificar_Clave;
@@ -13,6 +13,9 @@ public class Menu_ADM extends javax.swing.JFrame {
 
     private int usuario;
     
+    Coneccion.AlumnoData aD = new Coneccion.AlumnoData();
+    Coneccion.MateriaData mD = new Coneccion.MateriaData();
+    Coneccion.InscripcionData iD = new Coneccion.InscripcionData();
     public Menu_ADM(int usuario) {
         initComponents();
         this.usuario = usuario;
@@ -187,9 +190,8 @@ public class Menu_ADM extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-       Coneccion.Select bA = new Coneccion.Select();
-       String text = null;
-        for (Alumno a1 : bA.buscarAlumno(Integer.toString(usuario), "DNI", null)) {
+        String text = null;
+        for (Alumno a1 : aD.buscarAlumno(Integer.toString(usuario), "DNI", null)) {
             text = ("Bienvenido " + a1.getNombre() + ", " + a1.getApellido());
         }
         jLabel2.setText(text);
@@ -202,7 +204,7 @@ public class Menu_ADM extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem6ActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        Listar_Alumnos_o_Materias_iF buscar = new Listar_Alumnos_o_Materias_iF();
+        Listar_Alumnos_o_Materias buscar = new Listar_Alumnos_o_Materias();
         jDesktopPane2.add(buscar);
         buscar.setVisible(true);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
@@ -214,7 +216,7 @@ public class Menu_ADM extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem7ActionPerformed
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
-        Cargar_Alumno_iF cA = new Cargar_Alumno_iF();
+        Cargar_Alumno cA = new Cargar_Alumno();
         jDesktopPane2.add(cA);
         cA.setVisible(true);
     }//GEN-LAST:event_jMenuItem3ActionPerformed
@@ -226,7 +228,7 @@ public class Menu_ADM extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
-        Cargar_Materia_iF cM = new Cargar_Materia_iF();
+        Cargar_Materia cM = new Cargar_Materia();
         jDesktopPane2.add(cM);
         cM.setVisible(true);
     }//GEN-LAST:event_jMenuItem5ActionPerformed
@@ -240,7 +242,7 @@ public class Menu_ADM extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem8ActionPerformed
 
     private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
-        Coneccion.logIN ln = new Coneccion.logIN();
+        Coneccion.loginData ln = new Coneccion.loginData();
             ln.darAccesoNuevos();      
     }//GEN-LAST:event_jMenuItem9ActionPerformed
 

@@ -1,10 +1,10 @@
 package Visual.visual_ADM;
 
-import Coneccion.logIN;
+import Coneccion.loginData;
 import Visual.visual_General.Hacer_LogIN;
 
 public class TEST extends javax.swing.JFrame {
-    Coneccion.logIN ln = new Coneccion.logIN();
+    Coneccion.loginData ln = new Coneccion.loginData();
    int usuario = 10000027;
     
     public TEST() {
@@ -61,7 +61,7 @@ public class TEST extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-      ModificarAlumno la = new ModificarAlumno(usuario);
+       Listar_Alumnos_o_Materias la = new Listar_Alumnos_o_Materias();
         jDesktopPane1.add(la);
         la.setVisible(true);
         jDesktopPane1.moveToFront(la);

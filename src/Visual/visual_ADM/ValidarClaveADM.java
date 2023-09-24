@@ -83,7 +83,7 @@ public class ValidarClaveADM extends javax.swing.JFrame {
     }//GEN-LAST:event_CancelarActionPerformed
 
     private void AceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AceptarActionPerformed
-        Coneccion.logIN col = new Coneccion.logIN();    
+        Coneccion.loginData col = new Coneccion.loginData();    
         String clave_ing = jPasswordField1.getText();        
         if (clave_ing.equals(col.buscarClave(usuario))){
             col.resteoClave(idAlumno);

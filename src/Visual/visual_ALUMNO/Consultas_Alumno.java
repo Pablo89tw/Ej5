@@ -8,13 +8,16 @@ import javax.swing.table.DefaultTableModel;
 
 public class Consultas_Alumno extends javax.swing.JInternalFrame {
 
-    Coneccion.Select aD = new Coneccion.Select();
+    Coneccion.AlumnoData aD = new Coneccion.AlumnoData();
+    Coneccion.MateriaData mD = new Coneccion.MateriaData();
+    Coneccion.InscripcionData iD = new Coneccion.InscripcionData();
+    
     private int usuario;
     
     
     public Consultas_Alumno(int usuario) {
-        initComponents();
         this.usuario = usuario;
+        initComponents();
         armar();
     }
 
@@ -153,19 +156,18 @@ public class Consultas_Alumno extends javax.swing.JInternalFrame {
     }
     
     public void completarTabla1(){
-        borrarFila();
-        System.out.println("Hasta aca vinimos");
-        for (Inscripcion insc : aD.Inscripciones_x_Alumno(usuario)){
-        
-        Materia materia = aD.buscarMateria(Integer.toString(insc.getIdMateria()),"ID MATERIA").get(0);
+        //borrarFila();
+        System.out.println("HAsta aca 1");
+        for (Inscripcion insc : iD.Inscripciones_x_Alumno(usuario)){
+        Materia materia = mD.buscarMateria(Integer.toString(insc.getMateria().getIdMateria()),"ID MATERIA").get(0);
         modelo.addRow(new Object[] {materia.getNombre(), materia.getAnio()});
         }
     }
     
     public void completarTabla2(){
-        borrarFila();
-        for (Inscripcion insc : aD.Inscripciones_x_Alumno(usuario)){
-        Materia materia = aD.buscarMateria(Integer.toString(insc.getIdMateria()),"ID MATERIA").get(0);
+        //borrarFila();
+        for (Inscripcion insc : iD.Inscripciones_x_Alumno(usuario)){
+        Materia materia = mD.buscarMateria(Integer.toString(insc.getMateria().getIdMateria()),"ID MATERIA").get(0);
         modelo.addRow(new Object[] {materia.getNombre(), materia.getAnio(),insc.getNota()});
         }
     }
