@@ -280,7 +280,7 @@ public class Administrador extends javax.swing.JInternalFrame {
         
         fondo_admin.add(buscar);
         fondo_admin.moveToFront(buscar);
-        buscar.setLocation((int) fondo_admin.getLocation().getX() + 45, (int) fondo_admin.getLocation().getY() + 60);
+        buscar.setLocation((int) fondo_admin.getLocation().getX() + 95, (int) fondo_admin.getLocation().getY() + 60);
         
         
     }//GEN-LAST:event_menu_BuscarActionPerformed
@@ -295,7 +295,7 @@ public class Administrador extends javax.swing.JInternalFrame {
         
         fondo_admin.add(mC);
         fondo_admin.moveToFront(mC);
-        mC.setLocation((int) fondo_admin.getLocation().getX() + 45, (int) fondo_admin.getLocation().getY() + 60);
+        mC.setLocation((int) fondo_admin.getLocation().getX() + 150, (int) fondo_admin.getLocation().getY() + 80);
         
         
         
