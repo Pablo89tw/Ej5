@@ -56,7 +56,6 @@ public class Administrador extends javax.swing.JInternalFrame {
         alumno_agregarAlumno = new javax.swing.JMenuItem();
         alumno_ModificarAlumno = new javax.swing.JMenuItem();
         alumno_DarLogin = new javax.swing.JMenuItem();
-        alumno_RestablecerContrasena = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         menu_materia = new javax.swing.JMenu();
         materia_AgregarMateria = new javax.swing.JMenuItem();
@@ -193,15 +192,6 @@ public class Administrador extends javax.swing.JInternalFrame {
             }
         });
         menu_alumno.add(alumno_DarLogin);
-
-        alumno_RestablecerContrasena.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
-        alumno_RestablecerContrasena.setText("RESTABLECER CONTRASEÑA");
-        alumno_RestablecerContrasena.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                alumno_RestablecerContrasenaActionPerformed(evt);
-            }
-        });
-        menu_alumno.add(alumno_RestablecerContrasena);
 
         jMenuBar1.add(menu_alumno);
 
@@ -354,21 +344,6 @@ public class Administrador extends javax.swing.JInternalFrame {
         
     }//GEN-LAST:event_alumno_DarLoginActionPerformed
 
-    private void alumno_RestablecerContrasenaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_alumno_RestablecerContrasenaActionPerformed
-        
-        fondo_admin.removeAll();
-        fondo_admin.repaint();
-        
-        Modificar_Clave mC = new Modificar_Clave(usuario);
-        mC.setVisible(true);
-        
-        fondo_admin.add(mC);
-        fondo_admin.moveToFront(mC);
-        mC.setLocation((int) fondo_admin.getLocation().getX() + 45, (int) fondo_admin.getLocation().getY() + 60);
-        
-        
-    }//GEN-LAST:event_alumno_RestablecerContrasenaActionPerformed
-
     private void materia_AgregarMateriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_materia_AgregarMateriaActionPerformed
         
         fondo_admin.removeAll();
@@ -425,7 +400,6 @@ public class Administrador extends javax.swing.JInternalFrame {
     private javax.swing.JMenu Menu;
     private javax.swing.JMenuItem alumno_DarLogin;
     private javax.swing.JMenuItem alumno_ModificarAlumno;
-    private javax.swing.JMenuItem alumno_RestablecerContrasena;
     private javax.swing.JMenuItem alumno_agregarAlumno;
     private javax.swing.JDesktopPane fondo_admin;
     private javax.swing.JMenuItem inscripciones_AgregarInscripcion;
