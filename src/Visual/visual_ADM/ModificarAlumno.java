@@ -9,9 +9,7 @@ import javax.swing.table.DefaultTableModel;
 
 public class ModificarAlumno extends javax.swing.JInternalFrame {
 
-    Coneccion.AlumnoData aD = new Coneccion.AlumnoData();
-    Coneccion.MateriaData mD = new Coneccion.MateriaData();
-    Coneccion.InscripcionData iD = new Coneccion.InscripcionData();
+    private Coneccion.AlumnoData aD;
     private int idAlumno_Mod;
     private int dni;
     private String apellido;
@@ -21,18 +19,13 @@ public class ModificarAlumno extends javax.swing.JInternalFrame {
     private boolean estado;
     private int usuario;
     
-
-    DefaultTableModel modelo = new DefaultTableModel() {
-        public boolean isCellEditable(int f, int c) {
-            return false;
-        }
-    };
-
-    public ModificarAlumno(int usuario) {
+    public ModificarAlumno(int usuario, Coneccion.AlumnoData aD) {
+        this.usuario = usuario;
+        this.aD = aD;
         initComponents();
         armarCabecera();
         armadoVista();
-        this.usuario = usuario;
+        
     }
 
     @SuppressWarnings("unchecked")
@@ -277,11 +270,11 @@ public class ModificarAlumno extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton4)
                     .addComponent(jCB_Eliminar))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 68, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton2)
                     .addComponent(jButton1))
-                .addGap(20, 20, 20))
+                .addGap(10, 10, 10))
         );
 
         pack();
@@ -456,6 +449,12 @@ public class ModificarAlumno extends javax.swing.JInternalFrame {
     private javax.swing.JTextField jText_nN;
     // End of variables declaration//GEN-END:variables
 
+    DefaultTableModel modelo = new DefaultTableModel() {
+        public boolean isCellEditable(int f, int c) {
+            return false;
+        }
+    };
+    
     private void armarCabecera() {
         modelo.setColumnCount(0);
         modelo.addColumn("iD Alumno");

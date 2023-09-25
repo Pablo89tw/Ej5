@@ -9,15 +9,17 @@ import javax.swing.table.DefaultTableModel;
 
 public class Inscribirse_Alumno extends javax.swing.JInternalFrame {
 
-    Coneccion.AlumnoData aD = new Coneccion.AlumnoData();
-    Coneccion.MateriaData mD = new Coneccion.MateriaData();
-    Coneccion.InscripcionData iD = new Coneccion.InscripcionData();
+    private Coneccion.AlumnoData aD;
+    private Coneccion.MateriaData mD;
+    private Coneccion.InscripcionData iD;
 
     private Alumno alumno;
     private int idMateria = 0;
-    private int idAlumno;
-
-    public Inscribirse_Alumno(int usuario) {
+   
+    public Inscribirse_Alumno(int usuario, Coneccion.AlumnoData aD, Coneccion.MateriaData mD, Coneccion.InscripcionData iD) {
+        this.aD = aD;
+        this.mD = mD;
+        this.iD = iD;
         initComponents();
         armarCabecera();
         alumno = aD.buscarAlumno(Integer.toString(usuario), "DNI", null).get(0);

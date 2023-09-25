@@ -1,25 +1,23 @@
 package Visual.visual_General;
 
-
 import Visual.visual_ADM.Administrador;
-import Visual.visual_ADM.Menu_ADM;
 import Visual.visual_ALUMNO.Menu_Alumno;
 import java.awt.Graphics;
 import java.awt.Image;
 import javax.swing.ImageIcon;
 
-
-
-
 public class Menu_Principal extends javax.swing.JFrame {
 
+    private Coneccion.AlumnoData aD = new Coneccion.AlumnoData();
+    private Coneccion.MateriaData mD = new Coneccion.MateriaData();
+    private Coneccion.InscripcionData iD = new Coneccion.InscripcionData();
+    private Coneccion.loginData iN = new Coneccion.loginData();
+    private boolean recordarme;
 
     public Menu_Principal() {
         initComponents();
-       
     }
 
-   
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -41,6 +39,7 @@ public class Menu_Principal extends javax.swing.JFrame {
         jPas_logIN = new javax.swing.JPasswordField();
         jButton1 = new javax.swing.JButton();
         showPass = new javax.swing.JToggleButton();
+        jCheckBox1 = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Registro ULP");
@@ -92,27 +91,37 @@ public class Menu_Principal extends javax.swing.JFrame {
             }
         });
 
+        jCheckBox1.setText("Recordarme");
+        jCheckBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBox1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(34, 34, 34)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jText_usuLIN)
                     .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jButton1)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 182, Short.MAX_VALUE)
-                                .addComponent(jPas_logIN, javax.swing.GroupLayout.Alignment.LEADING)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 197, Short.MAX_VALUE)
+                            .addComponent(jPas_logIN, javax.swing.GroupLayout.Alignment.LEADING))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(showPass)))
+                        .addComponent(showPass)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jCheckBox1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton1)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 2, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -128,8 +137,13 @@ public class Menu_Principal extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jPas_logIN, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(showPass))
-                .addGap(33, 33, 33)
-                .addComponent(jButton1)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(33, 33, 33)
+                        .addComponent(jButton1))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(jCheckBox1)))
                 .addContainerGap())
         );
 
@@ -140,7 +154,7 @@ public class Menu_Principal extends javax.swing.JFrame {
         pantalla_principalLayout.setHorizontalGroup(
             pantalla_principalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pantalla_principalLayout.createSequentialGroup()
-                .addContainerGap(373, Short.MAX_VALUE)
+                .addContainerGap(371, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(345, 345, 345))
         );
@@ -149,7 +163,7 @@ public class Menu_Principal extends javax.swing.JFrame {
             .addGroup(pantalla_principalLayout.createSequentialGroup()
                 .addGap(75, 75, 75)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(471, Short.MAX_VALUE))
+                .addContainerGap(468, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -168,35 +182,7 @@ public class Menu_Principal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-
-        Coneccion.loginData iN = new Coneccion.loginData();
-        int usuario = Integer.parseInt(jText_usuLIN.getText());
-
-        String clave = String.valueOf(jPas_logIN.getPassword());
-
-        Entidades.LogIN log1 = new Entidades.LogIN(usuario, clave);
-
-        if (iN.logIN(usuario, clave) == 0) {
-
-            Administrador admin = new Administrador(usuario);
-            admin.setVisible(true);
-            
-            pantalla_principal.add(admin);
-            pantalla_principal.moveToFront(admin);
-            
-            admin.setLocation((int)pantalla_principal.getLocation().getX()+112, (int)pantalla_principal.getLocation().getY()+50);
-            
-            jText_usuLIN.setText("");
-            jPas_logIN.setText("");
-
-        } else if (iN.logIN(usuario, clave) == 1) {
-
-            Menu_Alumno MenuALM = new Menu_Alumno(usuario);
-            MenuALM.setVisible(true);
-
-        } else if (iN.logIN(usuario, clave) == 2) {
-            // ingrsa docente
-        }
+        inicioSesion();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void showPassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showPassActionPerformed
@@ -211,9 +197,14 @@ public class Menu_Principal extends javax.swing.JFrame {
 
     }//GEN-LAST:event_showPassActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
+    private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
+       if (jCheckBox1.isSelected())
+           recordarme = true;
+       else if (!jCheckBox1.isSelected()){
+           recordarme = false;
+       }  
+    }//GEN-LAST:event_jCheckBox1ActionPerformed
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -249,6 +240,7 @@ public class Menu_Principal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
+    private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -258,4 +250,32 @@ public class Menu_Principal extends javax.swing.JFrame {
     private javax.swing.JDesktopPane pantalla_principal;
     private javax.swing.JToggleButton showPass;
     // End of variables declaration//GEN-END:variables
+
+    private void inicioSesion() {
+        int usuario = Integer.parseInt(jText_usuLIN.getText());
+        String clave = String.valueOf(jPas_logIN.getPassword());
+
+        switch (iN.logIN(usuario, clave)) {
+            case 0:
+                Administrador admin = new Administrador(usuario, aD, mD, iD);
+                pantalla_principal.add(admin);
+                admin.setVisible(true);
+                pantalla_principal.moveToFront(admin);
+                admin.setLocation((int) pantalla_principal.getLocation().getX() + 112, (int) pantalla_principal.getLocation().getY() + 50);
+                if (recordarme == false){
+                jText_usuLIN.setText("");
+                jPas_logIN.setText("");
+                }                 
+                break;
+            case 1:
+                Menu_Alumno MenuALM = new Menu_Alumno(usuario, aD, mD, iD);
+                pantalla_principal.add(MenuALM);
+                MenuALM.setVisible(true);
+                if (recordarme == false){
+                jText_usuLIN.setText("");
+                jPas_logIN.setText("");
+                }
+                break;
+        }
+    }
 }

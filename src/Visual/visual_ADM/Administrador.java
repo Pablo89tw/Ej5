@@ -16,15 +16,16 @@ import Visual.visual_General.Modificar_Clave;
 public class Administrador extends javax.swing.JInternalFrame {
 
     private int usuario;
+    private Coneccion.AlumnoData aD;
+    private Coneccion.MateriaData mD;
+    private Coneccion.InscripcionData iD;
 
-    Coneccion.AlumnoData aD = new Coneccion.AlumnoData();
-    Coneccion.MateriaData mD = new Coneccion.MateriaData();
-    Coneccion.InscripcionData iD = new Coneccion.InscripcionData();
-
-    public Administrador(int usuario) {
-        initComponents();
+    public Administrador(int usuario, Coneccion.AlumnoData aD,Coneccion.MateriaData mD,Coneccion.InscripcionData iD) {
         this.usuario = usuario;
-
+        this.aD = aD;
+        this.mD = mD;
+        this.iD = iD;
+        initComponents();
         WindowsOpenedBienvenido();
         
         ((javax.swing.plaf.basic.BasicInternalFrameUI) this.getUI()).setNorthPane(null);
@@ -63,6 +64,8 @@ public class Administrador extends javax.swing.JInternalFrame {
         jMenu3 = new javax.swing.JMenu();
         menu_Inscripciones = new javax.swing.JMenu();
         inscripciones_AgregarInscripcion = new javax.swing.JMenuItem();
+        jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
 
         setBackground(new java.awt.Color(204, 0, 255));
@@ -232,6 +235,11 @@ public class Administrador extends javax.swing.JInternalFrame {
         menu_Inscripciones.setBorder(null);
         menu_Inscripciones.setText("  INSCRIPCIONES  ");
         menu_Inscripciones.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
+        menu_Inscripciones.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menu_InscripcionesActionPerformed(evt);
+            }
+        });
 
         inscripciones_AgregarInscripcion.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
         inscripciones_AgregarInscripcion.setText("AGREGAR");
@@ -241,6 +249,22 @@ public class Administrador extends javax.swing.JInternalFrame {
             }
         });
         menu_Inscripciones.add(inscripciones_AgregarInscripcion);
+
+        jMenuItem1.setText("CARGAR NOTA");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        menu_Inscripciones.add(jMenuItem1);
+
+        jMenuItem2.setText("Ver");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
+        menu_Inscripciones.add(jMenuItem2);
 
         jMenuBar1.add(menu_Inscripciones);
 
@@ -275,7 +299,7 @@ public class Administrador extends javax.swing.JInternalFrame {
         fondo_admin.removeAll();
         fondo_admin.repaint();
         
-        Listar_Alumnos_o_Materias buscar = new Listar_Alumnos_o_Materias();
+        Listar_Alumnos_o_Materias buscar = new Listar_Alumnos_o_Materias(aD, mD);
         buscar.setVisible(true);
         
         fondo_admin.add(buscar);
@@ -307,7 +331,7 @@ public class Administrador extends javax.swing.JInternalFrame {
         fondo_admin.repaint();
         
         
-        CargarAlumno cA = new CargarAlumno();
+        CargarAlumno cA = new CargarAlumno(aD);
         cA.setVisible(true);
         
         fondo_admin.add(cA);
@@ -323,7 +347,7 @@ public class Administrador extends javax.swing.JInternalFrame {
         fondo_admin.removeAll();
         fondo_admin.repaint();
         
-        ModificarAlumno mA = new ModificarAlumno(usuario);
+        ModificarAlumno mA = new ModificarAlumno(usuario, aD);
         mA.setVisible(true);
         
         fondo_admin.add(mA);
@@ -349,7 +373,7 @@ public class Administrador extends javax.swing.JInternalFrame {
         fondo_admin.removeAll();
         fondo_admin.repaint();
         
-        Cargar_Materia cM = new Cargar_Materia();
+        Cargar_Materia cM = new Cargar_Materia(mD);
         cM.setVisible(true);
         
         fondo_admin.add(cM);
@@ -364,7 +388,7 @@ public class Administrador extends javax.swing.JInternalFrame {
         fondo_admin.removeAll();
         fondo_admin.repaint();
         
-        ModificarMateria mmF = new ModificarMateria(usuario);
+        ModificarMateria mmF = new ModificarMateria(usuario, mD);
         mmF.setVisible(true);
         
         fondo_admin.add(mmF);
@@ -379,7 +403,7 @@ public class Administrador extends javax.swing.JInternalFrame {
         fondo_admin.removeAll();
         fondo_admin.repaint();
         
-        Inscribir_Alumno ia = new Inscribir_Alumno();
+        Inscribir_Alumno ia = new Inscribir_Alumno(aD, mD, iD);
         ia.setVisible(true);
         
         fondo_admin.add(ia);
@@ -394,6 +418,24 @@ public class Administrador extends javax.swing.JInternalFrame {
         
         
     }//GEN-LAST:event_menu_CerrarSesionActionPerformed
+
+    private void menu_InscripcionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_InscripcionesActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_menu_InscripcionesActionPerformed
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        Cargar_Nota cN = new Cargar_Nota(aD,mD,iD);
+       fondo_admin.add(cN);
+        cN.setVisible(true);
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        Listar_Alumno_x_Materia laxm = new Listar_Alumno_x_Materia(aD, mD);
+        fondo_admin.add(laxm);
+        laxm.setVisible(true);
+        
+        
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -410,6 +452,8 @@ public class Administrador extends javax.swing.JInternalFrame {
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem materia_AgregarMateria;
     private javax.swing.JMenuItem materia_ModificarMateria;
     private javax.swing.JMenuItem menu_Buscar;

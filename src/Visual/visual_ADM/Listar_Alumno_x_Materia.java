@@ -6,27 +6,16 @@ import javax.swing.table.DefaultTableModel;
 
 public class Listar_Alumno_x_Materia extends javax.swing.JInternalFrame {
 
-    Coneccion.AlumnoData aD = new Coneccion.AlumnoData();
-    Coneccion.MateriaData mD = new Coneccion.MateriaData();
-    Coneccion.InscripcionData iD = new Coneccion.InscripcionData();
-    
-    DefaultTableModel modelo = new DefaultTableModel() {
-        public boolean isCellEditable(int f, int c) {
-            return false;
-        }
-    };
-    DefaultTableModel modelo2 = new DefaultTableModel() {
-        public boolean isCellEditable(int f, int c) {
-            return false;
-        }
-    };
-    
-    public Listar_Alumno_x_Materia() {
+    private Coneccion.AlumnoData aD;
+    private Coneccion.MateriaData mD;
+   
+    public Listar_Alumno_x_Materia( Coneccion.AlumnoData aD, Coneccion.MateriaData mD) {
+        this.aD = aD;
+        this.mD = mD;
         initComponents();
         armarCabecera();
     }
-
-    
+      
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -143,15 +132,16 @@ public class Listar_Alumno_x_Materia extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jTextFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldKeyReleased
-        borrarFila1();
+        borrarFila1();borrarFila2();
         for (Materia m1 : mD.buscarMateria(jTextField.getText(), "NOMBRE")) {
             modelo.addRow(new Object[]{m1.getIdMateria(), m1.getNombre(), m1.getAnio(), m1.isEstado()});
         }
-
+       
     }//GEN-LAST:event_jTextFieldKeyReleased
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
-                int idMateria = (int) jTable1.getValueAt(jTable1.getSelectedRow(), 0);
+        borrarFila2();
+        int idMateria = (int) jTable1.getValueAt(jTable1.getSelectedRow(), 0);
         for (Alumno a1 : aD.alumnosXmateria(idMateria)) {
             modelo2.addRow(new Object[]{a1.getIdAlumno(), a1.getApellido(), a1.getNombre(), a1.getDni(), a1.getFechaNacimiento(), a1.isEstado()});
         }
@@ -192,16 +182,27 @@ public class Listar_Alumno_x_Materia extends javax.swing.JInternalFrame {
         jTable3.setModel(modelo2);
     }
 
-    private void borrarFila() {
-        int filas = jTable3.getRowCount() - 1;
-        for (int f = filas; f >= 0; f--) {
-            modelo.removeRow(f);
-        }
-    }
     private void borrarFila1() {
         int filas = jTable1.getRowCount() - 1;
         for (int f = filas; f >= 0; f--) {
             modelo.removeRow(f);
         }
     }
+    private void borrarFila2() {
+        int filas = jTable3.getRowCount() - 1;
+        for (int f = filas; f >= 0; f--) {
+            modelo2.removeRow(f);
+        }
+    }
+    
+    DefaultTableModel modelo = new DefaultTableModel() {
+        public boolean isCellEditable(int f, int c) {
+            return false;
+        }
+    };
+    DefaultTableModel modelo2 = new DefaultTableModel() {
+        public boolean isCellEditable(int f, int c) {
+            return false;
+        }
+    };
 }

@@ -7,7 +7,8 @@ import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
 public class loginData {
-
+    private int contadorIngresos = 0;
+    private int categoriaResultado = 2;
     private Connection con;
     private int usuario;
     private String clave_in, clave;
@@ -18,8 +19,7 @@ public class loginData {
 
     public int logIN(int usuario, String clave_in) {
         AlumnoData();
-        int resultado = 5;
-
+        
         String sql = "SELECT Clave FROM login WHERE Usuario LIKE (?)";
         PreparedStatement ps = null;
 
@@ -29,26 +29,25 @@ public class loginData {
             ResultSet rs = ps.executeQuery();
 
             if (rs.next()) {
-
                 if (rs.getString("Clave").equals(clave_in)) {
-
                     PreparedStatement ps2 = null;
                     String sq12 = "SELECT categoria FROM alumno WHERE dni LIKE (?)";
                     ps2 = con.prepareStatement(sq12);
                     ps2.setString(1, Integer.toString(usuario));
-
                     ResultSet rs2 = ps2.executeQuery();
                     if (rs2.next()) {
-                        resultado = rs2.getInt("categoria");
+                        categoriaResultado = rs2.getInt("categoria");
                     }
                 } else {
-                    JOptionPane.showMessageDialog(null, "sos un queso");
+                    JOptionPane.showMessageDialog(null, "La cuenta o la contraseña es incorrecta");
                 }
+            } else {
+                JOptionPane.showMessageDialog(null, "La cuenta o la contraseña es incorrecta");
             }
         } catch (SQLException sqlE) {
             JOptionPane.showMessageDialog(null, "Error busqueda");
         }
-        return resultado;
+        return categoriaResultado;
     }
 
     public void modificarClave(String clave_in, String clave_n1, String clave_n2, int usuario) {

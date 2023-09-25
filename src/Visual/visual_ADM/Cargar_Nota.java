@@ -7,16 +7,18 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.table.DefaultTableModel;
 
 public class Cargar_Nota extends javax.swing.JInternalFrame {
-
+    
+    private Coneccion.AlumnoData aD;
+    private Coneccion.MateriaData mD;
+    private Coneccion.InscripcionData iD;
   
-    public Cargar_Nota() {
+    public Cargar_Nota(Coneccion.AlumnoData aD, Coneccion.MateriaData mD, Coneccion.InscripcionData iD) {
+        this.aD = aD;
+        this.mD = mD;
+        this.iD = iD;
         initComponents();
         unirUnirBotones();
     }
-
-    Coneccion.AlumnoData aD = new Coneccion.AlumnoData();
-    Coneccion.MateriaData mD = new Coneccion.MateriaData();
-    Coneccion.InscripcionData iD = new Coneccion.InscripcionData();
 
     DefaultTableModel modelo2 = new DefaultTableModel() {
         public boolean isCellEditable(int f, int c) {
@@ -322,7 +324,7 @@ public class Cargar_Nota extends javax.swing.JInternalFrame {
     private void borrarFila2() {
         int filas = jTable2.getRowCount() - 1;
         for (int f = filas; f >= 0; f--) {
-            modelo.removeRow(f);
+            modelo2.removeRow(f);
         }
     }
 }

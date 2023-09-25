@@ -203,37 +203,37 @@ public class Menu_ADM extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowOpened
 
     private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
-       ModificarMateria mmF = new ModificarMateria(usuario);
+       ModificarMateria mmF = new ModificarMateria(usuario,mD);
        jDesktopPane2.add(mmF);
        mmF.setVisible(true);
     }//GEN-LAST:event_jMenuItem6ActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        Listar_Alumnos_o_Materias buscar = new Listar_Alumnos_o_Materias();
+        Listar_Alumnos_o_Materias buscar = new Listar_Alumnos_o_Materias(aD, mD);
         jDesktopPane2.add(buscar);
         buscar.setVisible(true);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
-        Inscribir_Alumno ia = new Inscribir_Alumno();
+        Inscribir_Alumno ia = new Inscribir_Alumno(aD, mD, iD);
         jDesktopPane2.add(ia);
         ia.setVisible(true);
     }//GEN-LAST:event_jMenuItem7ActionPerformed
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
-        CargarAlumno cA = new CargarAlumno();
+        CargarAlumno cA = new CargarAlumno(aD);
         jDesktopPane2.add(cA);
         cA.setVisible(true);
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
-       ModificarAlumno mA = new ModificarAlumno(usuario);
+       ModificarAlumno mA = new ModificarAlumno(usuario,aD);
        jDesktopPane2.add(mA);
        mA.setVisible(true);
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
-        Cargar_Materia cM = new Cargar_Materia();
+        Cargar_Materia cM = new Cargar_Materia(mD);
         jDesktopPane2.add(cM);
         cM.setVisible(true);
     }//GEN-LAST:event_jMenuItem5ActionPerformed
@@ -252,13 +252,13 @@ public class Menu_ADM extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem9ActionPerformed
 
     private void jMenuItem10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem10ActionPerformed
-            ModificarAlumno mA = new ModificarAlumno(usuario);
+            ModificarAlumno mA = new ModificarAlumno(usuario,aD);
             jDesktopPane2.add(mA);
             mA.setVisible(true);
     }//GEN-LAST:event_jMenuItem10ActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-        // TODO add your handling code here:
+        this.dispose();
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

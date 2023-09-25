@@ -1,6 +1,5 @@
 package Visual.visual_ADM;
 
-import Coneccion.InscripcionData;
 import Entidades.Alumno;
 import Entidades.Materia;
 import javax.swing.DefaultComboBoxModel;
@@ -9,28 +8,21 @@ import javax.swing.table.DefaultTableModel;
 
 public class Inscribir_Alumno extends javax.swing.JInternalFrame {
 
-    Coneccion.AlumnoData aD = new Coneccion.AlumnoData();
-    Coneccion.MateriaData mD = new Coneccion.MateriaData();
-    Coneccion.InscripcionData iD = new Coneccion.InscripcionData();
-
     private int idMateria = 0;
     private int idAlumno = 0;
     private Alumno alumno;
+    private Coneccion.AlumnoData aD;
+    private Coneccion.MateriaData mD;
+    private Coneccion.InscripcionData iD;
 
-    public Inscribir_Alumno() {
+    public Inscribir_Alumno(Coneccion.AlumnoData aD, Coneccion.MateriaData mD, Coneccion.InscripcionData iD) {
+        this.aD = aD;
+        this.mD = mD;
+        this.iD = iD;
         initComponents();
         armarCabecera();
-        String[] listaCMAlum = {"ID ALUMNO", "APELLIDO", "NOMBRE", "DNI"};
-        DefaultComboBoxModel<String> model = new DefaultComboBoxModel<>(listaCMAlum);
-        jComboBox_insAlum1.setModel(model);
-        String[] listaCMmat = {"ID MATERIA", "NOMBRE", "AÑO"};
-        DefaultComboBoxModel<String> model_mat = new DefaultComboBoxModel<>(listaCMmat);
-        jComboBox_insMat.setModel(model_mat);
-        armarCabecera();
-        jComboBox_insMat.setEnabled(false);
-        jText_insAlum.setEnabled(false);
-        jText_insMat.setEnabled(false);
-        jButton_inscribir.setEnabled(false);
+        armarComboBox();
+       
     }
 
     DefaultTableModel modelo_al = new DefaultTableModel() {
@@ -355,5 +347,19 @@ public class Inscribir_Alumno extends javax.swing.JInternalFrame {
         for (Materia materia : mD.buscarMateria(Integer.toString(alumno.getIdAlumno()),"NO_INSCRIPTO")) {
             modelo_mat.addRow(new Object[]{materia.getIdMateria(), materia.getNombre(), materia.getAnio(), materia.isEstado()});
         }
+    }
+    
+    private void armarComboBox(){
+        String[] listaCMAlum = {"ID ALUMNO", "APELLIDO", "NOMBRE", "DNI"};
+        DefaultComboBoxModel<String> model = new DefaultComboBoxModel<>(listaCMAlum);
+        jComboBox_insAlum1.setModel(model);
+        String[] listaCMmat = {"ID MATERIA", "NOMBRE", "AÑO"};
+        DefaultComboBoxModel<String> model_mat = new DefaultComboBoxModel<>(listaCMmat);
+        jComboBox_insMat.setModel(model_mat);
+        armarCabecera();
+        jComboBox_insMat.setEnabled(false);
+        jText_insAlum.setEnabled(false);
+        jText_insMat.setEnabled(false);
+        jButton_inscribir.setEnabled(false);
     }
 }

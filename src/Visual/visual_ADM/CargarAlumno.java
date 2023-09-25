@@ -2,17 +2,15 @@ package Visual.visual_ADM;
 
 import Entidades.Alumno;
 import java.time.ZoneId;
-import java.util.HashSet;
 
 
 public class CargarAlumno extends javax.swing.JInternalFrame {
 
-    Coneccion.AlumnoData aD = new Coneccion.AlumnoData();
-    Coneccion.MateriaData mD = new Coneccion.MateriaData();
-    Coneccion.InscripcionData iD = new Coneccion.InscripcionData();
     private Alumno alumno; 
+    private Coneccion.AlumnoData aD;
     
-    public CargarAlumno() {
+    public CargarAlumno(Coneccion.AlumnoData aD) {
+        this.aD = aD;
         initComponents();
         jSpinner1.setValue(1);
     }
@@ -151,7 +149,7 @@ public class CargarAlumno extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_AgregarAlumnoActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        this.dispose();        // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
 
@@ -177,6 +175,7 @@ private void armarAlumno(){
     alumno.setDni(Integer.parseInt(TextoDni.getText()));
     alumno.setFechaNacimiento((jCalenderAlumno.getDate()).toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
     alumno.setAnio((int)(jSpinner1.getValue()));
+    alumno.setEstado(true);
     aD.cargarAlumno(alumno);
     this.dispose();
     ;

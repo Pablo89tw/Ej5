@@ -8,10 +8,7 @@ import javax.swing.table.DefaultTableModel;
 
 public class ModificarMateria extends javax.swing.JInternalFrame {
 
-    Coneccion.AlumnoData aD = new Coneccion.AlumnoData();
-    Coneccion.MateriaData mD = new Coneccion.MateriaData();
-    Coneccion.InscripcionData iD = new Coneccion.InscripcionData();
-    
+    private Coneccion.MateriaData mD;
     private int idMateria;
     private int anio;
     private String nombre;
@@ -19,16 +16,14 @@ public class ModificarMateria extends javax.swing.JInternalFrame {
     private int cupo;
     private int usuario; 
     
-    DefaultTableModel modelo = new DefaultTableModel() {  
-        public boolean isCellEditable(int f, int c) {
-            return false;
-        }
-    };
-    public ModificarMateria(int usuario) {
+ 
+    public ModificarMateria(int usuario, Coneccion.MateriaData mD) {
+        this.usuario = usuario;
+        this.mD = mD;
         initComponents();
         armarCabecera();
         armadoVista();
-        this.usuario = usuario;
+        
     }
 
     
@@ -368,7 +363,13 @@ public class ModificarMateria extends javax.swing.JInternalFrame {
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jText_Nombre;
     // End of variables declaration//GEN-END:variables
-
+   
+    DefaultTableModel modelo = new DefaultTableModel() {  
+        public boolean isCellEditable(int f, int c) {
+            return false;
+        }
+    };
+    
     private void armarCabecera() {
         modelo.setColumnCount(0);
             modelo.addColumn("id Materia");

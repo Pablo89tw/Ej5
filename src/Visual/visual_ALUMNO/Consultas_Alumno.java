@@ -8,14 +8,16 @@ import javax.swing.table.DefaultTableModel;
 
 public class Consultas_Alumno extends javax.swing.JInternalFrame {
 
-    Coneccion.AlumnoData aD = new Coneccion.AlumnoData();
-    Coneccion.MateriaData mD = new Coneccion.MateriaData();
-    Coneccion.InscripcionData iD = new Coneccion.InscripcionData();
-    
+    private Coneccion.AlumnoData aD;
+    private Coneccion.MateriaData mD;
+    private Coneccion.InscripcionData iD;
     private int usuario;
     
     
-    public Consultas_Alumno(int usuario) {
+    public Consultas_Alumno(int usuario, Coneccion.AlumnoData aD, Coneccion.MateriaData mD, Coneccion.InscripcionData iD) {
+        this.aD = aD;
+        this.mD = mD;
+        this.iD = iD;
         this.usuario = usuario;
         initComponents();
         armar();
@@ -108,11 +110,13 @@ public class Consultas_Alumno extends javax.swing.JInternalFrame {
 
     private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
         armarCabecera();
+        borrarFila();
         completarTabla1();
     }//GEN-LAST:event_jRadioButton1ActionPerformed
 
     private void jRadioButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton2ActionPerformed
        armarCabecera();
+       borrarFila();
        completarTabla2();
     }//GEN-LAST:event_jRadioButton2ActionPerformed
 
@@ -156,8 +160,6 @@ public class Consultas_Alumno extends javax.swing.JInternalFrame {
     }
     
     public void completarTabla1(){
-        //borrarFila();
-        System.out.println("HAsta aca 1");
         for (Inscripcion insc : iD.Inscripciones_x_Alumno(usuario)){
         Materia materia = mD.buscarMateria(Integer.toString(insc.getMateria().getIdMateria()),"ID MATERIA").get(0);
         modelo.addRow(new Object[] {materia.getNombre(), materia.getAnio()});
@@ -165,7 +167,6 @@ public class Consultas_Alumno extends javax.swing.JInternalFrame {
     }
     
     public void completarTabla2(){
-        //borrarFila();
         for (Inscripcion insc : iD.Inscripciones_x_Alumno(usuario)){
         Materia materia = mD.buscarMateria(Integer.toString(insc.getMateria().getIdMateria()),"ID MATERIA").get(0);
         modelo.addRow(new Object[] {materia.getNombre(), materia.getAnio(),insc.getNota()});

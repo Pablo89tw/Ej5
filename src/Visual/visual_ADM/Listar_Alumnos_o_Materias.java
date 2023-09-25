@@ -14,11 +14,24 @@ import javax.swing.ImageIcon;
 
 public class Listar_Alumnos_o_Materias extends javax.swing.JInternalFrame {
 
-    Coneccion.AlumnoData aD = new Coneccion.AlumnoData();
-    Coneccion.MateriaData mD = new Coneccion.MateriaData();
-    Coneccion.InscripcionData iD = new Coneccion.InscripcionData();
+    private Coneccion.AlumnoData aD;
+    private Coneccion.MateriaData mD;
+      
+    public Listar_Alumnos_o_Materias(Coneccion.AlumnoData aD, Coneccion.MateriaData mD) {
+        this.aD = aD;
+        this.mD = mD;
+        
+        initComponents();
+        armarCabecera();
+        armarBotones();
+        
+         jTexto_Buscar1.setEnabled(false);
+        jDateChooser_buscar.setEnabled(false);
+        
+        ((javax.swing.plaf.basic.BasicInternalFrameUI) this.getUI()).setNorthPane(null);
+    }
     
-    DefaultTableModel modelo = new DefaultTableModel() {
+      DefaultTableModel modelo = new DefaultTableModel() {
         public boolean isCellEditable(int f, int c) {
             return false;
         }
@@ -29,18 +42,6 @@ public class Listar_Alumnos_o_Materias extends javax.swing.JInternalFrame {
             return false;
         }
     };
-    
-    public Listar_Alumnos_o_Materias() {
-        initComponents();
-        armarCabecera();
-        armarBotones();
-       
-        
-        jTexto_Buscar1.setEnabled(false);
-        jDateChooser_buscar.setEnabled(false);
-        
-        ((javax.swing.plaf.basic.BasicInternalFrameUI) this.getUI()).setNorthPane(null);
-    }
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
