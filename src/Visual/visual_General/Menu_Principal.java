@@ -1,6 +1,7 @@
 package Visual.visual_General;
 
 
+import Visual.visual_ADM.Administrador;
 import Visual.visual_ADM.Menu_ADM;
 import Visual.visual_ALUMNO.Menu_Alumno;
 import java.awt.Graphics;
@@ -23,7 +24,15 @@ public class Menu_Principal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        pantalla_principal = new javax.swing.JDesktopPane();
+        ImageIcon icon1 = new ImageIcon(getClass().getResource("/Visual/visual_General/Img/FONDO PRINCIPAL.jpg"));
+        Image image1 = icon1.getImage();
+        pantalla_principal = new javax.swing.JDesktopPane(){
+
+            public void paintComponent(Graphics g){
+                g.drawImage(image1,0,0,getWidth(),getHeight(),this);
+            }
+
+        };
         jPanel1 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
@@ -35,7 +44,7 @@ public class Menu_Principal extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Registro ULP");
-        setIconImage(new ImageIcon(getClass().getResource("Img/logo-ulp22.png")).getImage());
+        setIconImage(new ImageIcon(getClass().getResource("/Visual/visual_General/Img/logo-ulp22.png")).getImage());
         setResizable(false);
 
         pantalla_principal.setBackground(new java.awt.Color(102, 153, 255));
@@ -97,7 +106,7 @@ public class Menu_Principal extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(showPass))
                     .addComponent(jText_usuLIN))
-                .addContainerGap(43, Short.MAX_VALUE))
+                .addContainerGap(37, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton1)
@@ -106,8 +115,8 @@ public class Menu_Principal extends javax.swing.JFrame {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28)
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(39, 39, 39)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(jText_usuLIN, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -116,7 +125,7 @@ public class Menu_Principal extends javax.swing.JFrame {
                     .addComponent(jLabel2)
                     .addComponent(jPas_logIN, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(showPass))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton1)
                 .addContainerGap())
         );
@@ -128,16 +137,16 @@ public class Menu_Principal extends javax.swing.JFrame {
         pantalla_principalLayout.setHorizontalGroup(
             pantalla_principalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pantalla_principalLayout.createSequentialGroup()
-                .addGap(270, 270, 270)
+                .addGap(268, 268, 268)
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(270, 270, 270))
+                .addGap(272, 272, 272))
         );
         pantalla_principalLayout.setVerticalGroup(
             pantalla_principalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pantalla_principalLayout.createSequentialGroup()
-                .addGap(288, 288, 288)
+                .addGap(104, 104, 104)
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(300, 300, 300))
+                .addGap(484, 484, 484))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -166,11 +175,16 @@ public class Menu_Principal extends javax.swing.JFrame {
 
         if (iN.logIN(usuario, clave) == 0) {
 
-            //            Visual.visual_ADM.Administrador admin = new Visual.visual_ADM.Administrador();
-            //            admin.setVisible(true);
-
-            Menu_ADM MenuADM = new Menu_ADM(usuario);
-            MenuADM.setVisible(true);
+            Administrador admin = new Administrador(usuario);
+            admin.setVisible(true);
+            
+            pantalla_principal.add(admin);
+            pantalla_principal.moveToFront(admin);
+            
+            admin.setLocation((int)pantalla_principal.getLocation().getX()+112, (int)pantalla_principal.getLocation().getY()+50);
+            
+            jText_usuLIN.setText("");
+            jPas_logIN.setText("");
 
         } else if (iN.logIN(usuario, clave) == 1) {
 

@@ -6,14 +6,17 @@ import java.awt.Image;
 import javax.swing.ImageIcon;
 
 import Visual.visual_ADM.CargarAlumno;
+import Visual.visual_ADM.Cargar_Materia;
+import Visual.visual_ADM.Inscribir_Alumno;
 import Visual.visual_ADM.Listar_Alumnos_o_Materias;
 import Visual.visual_ADM.ModificarAlumno;
 import Entidades.Alumno;
-
+import Visual.visual_General.Modificar_Clave;
 
 public class Administrador extends javax.swing.JInternalFrame {
 
     private int usuario;
+
     Coneccion.AlumnoData aD = new Coneccion.AlumnoData();
     Coneccion.MateriaData mD = new Coneccion.MateriaData();
     Coneccion.InscripcionData iD = new Coneccion.InscripcionData();
@@ -22,49 +25,45 @@ public class Administrador extends javax.swing.JInternalFrame {
         initComponents();
         this.usuario = usuario;
 
-        String text = null;
-        for (Alumno a1 : aD.buscarAlumno(Integer.toString(usuario), "DNI", null)) {
-            text = ("Bienvenido " + a1.getNombre() + ", " + a1.getApellido());
-        }
-        jLabel2.setText(text);
-
+        WindowsOpenedBienvenido();
+        
         ((javax.swing.plaf.basic.BasicInternalFrameUI) this.getUI()).setNorthPane(null);
     }
 
-    
-    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
+        panel_Inferior = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        ImageIcon icon2 = new ImageIcon(getClass().getResource("/Vista/Img/fondo base.jpg"));
-        Image image2 = icon2.getImage();
+        ImageIcon icon8 = new ImageIcon(getClass().getResource("/Visual/visual_General/Img/fondo base.jpg"));
+        Image image8 = icon8.getImage();
         fondo_admin = new javax.swing.JDesktopPane(){
 
             public void paintComponent(Graphics g){
-                g.drawImage(image2,0,0,getWidth(),getHeight(),this);
+                g.drawImage(image8,0,0,getWidth(),getHeight(),this);
             }
 
         };
         jMenuBar1 = new javax.swing.JMenuBar();
         Menu = new javax.swing.JMenu();
         menu_Buscar = new javax.swing.JMenuItem();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        Salir = new javax.swing.JMenuItem();
+        menu_CambiarContrasena = new javax.swing.JMenuItem();
+        menu_CerrarSesion = new javax.swing.JMenuItem();
         jMenu1 = new javax.swing.JMenu();
         menu_alumno = new javax.swing.JMenu();
-        agregar_Alumno = new javax.swing.JMenuItem();
-        modificar_Alumno = new javax.swing.JMenuItem();
+        alumno_agregarAlumno = new javax.swing.JMenuItem();
+        alumno_ModificarAlumno = new javax.swing.JMenuItem();
+        alumno_DarLogin = new javax.swing.JMenuItem();
+        alumno_RestablecerContrasena = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         menu_materia = new javax.swing.JMenu();
-        agregar_Materia = new javax.swing.JMenuItem();
-        modificar_Materia = new javax.swing.JMenuItem();
+        materia_AgregarMateria = new javax.swing.JMenuItem();
+        materia_ModificarMateria = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
         menu_Inscripciones = new javax.swing.JMenu();
-        inscr_Agregar = new javax.swing.JMenuItem();
+        inscripciones_AgregarInscripcion = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
 
         setBackground(new java.awt.Color(204, 0, 255));
@@ -81,9 +80,9 @@ public class Administrador extends javax.swing.JInternalFrame {
         }
         setVerifyInputWhenFocusTarget(false);
 
-        jPanel1.setBackground(new java.awt.Color(255, 0, 102));
-        jPanel1.setAlignmentX(0.0F);
-        jPanel1.setAlignmentY(0.0F);
+        panel_Inferior.setBackground(new java.awt.Color(255, 0, 102));
+        panel_Inferior.setAlignmentX(0.0F);
+        panel_Inferior.setAlignmentY(0.0F);
 
         jLabel1.setFont(new java.awt.Font("ArianLT-Bold", 3, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
@@ -94,19 +93,19 @@ public class Administrador extends javax.swing.JInternalFrame {
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Bienvenido Juan Carlos");
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+        javax.swing.GroupLayout panel_InferiorLayout = new javax.swing.GroupLayout(panel_Inferior);
+        panel_Inferior.setLayout(panel_InferiorLayout);
+        panel_InferiorLayout.setHorizontalGroup(
+            panel_InferiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel_InferiorLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+        panel_InferiorLayout.setVerticalGroup(
+            panel_InferiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panel_InferiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                 .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel2))
         );
@@ -128,7 +127,6 @@ public class Administrador extends javax.swing.JInternalFrame {
         Menu.setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
         Menu.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
         Menu.setHideActionText(true);
-        Menu.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/Img/logo-ulp22.png"))); // NOI18N
 
         menu_Buscar.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
         menu_Buscar.setText("BUSCAR");
@@ -139,18 +137,23 @@ public class Administrador extends javax.swing.JInternalFrame {
         });
         Menu.add(menu_Buscar);
 
-        jMenuItem1.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
-        jMenuItem1.setText("CONTRASEÑA");
-        Menu.add(jMenuItem1);
-
-        Salir.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
-        Salir.setText("SALIR");
-        Salir.addActionListener(new java.awt.event.ActionListener() {
+        menu_CambiarContrasena.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
+        menu_CambiarContrasena.setText("CAMBIAR CONTRASEÑA");
+        menu_CambiarContrasena.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                SalirActionPerformed(evt);
+                menu_CambiarContrasenaActionPerformed(evt);
             }
         });
-        Menu.add(Salir);
+        Menu.add(menu_CambiarContrasena);
+
+        menu_CerrarSesion.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
+        menu_CerrarSesion.setText("CERRAR SESION");
+        menu_CerrarSesion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menu_CerrarSesionActionPerformed(evt);
+            }
+        });
+        Menu.add(menu_CerrarSesion);
 
         jMenuBar1.add(Menu);
         Menu.getAccessibleContext().setAccessibleName("  MENU");
@@ -164,23 +167,41 @@ public class Administrador extends javax.swing.JInternalFrame {
         menu_alumno.setText("  ALUMNO  ");
         menu_alumno.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
 
-        agregar_Alumno.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
-        agregar_Alumno.setText("AGREGAR");
-        agregar_Alumno.addActionListener(new java.awt.event.ActionListener() {
+        alumno_agregarAlumno.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
+        alumno_agregarAlumno.setText("AGREGAR");
+        alumno_agregarAlumno.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                agregar_AlumnoActionPerformed(evt);
+                alumno_agregarAlumnoActionPerformed(evt);
             }
         });
-        menu_alumno.add(agregar_Alumno);
+        menu_alumno.add(alumno_agregarAlumno);
 
-        modificar_Alumno.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
-        modificar_Alumno.setText("MODIFICAR");
-        modificar_Alumno.addActionListener(new java.awt.event.ActionListener() {
+        alumno_ModificarAlumno.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
+        alumno_ModificarAlumno.setText("MODIFICAR");
+        alumno_ModificarAlumno.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                modificar_AlumnoActionPerformed(evt);
+                alumno_ModificarAlumnoActionPerformed(evt);
             }
         });
-        menu_alumno.add(modificar_Alumno);
+        menu_alumno.add(alumno_ModificarAlumno);
+
+        alumno_DarLogin.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
+        alumno_DarLogin.setText("DAR LOGIN");
+        alumno_DarLogin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                alumno_DarLoginActionPerformed(evt);
+            }
+        });
+        menu_alumno.add(alumno_DarLogin);
+
+        alumno_RestablecerContrasena.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
+        alumno_RestablecerContrasena.setText("RESTABLECER CONTRASEÑA");
+        alumno_RestablecerContrasena.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                alumno_RestablecerContrasenaActionPerformed(evt);
+            }
+        });
+        menu_alumno.add(alumno_RestablecerContrasena);
 
         jMenuBar1.add(menu_alumno);
 
@@ -193,13 +214,23 @@ public class Administrador extends javax.swing.JInternalFrame {
         menu_materia.setText("  MATERIA  ");
         menu_materia.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
 
-        agregar_Materia.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
-        agregar_Materia.setText("AGREGAR");
-        menu_materia.add(agregar_Materia);
+        materia_AgregarMateria.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
+        materia_AgregarMateria.setText("AGREGAR");
+        materia_AgregarMateria.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                materia_AgregarMateriaActionPerformed(evt);
+            }
+        });
+        menu_materia.add(materia_AgregarMateria);
 
-        modificar_Materia.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
-        modificar_Materia.setText("MODIFICAR");
-        menu_materia.add(modificar_Materia);
+        materia_ModificarMateria.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
+        materia_ModificarMateria.setText("MODIFICAR");
+        materia_ModificarMateria.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                materia_ModificarMateriaActionPerformed(evt);
+            }
+        });
+        menu_materia.add(materia_ModificarMateria);
 
         jMenuBar1.add(menu_materia);
 
@@ -212,9 +243,14 @@ public class Administrador extends javax.swing.JInternalFrame {
         menu_Inscripciones.setText("  INSCRIPCIONES  ");
         menu_Inscripciones.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
 
-        inscr_Agregar.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
-        inscr_Agregar.setText("AGREGAR");
-        menu_Inscripciones.add(inscr_Agregar);
+        inscripciones_AgregarInscripcion.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
+        inscripciones_AgregarInscripcion.setText("AGREGAR");
+        inscripciones_AgregarInscripcion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                inscripciones_AgregarInscripcionActionPerformed(evt);
+            }
+        });
+        menu_Inscripciones.add(inscripciones_AgregarInscripcion);
 
         jMenuBar1.add(menu_Inscripciones);
 
@@ -231,75 +267,168 @@ public class Administrador extends javax.swing.JInternalFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(fondo_admin, javax.swing.GroupLayout.DEFAULT_SIZE, 784, Short.MAX_VALUE)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(panel_Inferior, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(fondo_admin, javax.swing.GroupLayout.DEFAULT_SIZE, 508, Short.MAX_VALUE)
                 .addGap(0, 0, 0)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(panel_Inferior, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void modificar_AlumnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modificar_AlumnoActionPerformed
-
-        fondo_admin.removeAll();
-        fondo_admin.repaint();
-
-        ModificarAlumno elim_alum = new ModificarAlumno(usuario);
-        elim_alum.setVisible(true);
-
-        fondo_admin.add(elim_alum);
-        fondo_admin.moveToFront(elim_alum);
-        elim_alum.setLocation((int) fondo_admin.getLocation().getX() + 45, (int) fondo_admin.getLocation().getY() + 60);
-
-    }//GEN-LAST:event_modificar_AlumnoActionPerformed
-
-    private void agregar_AlumnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregar_AlumnoActionPerformed
-
-        fondo_admin.removeAll();
-        fondo_admin.repaint();
-
-        CargarAlumno agr_alum = new CargarAlumno();
-        agr_alum.setVisible(true);
-
-        fondo_admin.add(agr_alum);
-        fondo_admin.moveToFront(agr_alum);
-        agr_alum.setLocation((int) fondo_admin.getLocation().getX() + 100, (int) fondo_admin.getLocation().getY() + 60);
-
-
-    }//GEN-LAST:event_agregar_AlumnoActionPerformed
-
-    private void SalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SalirActionPerformed
-
-        this.setVisible(false);
-    }//GEN-LAST:event_SalirActionPerformed
-
     private void menu_BuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_BuscarActionPerformed
-
+        
         fondo_admin.removeAll();
         fondo_admin.repaint();
-
-        Listar_Alumnos_o_Materias adminBus = new Listar_Alumnos_o_Materias();
-        adminBus.setVisible(true);
-
-        fondo_admin.add(adminBus);
-        fondo_admin.moveToFront(adminBus);
-        adminBus.setLocation((int) fondo_admin.getLocation().getX() + 100, (int) fondo_admin.getLocation().getY() + 60);
-
+        
+        Listar_Alumnos_o_Materias buscar = new Listar_Alumnos_o_Materias();
+        buscar.setVisible(true);
+        
+        fondo_admin.add(buscar);
+        fondo_admin.moveToFront(buscar);
+        buscar.setLocation((int) fondo_admin.getLocation().getX() + 45, (int) fondo_admin.getLocation().getY() + 60);
+        
+        
     }//GEN-LAST:event_menu_BuscarActionPerformed
+
+    private void menu_CambiarContrasenaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_CambiarContrasenaActionPerformed
+        
+        fondo_admin.removeAll();
+        fondo_admin.repaint();
+        
+        Modificar_Clave mC = new Modificar_Clave(usuario);
+        mC.setVisible(true);
+        
+        fondo_admin.add(mC);
+        fondo_admin.moveToFront(mC);
+        mC.setLocation((int) fondo_admin.getLocation().getX() + 45, (int) fondo_admin.getLocation().getY() + 60);
+        
+        
+        
+    }//GEN-LAST:event_menu_CambiarContrasenaActionPerformed
+
+    private void alumno_agregarAlumnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_alumno_agregarAlumnoActionPerformed
+        
+        fondo_admin.removeAll();
+        fondo_admin.repaint();
+        
+        
+        CargarAlumno cA = new CargarAlumno();
+        cA.setVisible(true);
+        
+        fondo_admin.add(cA);
+        fondo_admin.moveToFront(cA);
+        cA.setLocation((int) fondo_admin.getLocation().getX() + 45, (int) fondo_admin.getLocation().getY() + 60);
+        
+        
+        
+    }//GEN-LAST:event_alumno_agregarAlumnoActionPerformed
+
+    private void alumno_ModificarAlumnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_alumno_ModificarAlumnoActionPerformed
+        
+        fondo_admin.removeAll();
+        fondo_admin.repaint();
+        
+        ModificarAlumno mA = new ModificarAlumno(usuario);
+        mA.setVisible(true);
+        
+        fondo_admin.add(mA);
+        fondo_admin.moveToFront(mA);
+        mA.setLocation((int) fondo_admin.getLocation().getX() + 45, (int) fondo_admin.getLocation().getY() + 60);
+        
+        
+    }//GEN-LAST:event_alumno_ModificarAlumnoActionPerformed
+
+    private void alumno_DarLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_alumno_DarLoginActionPerformed
+        
+        fondo_admin.removeAll();
+        fondo_admin.repaint();
+        
+        Coneccion.loginData ln = new Coneccion.loginData();
+        ln.darAccesoNuevos();     
+        
+        
+    }//GEN-LAST:event_alumno_DarLoginActionPerformed
+
+    private void alumno_RestablecerContrasenaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_alumno_RestablecerContrasenaActionPerformed
+        
+        fondo_admin.removeAll();
+        fondo_admin.repaint();
+        
+        Modificar_Clave mC = new Modificar_Clave(usuario);
+        mC.setVisible(true);
+        
+        fondo_admin.add(mC);
+        fondo_admin.moveToFront(mC);
+        mC.setLocation((int) fondo_admin.getLocation().getX() + 45, (int) fondo_admin.getLocation().getY() + 60);
+        
+        
+    }//GEN-LAST:event_alumno_RestablecerContrasenaActionPerformed
+
+    private void materia_AgregarMateriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_materia_AgregarMateriaActionPerformed
+        
+        fondo_admin.removeAll();
+        fondo_admin.repaint();
+        
+        Cargar_Materia cM = new Cargar_Materia();
+        cM.setVisible(true);
+        
+        fondo_admin.add(cM);
+        fondo_admin.moveToFront(cM);
+        cM.setLocation((int) fondo_admin.getLocation().getX() + 45, (int) fondo_admin.getLocation().getY() + 60);
+        
+        
+    }//GEN-LAST:event_materia_AgregarMateriaActionPerformed
+
+    private void materia_ModificarMateriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_materia_ModificarMateriaActionPerformed
+        
+        fondo_admin.removeAll();
+        fondo_admin.repaint();
+        
+        ModificarMateria mmF = new ModificarMateria(usuario);
+        mmF.setVisible(true);
+        
+        fondo_admin.add(mmF);
+        fondo_admin.moveToFront(mmF);
+        mmF.setLocation((int) fondo_admin.getLocation().getX() + 45, (int) fondo_admin.getLocation().getY() + 60);
+        
+        
+    }//GEN-LAST:event_materia_ModificarMateriaActionPerformed
+
+    private void inscripciones_AgregarInscripcionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inscripciones_AgregarInscripcionActionPerformed
+        
+        fondo_admin.removeAll();
+        fondo_admin.repaint();
+        
+        Inscribir_Alumno ia = new Inscribir_Alumno();
+        ia.setVisible(true);
+        
+        fondo_admin.add(ia);
+        fondo_admin.moveToFront(ia);
+        ia.setLocation((int) fondo_admin.getLocation().getX() + 45, (int) fondo_admin.getLocation().getY() + 60);
+        
+    }//GEN-LAST:event_inscripciones_AgregarInscripcionActionPerformed
+
+    private void menu_CerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_CerrarSesionActionPerformed
+        
+        this.setVisible(false);
+        
+        
+    }//GEN-LAST:event_menu_CerrarSesionActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu Menu;
-    private javax.swing.JMenuItem Salir;
-    private javax.swing.JMenuItem agregar_Alumno;
-    private javax.swing.JMenuItem agregar_Materia;
+    private javax.swing.JMenuItem alumno_DarLogin;
+    private javax.swing.JMenuItem alumno_ModificarAlumno;
+    private javax.swing.JMenuItem alumno_RestablecerContrasena;
+    private javax.swing.JMenuItem alumno_agregarAlumno;
     private javax.swing.JDesktopPane fondo_admin;
-    private javax.swing.JMenuItem inscr_Agregar;
+    private javax.swing.JMenuItem inscripciones_AgregarInscripcion;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JMenu jMenu1;
@@ -307,13 +436,25 @@ public class Administrador extends javax.swing.JInternalFrame {
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JMenuItem materia_AgregarMateria;
+    private javax.swing.JMenuItem materia_ModificarMateria;
     private javax.swing.JMenuItem menu_Buscar;
+    private javax.swing.JMenuItem menu_CambiarContrasena;
+    private javax.swing.JMenuItem menu_CerrarSesion;
     private javax.swing.JMenu menu_Inscripciones;
     private javax.swing.JMenu menu_alumno;
     private javax.swing.JMenu menu_materia;
-    private javax.swing.JMenuItem modificar_Alumno;
-    private javax.swing.JMenuItem modificar_Materia;
+    private javax.swing.JPanel panel_Inferior;
     // End of variables declaration//GEN-END:variables
+
+    private void WindowsOpenedBienvenido() {
+
+        String text = null;
+        for (Alumno a1 : aD.buscarAlumno(Integer.toString(usuario), "DNI", null)) {
+            text = ("Bienvenido " + a1.getNombre() + ", " + a1.getApellido());
+        }
+        jLabel2.setText(text);
+
+    }
+
 }

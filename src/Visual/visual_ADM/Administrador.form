@@ -29,16 +29,13 @@
             <Property name="actionCommand" type="java.lang.String" value="  MENU"/>
             <Property name="autoscrolls" type="boolean" value="true"/>
             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-              <Color id="Default Cursor"/>
+              <Color id="Cursor Por defecto"/>
             </Property>
             <Property name="debugGraphicsOptions" type="int" value="-1"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Arial" size="12" style="3"/>
             </Property>
             <Property name="hideActionText" type="boolean" value="true"/>
-            <Property name="rolloverSelectedIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/Vista/Img/logo-ulp22.png"/>
-            </Property>
           </Properties>
           <AccessibilityProperties>
             <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="  MENU"/>
@@ -55,23 +52,26 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menu_BuscarActionPerformed"/>
               </Events>
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem1">
+            <MenuItem class="javax.swing.JMenuItem" name="menu_CambiarContrasena">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Arial" size="12" style="3"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="CONTRASE&#xd1;A"/>
-              </Properties>
-            </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="Salir">
-              <Properties>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Arial" size="12" style="3"/>
-                </Property>
-                <Property name="text" type="java.lang.String" value="SALIR"/>
+                <Property name="text" type="java.lang.String" value="CAMBIAR CONTRASE&#xd1;A"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="SalirActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menu_CambiarContrasenaActionPerformed"/>
+              </Events>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="menu_CerrarSesion">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Arial" size="12" style="3"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="CERRAR SESION"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menu_CerrarSesionActionPerformed"/>
               </Events>
             </MenuItem>
           </SubComponents>
@@ -96,7 +96,7 @@
             </Property>
           </Properties>
           <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="agregar_Alumno">
+            <MenuItem class="javax.swing.JMenuItem" name="alumno_agregarAlumno">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Arial" size="12" style="3"/>
@@ -104,10 +104,10 @@
                 <Property name="text" type="java.lang.String" value="AGREGAR"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="agregar_AlumnoActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="alumno_agregarAlumnoActionPerformed"/>
               </Events>
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="modificar_Alumno">
+            <MenuItem class="javax.swing.JMenuItem" name="alumno_ModificarAlumno">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Arial" size="12" style="3"/>
@@ -115,7 +115,29 @@
                 <Property name="text" type="java.lang.String" value="MODIFICAR"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="modificar_AlumnoActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="alumno_ModificarAlumnoActionPerformed"/>
+              </Events>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="alumno_DarLogin">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Arial" size="12" style="3"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="DAR LOGIN"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="alumno_DarLoginActionPerformed"/>
+              </Events>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="alumno_RestablecerContrasena">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Arial" size="12" style="3"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="RESTABLECER CONTRASE&#xd1;A"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="alumno_RestablecerContrasenaActionPerformed"/>
               </Events>
             </MenuItem>
           </SubComponents>
@@ -140,21 +162,27 @@
             </Property>
           </Properties>
           <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="agregar_Materia">
+            <MenuItem class="javax.swing.JMenuItem" name="materia_AgregarMateria">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Arial" size="12" style="3"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="AGREGAR"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="materia_AgregarMateriaActionPerformed"/>
+              </Events>
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="modificar_Materia">
+            <MenuItem class="javax.swing.JMenuItem" name="materia_ModificarMateria">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Arial" size="12" style="3"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="MODIFICAR"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="materia_ModificarMateriaActionPerformed"/>
+              </Events>
             </MenuItem>
           </SubComponents>
         </Menu>
@@ -178,13 +206,16 @@
             </Property>
           </Properties>
           <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="inscr_Agregar">
+            <MenuItem class="javax.swing.JMenuItem" name="inscripciones_AgregarInscripcion">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Arial" size="12" style="3"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="AGREGAR"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="inscripciones_AgregarInscripcionActionPerformed"/>
+              </Events>
             </MenuItem>
           </SubComponents>
         </Menu>
@@ -243,7 +274,7 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Component id="fondo_admin" pref="784" max="32767" attributes="0"/>
-          <Component id="jPanel1" max="32767" attributes="0"/>
+          <Component id="panel_Inferior" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
@@ -251,13 +282,13 @@
           <Group type="102" alignment="0" attributes="0">
               <Component id="fondo_admin" pref="508" max="32767" attributes="0"/>
               <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-              <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
+              <Component id="panel_Inferior" min="-2" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Container class="javax.swing.JPanel" name="jPanel1">
+    <Container class="javax.swing.JPanel" name="panel_Inferior">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="66" green="0" red="ff" type="rgb"/>
@@ -324,8 +355,8 @@
         </Property>
       </Properties>
       <AuxValues>
-        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JDesktopPane(){&#xa;&#xa;    public void paintComponent(Graphics g){&#xa;        g.drawImage(image2,0,0,getWidth(),getHeight(),this);&#xa;    }&#xa;&#xa;}"/>
-        <AuxValue name="JavaCodeGenerator_CreateCodePre" type="java.lang.String" value="ImageIcon icon2 = new ImageIcon(getClass().getResource(&quot;/Vista/Img/fondo base.jpg&quot;));&#xa;Image image2 = icon2.getImage();"/>
+        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JDesktopPane(){&#xa;&#xa;    public void paintComponent(Graphics g){&#xa;        g.drawImage(image8,0,0,getWidth(),getHeight(),this);&#xa;    }&#xa;&#xa;}"/>
+        <AuxValue name="JavaCodeGenerator_CreateCodePre" type="java.lang.String" value="ImageIcon icon8 = new ImageIcon(getClass().getResource(&quot;/Visual/visual_General/Img/fondo base.jpg&quot;));&#xa;Image image8 = icon8.getImage();"/>
       </AuxValues>
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout">

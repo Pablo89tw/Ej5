@@ -101,6 +101,11 @@ public class Menu_ADM extends javax.swing.JFrame {
         jMenu1.add(jMenuItem8);
 
         jMenuItem2.setText("Cerrar");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMenuItem2);
 
         jMenuBar1.add(jMenu1);
@@ -251,6 +256,10 @@ public class Menu_ADM extends javax.swing.JFrame {
             jDesktopPane2.add(mA);
             mA.setVisible(true);
     }//GEN-LAST:event_jMenuItem10ActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane jDesktopPane2;
