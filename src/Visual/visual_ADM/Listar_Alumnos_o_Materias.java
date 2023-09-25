@@ -226,10 +226,12 @@ public class Listar_Alumnos_o_Materias extends javax.swing.JInternalFrame {
 
         if (jRadioButton1.isSelected()) {
             for (Alumno a1 : aD.buscarAlumno(jTexto_Buscar1.getText(), jComboBox_busqueda.getSelectedItem().toString(), null)) {
+                if (a1.getCategoria()==1){
                 modelo.addRow(new Object[]{a1.getIdAlumno(), a1.getApellido(), a1.getNombre(), a1.getDni(), a1.getFechaNacimiento(), a1.isEstado()});
             }
+            }
         } else if (jRadioButton2.isSelected()) {
-            for (Materia m1 : mD.buscarMateria(jTexto_Buscar1.getText(), jComboBox_busqueda.getSelectedItem().toString())) {
+            for (Materia m1 : mD.buscarMateria(jTexto_Buscar1.getText(), jComboBox_busqueda.getSelectedItem().toString())) {             
                 modelo.addRow(new Object[]{m1.getIdMateria(), m1.getNombre(), m1.getAnio(), m1.isEstado()});
             }
         }
@@ -264,7 +266,9 @@ public class Listar_Alumnos_o_Materias extends javax.swing.JInternalFrame {
             borrarFila();
             LocalDate fechaLD = jDateChooser_buscar.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
             for (Alumno a1 : aD.buscarAlumno(null, "FECHA NACIMIENTO", fechaLD)) {
+                if (a1.getCategoria() == 1){
                 modelo.addRow(new Object[]{a1.getIdAlumno(), a1.getApellido(), a1.getNombre(), a1.getDni(), a1.getFechaNacimiento(), a1.isEstado()});
+            }
             }
         }
 

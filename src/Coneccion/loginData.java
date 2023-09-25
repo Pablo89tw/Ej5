@@ -7,20 +7,22 @@ import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
 public class loginData {
+
     private int contadorIngresos = 0;
     private int categoriaResultado = 2;
     private Connection con;
     private int usuario;
     private String clave_in, clave;
-    
+    private int count = 0;
+
     public void AlumnoData() {
         con = Conectar.getConectar();
     }
 
     public int logIN(int usuario, String clave_in) {
         AlumnoData();
-        
-        String sql = "SELECT Clave FROM login WHERE Usuario LIKE (?)";
+
+        String sql = "SELECT * FROM login WHERE Usuario LIKE (?)";
         PreparedStatement ps = null;
 
         try {
@@ -29,7 +31,8 @@ public class loginData {
             ResultSet rs = ps.executeQuery();
 
             if (rs.next()) {
-                if (rs.getString("Clave").equals(clave_in)) {
+                if (rs.getString("Clave").equals(clave_in) && rs.getInt("estado") == 0) {
+                    ingresosReseteo(usuario);
                     PreparedStatement ps2 = null;
                     String sq12 = "SELECT categoria FROM alumno WHERE dni LIKE (?)";
                     ps2 = con.prepareStatement(sq12);
@@ -39,10 +42,15 @@ public class loginData {
                         categoriaResultado = rs2.getInt("categoria");
                     }
                 } else {
-                    JOptionPane.showMessageDialog(null, "La cuenta o la contraseña es incorrecta");
+                    ingresoFallido(usuario);
+                    if (rs.getInt("estado") == 1) {
+                        JOptionPane.showMessageDialog(null, "Usuario Bloqueado");
+                    } else if (!rs.getString("Clave").equals(clave_in)) {
+                        JOptionPane.showMessageDialog(null, "La cuenta o la contraseña es incorrecta");
+                    }
                 }
             } else {
-                JOptionPane.showMessageDialog(null, "La cuenta o la contraseña es incorrecta");
+                JOptionPane.showMessageDialog(null, "Usuario inexistente");
             }
         } catch (SQLException sqlE) {
             JOptionPane.showMessageDialog(null, "Error busqueda");
@@ -103,7 +111,6 @@ public class loginData {
                     max_al = rs.getInt("idAlumno");
                 }
             }
-
             ps = con.prepareStatement(sql1);
             rs = ps.executeQuery();
             while (rs.next()) {
@@ -111,9 +118,7 @@ public class loginData {
                     max_log = rs.getInt("idAlumno");
                 }
             }
-
             cargarDNI_login(max_log, max_al);
-
         } catch (SQLException sqlE) {
             JOptionPane.showMessageDialog(null, "Error busqueda");
         }
@@ -211,4 +216,110 @@ public class loginData {
         }
 
     }
+
+    public void ingresoFallido(int usuario) {
+        int ingreso_n;
+        String sql = "SELECT ingresos FROM login WHERE Usuario = ?";
+        PreparedStatement ps = null;
+
+        try {
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, usuario);
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                if (rs.getInt("ingresos") < 2 && rs.getInt("estado") == 0) {
+                    ingreso_n = rs.getInt("ingresos") + 1;
+
+                    String sql2 = "UPDATE login SET ingresos = ? WHERE Usuario = ?";
+                    PreparedStatement ps2 = null;
+
+                    try {
+                        ps2 = con.prepareStatement(sql2);
+                        ps2.setInt(1, ingreso_n);
+                        ps2.setInt(2, usuario);
+
+                        int resultado = ps2.executeUpdate();
+
+                    } catch (SQLException sqlE) {
+                        JOptionPane.showMessageDialog(null, "Error en la actualización");
+                    }
+                } else {
+                    if (rs.getInt("ingresos") >= 2) {
+                        String sql2 = "UPDATE login SET estado = ?, ingresos = ? WHERE Usuario = ?";
+                        PreparedStatement ps3 = null;
+
+                        try {
+                            ps3 = con.prepareStatement(sql2);
+                            ps3.setInt(1, 1);
+                            ps3.setInt(2, 0);
+                            ps3.setInt(3, usuario);
+
+                            int resultado2 = ps3.executeUpdate();
+
+                            if (resultado2 == 1) {
+                                JOptionPane.showMessageDialog(null, "Usuario Bloqueado");
+                            }
+                        } catch (SQLException sqlE) {
+                            JOptionPane.showMessageDialog(null, "Error");
+                        }
+                    }
+                }
+            }
+        } catch (SQLException sqlE) {
+            JOptionPane.showMessageDialog(null, "Error en la búsqueda");
+        }
+    }
+
+    private void ingresosReseteo(int usuario) {
+        String sql2 = "UPDATE login SET ingresos = ? WHERE Usuario = ?";
+        PreparedStatement ps2 = null;
+        try {
+            ps2 = con.prepareStatement(sql2);
+            ps2.setInt(1, 0);
+            ps2.setInt(2, usuario);
+            int resultado = ps2.executeUpdate();
+        } catch (SQLException sqlE) {
+        }
+    }
+
+    public void cargarRecordar(int usaurio, boolean recordarme) {
+            String sql2 = "UPDATE login SET recordar = ? WHERE Usuario = ?";
+            PreparedStatement ps2 = null;
+
+            try {
+                ps2 = con.prepareStatement(sql2);
+                if (recordarme){
+                        ps2.setInt(1, 1);
+                        }
+                else if (recordarme==false){
+                        ps2.setInt(1, 0); 
+                        }
+                ps2.setInt(2, usuario);
+
+                int resultado = ps2.executeUpdate();
+
+            } catch (SQLException sqlE) {
+            }
+        }
+    
+    
+    public int verRecordar(int usuario){
+        int resultado = 0;
+        String sql = "SELECT recordar FROM logIN WHERE Usuario LIKE (?)";
+        PreparedStatement ps = null;
+
+        try {
+            ps = con.prepareStatement(sql);
+            ps.setString(1, (Integer.toString(usuario)) + "%");
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                resultado = rs.getInt("recordar");
+            } 
+        } catch (SQLException sqlE) {
+            JOptionPane.showMessageDialog(null, "Error busqueda");
+        }
+        return resultado;
+     }
 }

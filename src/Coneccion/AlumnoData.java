@@ -68,6 +68,7 @@ public class AlumnoData {
                 alumno.setFechaNacimiento(rs.getDate("fechaNacimiento").toLocalDate());
                 alumno.setAnio(rs.getInt("año"));
                 alumno.setEstado(rs.getBoolean("estado"));
+                alumno.setCategoria(rs.getInt("categoria"));
                 arrayAlumno.add(alumno);
             }
         } catch (SQLException sqlE) {
@@ -153,6 +154,7 @@ public class AlumnoData {
                 alumno.setFechaNacimiento(rs.getDate("fechaNacimiento").toLocalDate());
                 alumno.setAnio(rs.getInt("año"));
                 alumno.setEstado(rs.getBoolean("estado"));
+                alumno.setCategoria(rs.getInt("categoria"));
                 arrayAlumno.add(alumno);
             }
 

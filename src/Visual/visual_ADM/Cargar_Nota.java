@@ -7,11 +7,11 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.table.DefaultTableModel;
 
 public class Cargar_Nota extends javax.swing.JInternalFrame {
-    
+
     private Coneccion.AlumnoData aD;
     private Coneccion.MateriaData mD;
     private Coneccion.InscripcionData iD;
-  
+
     public Cargar_Nota(Coneccion.AlumnoData aD, Coneccion.MateriaData mD, Coneccion.InscripcionData iD) {
         this.aD = aD;
         this.mD = mD;
@@ -35,7 +35,7 @@ public class Cargar_Nota extends javax.swing.JInternalFrame {
             return false;
         }
     };
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -183,7 +183,9 @@ public class Cargar_Nota extends javax.swing.JInternalFrame {
         borrarFila();
         if (jR_alumno.isSelected()) {
             for (Alumno a1 : aD.buscarAlumno(jText.getText(), jCB.getSelectedItem().toString(), null)) {
-                modelo.addRow(new Object[]{a1.getIdAlumno(), a1.getApellido(), a1.getNombre(), a1.getDni()});
+                if (a1.getCategoria() != 0) {
+                    modelo.addRow(new Object[]{a1.getIdAlumno(), a1.getApellido(), a1.getNombre(), a1.getDni()});
+                }
             }
         } else if (jR_materia.isSelected()) {
             for (Materia m1 : mD.buscarMateria(jText.getText(), jCB.getSelectedItem().toString())) {
@@ -225,7 +227,9 @@ public class Cargar_Nota extends javax.swing.JInternalFrame {
         if (jR_materia.isSelected()) {
             int idMateria = (int) jTable.getValueAt(jTable.getSelectedRow(), 0);
             for (Alumno a1 : aD.alumnosXmateria(idMateria)) {
-                modelo2.addRow(new Object[]{a1.getIdAlumno(), a1.getApellido(), a1.getNombre(), a1.getDni()});
+                if (a1.getCategoria() == 1) {
+                    modelo2.addRow(new Object[]{a1.getIdAlumno(), a1.getApellido(), a1.getNombre(), a1.getDni()});
+                }
             }
         } else if (jR_alumno.isSelected()) {
             int idAlumno = (int) jTable.getValueAt(jTable.getSelectedRow(), 0);
@@ -275,12 +279,11 @@ public class Cargar_Nota extends javax.swing.JInternalFrame {
     private javax.swing.JTextField jText;
     // End of variables declaration//GEN-END:variables
 
-
- public void unirUnirBotones() {
-            ButtonGroup buttonGroup = new ButtonGroup();
-            buttonGroup.add(jR_alumno);
-            buttonGroup.add(jR_materia);
-        }
+    public void unirUnirBotones() {
+        ButtonGroup buttonGroup = new ButtonGroup();
+        buttonGroup.add(jR_alumno);
+        buttonGroup.add(jR_materia);
+    }
 
     private void armarCabecera() {
         modelo.setColumnCount(0);
@@ -328,5 +331,3 @@ public class Cargar_Nota extends javax.swing.JInternalFrame {
         }
     }
 }
-
-

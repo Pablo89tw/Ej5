@@ -324,6 +324,7 @@ public class ModificarAlumno extends javax.swing.JInternalFrame {
     private void jTextField4KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField4KeyReleased
         borrarFila();
         for (Alumno a1 : aD.buscarAlumno(jTextField4.getText(), jComboBox1.getSelectedItem().toString(), null)) {
+            if (a1.getCategoria() == 1)
             modelo.addRow(new Object[]{a1.getIdAlumno(), a1.getApellido(), a1.getNombre(), a1.getDni(), a1.getFechaNacimiento(), a1.getAnio(), a1.isEstado()});
         }
     }//GEN-LAST:event_jTextField4KeyReleased

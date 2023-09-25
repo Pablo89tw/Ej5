@@ -221,7 +221,7 @@ public class Inscribir_Alumno extends javax.swing.JInternalFrame {
     private void jText_insAlumKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jText_insAlumKeyReleased
         borrarFilaAl();
         for (Alumno a1 : aD.buscarAlumno(jText_insAlum.getText(), jComboBox_insAlum1.getSelectedItem().toString(), null)) {
-            if (a1.isEstado()) {
+            if (a1.isEstado() && a1.getCategoria() == 1){
                 modelo_al.addRow(new Object[]{a1.getIdAlumno(), a1.getApellido(), a1.getNombre(), a1.getDni(), a1.getFechaNacimiento(), a1.isEstado()});
             }
         }
@@ -345,7 +345,9 @@ public class Inscribir_Alumno extends javax.swing.JInternalFrame {
 
     private void llenarTablaMaterias() {
         for (Materia materia : mD.buscarMateria(Integer.toString(alumno.getIdAlumno()),"NO_INSCRIPTO")) {
+            if (materia.isEstado()){
             modelo_mat.addRow(new Object[]{materia.getIdMateria(), materia.getNombre(), materia.getAnio(), materia.isEstado()});
+        }
         }
     }
     

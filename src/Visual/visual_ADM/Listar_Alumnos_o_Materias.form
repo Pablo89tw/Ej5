@@ -9,7 +9,6 @@
         </LineBorder>
       </Border>
     </Property>
-    <Property name="icon" type="boolean" value="true"/>
     <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
       <Dimension value="[600, 400]"/>
     </Property>

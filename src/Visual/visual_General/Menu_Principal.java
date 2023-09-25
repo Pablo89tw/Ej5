@@ -6,6 +6,7 @@ import java.awt.Graphics;
 import java.awt.Image;
 import javax.swing.ImageIcon;
 
+
 public class Menu_Principal extends javax.swing.JFrame {
 
     private Coneccion.AlumnoData aD = new Coneccion.AlumnoData();
@@ -13,7 +14,8 @@ public class Menu_Principal extends javax.swing.JFrame {
     private Coneccion.InscripcionData iD = new Coneccion.InscripcionData();
     private Coneccion.loginData iN = new Coneccion.loginData();
     private boolean recordarme;
-
+    private int usuario;
+    
     public Menu_Principal() {
         initComponents();
     }
@@ -63,7 +65,7 @@ public class Menu_Principal extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("ArianLT-Bold", 3, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Usario");
+        jLabel1.setText("Usuario");
         jLabel1.setMaximumSize(new java.awt.Dimension(60, 20));
         jLabel1.setPreferredSize(new java.awt.Dimension(60, 20));
 
@@ -73,8 +75,18 @@ public class Menu_Principal extends javax.swing.JFrame {
         jLabel2.setPreferredSize(new java.awt.Dimension(109, 20));
 
         jText_usuLIN.setFont(new java.awt.Font("Arial", 2, 14)); // NOI18N
+        jText_usuLIN.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jText_usuLINKeyReleased(evt);
+            }
+        });
 
         jPas_logIN.setFont(new java.awt.Font("Arial", 2, 14)); // NOI18N
+        jPas_logIN.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPas_logINMouseClicked(evt);
+            }
+        });
 
         jButton1.setFont(new java.awt.Font("ArianLT-Bold", 2, 14)); // NOI18N
         jButton1.setText("INGRESAR");
@@ -186,7 +198,6 @@ public class Menu_Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void showPassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showPassActionPerformed
-
         if (showPass.isSelected()) {
             // Mostrar caracteres de la contraseña
             jPas_logIN.setEchoChar((char) 0); // Esto quita el carácter oculto
@@ -194,7 +205,6 @@ public class Menu_Principal extends javax.swing.JFrame {
             // Ocultar caracteres de la contraseña
             jPas_logIN.setEchoChar('•');
         }
-
     }//GEN-LAST:event_showPassActionPerformed
 
     private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
@@ -202,35 +212,20 @@ public class Menu_Principal extends javax.swing.JFrame {
            recordarme = true;
        else if (!jCheckBox1.isSelected()){
            recordarme = false;
-       }  
+       }        
     }//GEN-LAST:event_jCheckBox1ActionPerformed
 
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Menu_Principal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Menu_Principal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Menu_Principal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Menu_Principal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
+    private void jText_usuLINKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jText_usuLINKeyReleased
+      
+    }//GEN-LAST:event_jText_usuLINKeyReleased
 
-        /* Create and display the form */
+    private void jPas_logINMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPas_logINMouseClicked
+         if (iN.verRecordar(usuario)==1){
+           jPas_logIN.setText(iN.buscarClave(usuario));
+      } 
+    }//GEN-LAST:event_jPas_logINMouseClicked
+
+    public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new Menu_Principal().setVisible(true);
@@ -252,30 +247,30 @@ public class Menu_Principal extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     private void inicioSesion() {
-        int usuario = Integer.parseInt(jText_usuLIN.getText());
+        usuario = Integer.parseInt(jText_usuLIN.getText());
         String clave = String.valueOf(jPas_logIN.getPassword());
-
-        switch (iN.logIN(usuario, clave)) {
+        
+            switch (iN.logIN(usuario, clave)) {
             case 0:
+                iN.cargarRecordar(usuario, recordarme);
                 Administrador admin = new Administrador(usuario, aD, mD, iD);
                 pantalla_principal.add(admin);
                 admin.setVisible(true);
+                
                 pantalla_principal.moveToFront(admin);
                 admin.setLocation((int) pantalla_principal.getLocation().getX() + 112, (int) pantalla_principal.getLocation().getY() + 50);
-                if (recordarme == false){
-                jText_usuLIN.setText("");
-                jPas_logIN.setText("");
-                }                 
                 break;
             case 1:
+                iN.cargarRecordar(usuario, recordarme);
                 Menu_Alumno MenuALM = new Menu_Alumno(usuario, aD, mD, iD);
                 pantalla_principal.add(MenuALM);
                 MenuALM.setVisible(true);
-                if (recordarme == false){
-                jText_usuLIN.setText("");
-                jPas_logIN.setText("");
-                }
                 break;
         }
     }
+
+   
+    
+     
+     
 }

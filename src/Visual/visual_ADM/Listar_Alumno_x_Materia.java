@@ -143,7 +143,9 @@ public class Listar_Alumno_x_Materia extends javax.swing.JInternalFrame {
         borrarFila2();
         int idMateria = (int) jTable1.getValueAt(jTable1.getSelectedRow(), 0);
         for (Alumno a1 : aD.alumnosXmateria(idMateria)) {
+            if (a1.getCategoria() == 1){
             modelo2.addRow(new Object[]{a1.getIdAlumno(), a1.getApellido(), a1.getNombre(), a1.getDni(), a1.getFechaNacimiento(), a1.isEstado()});
+        }
         }
     }//GEN-LAST:event_jTable1MouseClicked
 
