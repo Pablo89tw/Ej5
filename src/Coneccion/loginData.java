@@ -45,6 +45,8 @@ public class loginData {
                 } else if (!rs.getString("Clave").equals(clave_in)) {
                     ingresoFallido(usuario);
                 }
+                } else {
+            JOptionPane.showMessageDialog(null, "Usuario inexistente");
             }
         } catch (SQLException sqlE) {
             JOptionPane.showMessageDialog(null, "Usuario inexistente");

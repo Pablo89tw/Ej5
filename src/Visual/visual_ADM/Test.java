@@ -16,6 +16,7 @@ public class Test extends javax.swing.JFrame {
     private Coneccion.AlumnoData aD = new Coneccion.AlumnoData();
     private Coneccion.MateriaData mD = new Coneccion.MateriaData();
     private Coneccion.InscripcionData iD = new Coneccion.InscripcionData();
+    int usuario = 10000027;
     public Test() {
         initComponents();
     }
@@ -85,10 +86,10 @@ public class Test extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-      Cargar_Nota cn = new Cargar_Nota(aD, mD, iD);
-        jDesktopPane1.add(cn);
-        cn.setVisible(true);
-        
+    ModificarAlumno cn = new ModificarAlumno(usuario, aD, log, mD, iD);
+       jDesktopPane1.add(cn);
+      cn.setVisible(true);
+      
         
         
         

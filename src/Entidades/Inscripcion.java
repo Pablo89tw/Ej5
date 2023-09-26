@@ -4,18 +4,10 @@ public class Inscripcion {
     private int idInscripcion;
     private Alumno alumno;
     private Materia materia;
-    private boolean estado;
+    private int estado;
     private int nota;
 
-    public Inscripcion(int idInscripcion, Alumno alumno, Materia materia, boolean estado, int nota) {
-        this.idInscripcion = idInscripcion;
-        this.alumno = alumno;
-        this.materia = materia;
-        this.estado = estado;
-        this.nota = nota;
-    }
-
-    public Inscripcion(Alumno alumno, Materia materia, boolean estado, int nota) {
+    public Inscripcion(Alumno alumno, Materia materia, int estado, int nota) {
         this.alumno = alumno;
         this.materia = materia;
         this.estado = estado;
@@ -23,6 +15,14 @@ public class Inscripcion {
     }
 
     public Inscripcion() {
+    }
+
+    public Inscripcion(int idInscripcion, Alumno alumno, Materia materia, int estado, int nota) {
+        this.idInscripcion = idInscripcion;
+        this.alumno = alumno;
+        this.materia = materia;
+        this.estado = estado;
+        this.nota = nota;
     }
 
     public int getIdInscripcion() {
@@ -49,11 +49,11 @@ public class Inscripcion {
         this.materia = materia;
     }
 
-    public boolean isEstado() {
+    public int isEstado() {
         return estado;
     }
 
-    public void setEstado(boolean estado) {
+    public void setEstado(int estado) {
         this.estado = estado;
     }
 
@@ -70,8 +70,5 @@ public class Inscripcion {
         return "Inscripcion{" + "idInscripcion=" + idInscripcion + ", alumno=" + alumno + ", materia=" + materia + ", estado=" + estado + ", nota=" + nota + '}';
     }
 
-    
-    
-    
-    
+   
 }

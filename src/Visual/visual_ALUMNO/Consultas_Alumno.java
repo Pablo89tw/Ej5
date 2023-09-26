@@ -153,7 +153,6 @@ public class Consultas_Alumno extends javax.swing.JInternalFrame {
             modelo.addColumn("Año");
         } else if (jRadioButton2.isSelected()){
             modelo.addColumn("Materia");
-            modelo.addColumn("Año");
             modelo.addColumn("Nota"); 
     }
         jTable1.setModel(modelo);
@@ -169,7 +168,7 @@ public class Consultas_Alumno extends javax.swing.JInternalFrame {
     public void completarTabla2(){
         for (Inscripcion insc : iD.Inscripciones_x_Alumno(usuario)){
         Materia materia = mD.buscarMateria(Integer.toString(insc.getMateria().getIdMateria()),"ID MATERIA").get(0);
-        modelo.addRow(new Object[] {materia.getNombre(), materia.getAnio(),insc.getNota()});
+        modelo.addRow(new Object[] {materia.getNombre(),insc.getNota()});
         }
     }
 }

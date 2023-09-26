@@ -67,6 +67,7 @@ public class Administrador extends javax.swing.JInternalFrame {
         jMenu3 = new javax.swing.JMenu();
         menu_Inscripciones = new javax.swing.JMenu();
         inscripciones_AgregarInscripcion = new javax.swing.JMenuItem();
+        jMenuItem3 = new javax.swing.JMenuItem();
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
@@ -253,6 +254,14 @@ public class Administrador extends javax.swing.JInternalFrame {
         });
         menu_Inscripciones.add(inscripciones_AgregarInscripcion);
 
+        jMenuItem3.setText("MODIFICAR");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
+        menu_Inscripciones.add(jMenuItem3);
+
         jMenuItem1.setText("CARGAR NOTA");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -261,7 +270,7 @@ public class Administrador extends javax.swing.JInternalFrame {
         });
         menu_Inscripciones.add(jMenuItem1);
 
-        jMenuItem2.setText("Ver");
+        jMenuItem2.setText("VER");
         jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem2ActionPerformed(evt);
@@ -350,7 +359,7 @@ public class Administrador extends javax.swing.JInternalFrame {
         fondo_admin.removeAll();
         fondo_admin.repaint();
         
-        ModificarAlumno mA = new ModificarAlumno(usuario, aD, logD);
+        ModificarAlumno mA = new ModificarAlumno(usuario, aD, logD, mD, iD);
         mA.setVisible(true);
         
         fondo_admin.add(mA);
@@ -391,7 +400,7 @@ public class Administrador extends javax.swing.JInternalFrame {
         fondo_admin.removeAll();
         fondo_admin.repaint();
         
-        ModificarMateria mmF = new ModificarMateria(usuario, mD);
+        ModificarMateria mmF = new ModificarMateria(usuario, aD, mD, iD, logD);
         mmF.setVisible(true);
         
         fondo_admin.add(mmF);
@@ -441,6 +450,12 @@ public class Administrador extends javax.swing.JInternalFrame {
         
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+        Modificar_Inscripciones mI = new Modificar_Inscripciones(usuario, aD, mD, iD, logD);
+        fondo_admin.add(mI);
+        mI.setVisible(true);
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu Menu;
@@ -458,6 +473,7 @@ public class Administrador extends javax.swing.JInternalFrame {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem materia_AgregarMateria;
     private javax.swing.JMenuItem materia_ModificarMateria;
     private javax.swing.JMenuItem menu_Buscar;

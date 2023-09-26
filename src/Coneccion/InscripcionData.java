@@ -8,7 +8,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.List;
 import javax.swing.JOptionPane;
 
 public class InscripcionData {
@@ -69,8 +68,6 @@ public class InscripcionData {
         String sql, sql2;
         arrayInscripciones_x_alumno.clear();
 
-//        sql1 = "SELECT idAlumno FROM alumno WHERE dni LIKE ?";
-//        sql2 = "SELECT * FROM inscripcion WHERE idAlumno LIKE ?";
         sql = "SELECT * FROM inscripcion "
                 + "INNER JOIN alumno "
                 + "ON inscripcion.idAlumno = alumno.idAlumno "
@@ -91,6 +88,8 @@ public class InscripcionData {
                 materia = mD.buscarMateria(Integer.toString(rs.getInt("idMateria")), "ID MATERIA").get(0);
                 inscripcion.setMateria(materia);
                 inscripcion.setNota(rs.getInt("nota"));
+                inscripcion.setEstado(rs.getInt("esado"));
+                
                 arrayInscripciones_x_alumno.add(inscripcion);
             }
         } catch (SQLException sqlE) {
@@ -101,4 +100,74 @@ public class InscripcionData {
         return arrayInscripciones_x_alumno;
     }
 
+    public Inscripcion buscarInscripcion(int idMateria, int idAlumno){
+        AlumnoData();
+        Inscripcion iS = new Inscripcion();
+        String sql = "SELECT * FROM inscripcion WHERE idAlumno = ? AND idMateria = ?";
+        PreparedStatement ps = null;      
+               
+        try {
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, idAlumno);
+            ps.setInt(2,idMateria);
+            
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                iS.setAlumno(aD.buscarAlumno(Integer.toString(idAlumno), "ID ALUMNO", null).get(0));
+                iS.setMateria(mD.buscarMateria(Integer.toString(idMateria), "ID MATERIA").get(0));
+                iS.setIdInscripcion(rs.getInt("idInscripcion"));
+                iS.setNota(rs.getInt("nota"));
+                iS.setEstado(rs.getInt("estado"));
+                }        
+        } catch (SQLException sqlE) {
+            JOptionPane.showMessageDialog(null, "Error busqueda");
+        }
+        return iS;
+            
+    }
+    
+     public int actualizarEstadoInscripcion(int estado, int idInscripcion) {
+        AlumnoData();
+        int check = 0;
+        String sql = "UPDATE inscripcion SET estado = ? WHERE idInscripcion = ?";
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, estado);
+            ps.setInt(2, idInscripcion);
+           
+            int fila = ps.executeUpdate();
+            
+            if (fila == 1) {
+                JOptionPane.showMessageDialog(null, "Estado actualizado");
+            } else if (fila > 0){
+                check = 1;
+            }
+            
+        } catch (SQLException sqlE) {
+            JOptionPane.showMessageDialog(null, "No existe alumno cono ese id");
+        } return check;
+     }
+     
+     public void eliminarInscripcion(int idInscripcion){
+        AlumnoData();
+        try {
+            String sql = "DELETE FROM inscripcion WHERE idInscripcion LIKE ?";
+
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, idInscripcion);
+
+            int fila = ps.executeUpdate();
+
+            if (fila == 1) {
+                JOptionPane.showMessageDialog(null, "Inscripcion Eliminada");
+            } else {
+                JOptionPane.showMessageDialog(null, "No se eliminó la Inscripción");
+            }
+
+        } catch (SQLException sqlE) {
+            JOptionPane.showMessageDialog(null, "No existe una inscripcion cono ese id");
+        }
+     }
+    
 }

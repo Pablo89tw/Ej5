@@ -5,6 +5,7 @@ import Visual.visual_ALUMNO.Menu_Alumno;
 import java.awt.Graphics;
 import java.awt.Image;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 
 public class Menu_Principal extends javax.swing.JFrame {
 
@@ -214,38 +215,46 @@ public class Menu_Principal extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     private void inicioSesion() {
-        usuario = Integer.parseInt(jText_usuLIN.getText());
-        clave = String.valueOf(jPas_logIN.getPassword());
-        if (jCheckBox1.isSelected()) {
-            recordarme = 1;
-        } else if (!jCheckBox1.isSelected()) {
-            recordarme = 0;
-        }
+        try {
+            usuario = Integer.parseInt(jText_usuLIN.getText());
+            clave = String.valueOf(jPas_logIN.getPassword());
 
-        switch (iN.logIN(usuario, clave)) {
-            case 0:
-                if (!jCheckBox1.isSelected()){
-                jPas_logIN.setText("");
-                jText_usuLIN.setText("");
-                }
+            if (jCheckBox1.isSelected()) {
+                recordarme = 1;
+            } else if (!jCheckBox1.isSelected()) {
+                recordarme = 0;
+            }
 
-                Administrador admin = new Administrador(usuario, aD, mD, iD, iN);
-                pantalla_principal.add(admin);
-                admin.setVisible(true);
+            switch (iN.logIN(usuario, clave)) {
+                case 0:
+                    if (!jCheckBox1.isSelected()) {
+                        jPas_logIN.setText("");
+                        jText_usuLIN.setText("");
+                    }
 
-                pantalla_principal.moveToFront(admin);
-                admin.setLocation((int) pantalla_principal.getLocation().getX() + 112, (int) pantalla_principal.getLocation().getY() + 50);
-                break;
-            case 1:
-                if (!jCheckBox1.isSelected()){
-                jPas_logIN.setText("");
-                jText_usuLIN.setText("");
-                }
-                Menu_Alumno MenuALM = new Menu_Alumno(usuario, aD, mD, iD);
-                pantalla_principal.add(MenuALM);
-                MenuALM.setVisible(true);
-                break;
+                    Administrador admin = new Administrador(usuario, aD, mD, iD, iN);
+                    pantalla_principal.add(admin);
+                    admin.setVisible(true);
+
+                    pantalla_principal.moveToFront(admin);
+                    admin.setLocation((int) pantalla_principal.getLocation().getX() + 112, (int) pantalla_principal.getLocation().getY() + 50);
+                    break;
+
+                case 1:
+                    if (!jCheckBox1.isSelected()) {
+                        jPas_logIN.setText("");
+                        jText_usuLIN.setText("");
+                    }
+                    Menu_Alumno MenuALM = new Menu_Alumno(usuario, aD, mD, iD);
+                    pantalla_principal.add(MenuALM);
+                    MenuALM.setVisible(true);
+                    break;
+            }
+
+        } catch (NumberFormatException ex) {
+            jText_usuLIN.setText("");
+            jPas_logIN.setText("");
+            JOptionPane.showMessageDialog(null, "Formato usuario erroneo. Ingrese su DNI");
         }
     }
 }
-

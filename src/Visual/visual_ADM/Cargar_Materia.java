@@ -1,6 +1,7 @@
 package Visual.visual_ADM;
 
 import javax.swing.ButtonGroup;
+import javax.swing.JOptionPane;
 
 public class Cargar_Materia extends javax.swing.JInternalFrame {
 
@@ -131,7 +132,11 @@ public class Cargar_Materia extends javax.swing.JInternalFrame {
         }
         int cupo = Integer.parseInt(jSpinner2.getValue().toString());
 
-        mD.cargarMateria(nombre, anio, estado, cupo);
+        if (nombre != null) {
+            mD.cargarMateria(nombre, anio, estado, cupo);
+        } else {
+            JOptionPane.showMessageDialog(null, "Nombre incorreto");
+        }
     }//GEN-LAST:event_jButton1MouseClicked
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed

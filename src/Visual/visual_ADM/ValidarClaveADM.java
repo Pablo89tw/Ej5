@@ -4,21 +4,26 @@ import Entidades.Alumno;
 import javax.swing.JOptionPane;
 
 public class ValidarClaveADM extends javax.swing.JFrame {
-    
+    private Coneccion.loginData logD;
+    private Coneccion.AlumnoData aD;
+    private Coneccion.MateriaData mD;
+    private Coneccion.InscripcionData iD;
     private int usuario;
     private int id;
     private String codigo;
  
-    public ValidarClaveADM(int usuario, int idAlumno, String codigo) {
-        initComponents();
+    public ValidarClaveADM(int usuario, int idAlumno, String codigo, Coneccion.loginData logD, Coneccion.AlumnoData aD, Coneccion.MateriaData mD, Coneccion.InscripcionData iD) {
+        this.aD = aD;
+        this.mD = mD;
+        this.iD = iD;
+        this.logD = logD;
         this.usuario = usuario;
         this.id = idAlumno;
         this.codigo = codigo;
-        armarTexto();
+        initComponents();
+        jLabel1.setText("Reingrese su clave");
     }
-    Coneccion.loginData col = new Coneccion.loginData();  
-    Coneccion.AlumnoData aD = new Coneccion.AlumnoData();
-    Coneccion.MateriaData mD = new Coneccion.MateriaData();
+ 
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -97,11 +102,12 @@ public class ValidarClaveADM extends javax.swing.JFrame {
     private void AceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AceptarActionPerformed
        
         String clave_ing = jPasswordField1.getText();        
-        if (clave_ing.equals(col.buscarClave(usuario))){
+        if (clave_ing.equals(logD.buscarClave(usuario))){
             switch (codigo){ 
-                case "clave": col.resteoClave(id); break;
+                case "clave": logD.resteoClave(id); break;
                 case "eliminar_alumno": aD.eliminarAlumno(id);break;
                 case "eliminar_materia": mD.eliminarMateria(id);break;
+                case "eliminar_inscripcion": iD. eliminarInscripcion(id);break;
             }
         } else { 
             JOptionPane.showMessageDialog(null, "Clave Invalida");
@@ -122,9 +128,5 @@ public class ValidarClaveADM extends javax.swing.JFrame {
     private javax.swing.JPasswordField jPasswordField1;
     // End of variables declaration//GEN-END:variables
 
-private void armarTexto(){
-   Alumno alumno = (aD.buscarAlumno(Integer.toString(usuario), "DNI", null)).get(0);
-   jLabel1.setText("Reingrese su clave " + alumno.getApellido() + ". " + alumno.getNombre());
-}
 
 }

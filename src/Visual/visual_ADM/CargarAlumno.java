@@ -5,6 +5,7 @@ import java.time.ZoneId;
 import java.awt.Graphics;
 import java.awt.Image;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 
 
 public class CargarAlumno extends javax.swing.JInternalFrame {
@@ -230,6 +231,7 @@ public class CargarAlumno extends javax.swing.JInternalFrame {
     // End of variables declaration//GEN-END:variables
 
 private void armarAlumno(){
+    try {
     alumno = new Alumno();
     alumno.setApellido(jTextoApellido.getText());
     alumno.setNombre(TextoNombre.getText());
@@ -239,6 +241,10 @@ private void armarAlumno(){
     alumno.setEstado(true);
     aD.cargarAlumno(alumno);
     this.dispose();
+    } catch (NumberFormatException ex) {
+        TextoDni.setText("");
+        JOptionPane.showMessageDialog(null, "Formato usuario erroneo. Ingrese su DNI");
+    }
     ;
 }
 
