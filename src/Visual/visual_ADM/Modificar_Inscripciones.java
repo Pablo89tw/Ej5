@@ -378,7 +378,6 @@ public class Modificar_Inscripciones extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jCheckBox2ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-         System.out.println("id inscripcion: " + ins.getIdInscripcion());
          ValidarClaveADM vcADM = new ValidarClaveADM(usuario, ins.getIdInscripcion(), "eliminar_inscripcion", logD, aD, mD, iD);
          vcADM.setVisible(true);  
     }//GEN-LAST:event_jButton2ActionPerformed
@@ -497,7 +496,7 @@ public class Modificar_Inscripciones extends javax.swing.JInternalFrame {
     private void borrarFila3() {
         int filas = jTable3.getRowCount() - 1;
         for (int f = filas; f >= 0; f--) {
-            modelo2.removeRow(f);
+            modelo3.removeRow(f);
         }
     }
     
@@ -529,6 +528,7 @@ public class Modificar_Inscripciones extends javax.swing.JInternalFrame {
     }
 
     private void completarTabla3(){
+        borrarFila3();
         modelo3.addRow(new Object[]{ins.getIdInscripcion(),alumno.getApellido(), alumno.getNombre(), materia.getNombre(),ins.isEstado()});
     }
 }

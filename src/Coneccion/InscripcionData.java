@@ -127,9 +127,8 @@ public class InscripcionData {
             
     }
     
-     public int actualizarEstadoInscripcion(int estado, int idInscripcion) {
+     public void actualizarEstadoInscripcion(int estado, int idInscripcion) {
         AlumnoData();
-        int check = 0;
         String sql = "UPDATE inscripcion SET estado = ? WHERE idInscripcion = ?";
         try {
             PreparedStatement ps = con.prepareStatement(sql);
@@ -140,13 +139,11 @@ public class InscripcionData {
             
             if (fila == 1) {
                 JOptionPane.showMessageDialog(null, "Estado actualizado");
-            } else if (fila > 0){
-                check = 1;
             }
             
         } catch (SQLException sqlE) {
             JOptionPane.showMessageDialog(null, "No existe alumno cono ese id");
-        } return check;
+        } 
      }
      
      public void eliminarInscripcion(int idInscripcion){
