@@ -17,6 +17,8 @@ public class Modificar_Inscripciones extends javax.swing.JInternalFrame {
     private int idAlumno;
     private Inscripcion ins;
     private int usuario;
+    private Materia materia;
+    private Alumno alumno;
 
     public Modificar_Inscripciones(int usuario, Coneccion.AlumnoData aD, Coneccion.MateriaData mD, Coneccion.InscripcionData iD, Coneccion.loginData logD) {
         this.usuario = usuario;
@@ -27,7 +29,7 @@ public class Modificar_Inscripciones extends javax.swing.JInternalFrame {
         initComponents();
         armarCabecera();
         armarBotones();
-    }
+        }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -51,8 +53,9 @@ public class Modificar_Inscripciones extends javax.swing.JInternalFrame {
         jRadioButton4 = new javax.swing.JRadioButton();
         jButton2 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
         jButton4 = new javax.swing.JButton();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jTable3 = new javax.swing.JTable();
 
         jButton1.setText("Actualizar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -163,6 +166,19 @@ public class Modificar_Inscripciones extends javax.swing.JInternalFrame {
             }
         });
 
+        jTable3.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane3.setViewportView(jTable3);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -206,8 +222,8 @@ public class Modificar_Inscripciones extends javax.swing.JInternalFrame {
                         .addContainerGap()
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(104, 104, 104)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap()
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -224,11 +240,11 @@ public class Modificar_Inscripciones extends javax.swing.JInternalFrame {
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(13, 13, 13)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jCheckBox1)
                     .addComponent(jRadioButton3)
@@ -277,8 +293,8 @@ public class Modificar_Inscripciones extends javax.swing.JInternalFrame {
         int filaSeleccionada = jTable1.getSelectedRow();
         if (jRadioButton1.isSelected()) {
             if (filaSeleccionada >= 0) {
-                idMateria = (int) jTable1.getValueAt(filaSeleccionada, 0);
-                for (Alumno a1 : aD.alumnosXmateria(idMateria)) {
+                materia = mD.buscarMateria(Integer.toString((int)jTable1.getValueAt(filaSeleccionada, 0)),"ID MATERIA").get(0);
+                for (Alumno a1 : aD.alumnosXmateria(materia.getIdMateria())) {
                     if (a1.getCategoria() == 1) {
                         modelo2.addRow(new Object[]{a1.getIdAlumno(), a1.getApellido(), a1.getNombre(), a1.getDni(), a1.getFechaNacimiento(), a1.isEstado()});
                     }
@@ -286,8 +302,9 @@ public class Modificar_Inscripciones extends javax.swing.JInternalFrame {
             }
         } else if (jRadioButton2.isSelected()) {
             if (filaSeleccionada >= 0) {
-                idAlumno = (int) jTable1.getValueAt(filaSeleccionada, 0);
-                for (Materia m1 : mD.materiaXalumno(idAlumno)) {
+                alumno = aD.buscarAlumno(Integer.toString((int) jTable1.getValueAt(filaSeleccionada, 0)),"ID ALUMNO", null).get(0);
+                System.out.println(alumno);
+                for (Materia m1 : mD.materiaXalumno(alumno.getIdAlumno())) {
                     modelo2.addRow(new Object[]{m1.getIdMateria(), m1.getNombre(), m1.getAnio(), m1.isEstado()});
                 }
             }
@@ -307,16 +324,20 @@ public class Modificar_Inscripciones extends javax.swing.JInternalFrame {
         int filaSeleccionada = jTable2.getSelectedRow();
         if (jRadioButton1.isSelected()) {
             if (filaSeleccionada >= 0) {
-                idAlumno = (int) jTable2.getValueAt(filaSeleccionada, 0);
+                alumno = aD.buscarAlumno(Integer.toString((int) jTable2.getValueAt(filaSeleccionada, 0)),"ID ALUMNO", null).get(0);
             }
         } else if (jRadioButton2.isSelected()) {
             if (filaSeleccionada >= 0) {
-                idMateria = (int) jTable2.getValueAt(filaSeleccionada, 0);
+                materia = mD.buscarMateria(Integer.toString((int)jTable1.getValueAt(filaSeleccionada, 0)),"ID MATERIA").get(0);
             }
         }
 
-        ins = iD.buscarInscripcion(idMateria, idAlumno);
-        jLabel2.setText("Inscipcion número: " + ins.getIdInscripcion());
+        ins = iD.buscarInscripcion(materia.getIdMateria(), alumno.getIdAlumno());
+        completarTabla3();
+        
+        
+        
+        
         if (ins.isEstado() == 0) {
             jRadioButton3.setSelected(true);
             jRadioButton4.setSelected(false);
@@ -368,6 +389,7 @@ public class Modificar_Inscripciones extends javax.swing.JInternalFrame {
             estado = 1;
         }
         iD.actualizarEstadoInscripcion(estado, ins.getIdInscripcion());
+        completarTabla3();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
@@ -386,15 +408,16 @@ public class Modificar_Inscripciones extends javax.swing.JInternalFrame {
     private javax.swing.JCheckBox jCheckBox2;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JRadioButton jRadioButton3;
     private javax.swing.JRadioButton jRadioButton4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
+    private javax.swing.JTable jTable3;
     private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 
@@ -404,6 +427,12 @@ public class Modificar_Inscripciones extends javax.swing.JInternalFrame {
         }
     };
     DefaultTableModel modelo2 = new DefaultTableModel() {
+        public boolean isCellEditable(int f, int c) {
+            return false;
+        }
+    };
+    
+       DefaultTableModel modelo3 = new DefaultTableModel() {
         public boolean isCellEditable(int f, int c) {
             return false;
         }
@@ -441,6 +470,14 @@ public class Modificar_Inscripciones extends javax.swing.JInternalFrame {
             modelo2.addColumn("Estado");
         }
         jTable2.setModel(modelo2);
+            
+        modelo3.setColumnCount(0);
+        modelo3.addColumn("id Inscripcion");
+        modelo3.addColumn("Apellido");
+        modelo3.addColumn("Nombre");
+        modelo3.addColumn("Materia");
+        modelo3.addColumn("Estado");
+        jTable3.setModel(modelo3);
     }
 
     private void borrarFila() {
@@ -456,6 +493,14 @@ public class Modificar_Inscripciones extends javax.swing.JInternalFrame {
             modelo2.removeRow(f);
         }
     }
+    
+    private void borrarFila3() {
+        int filas = jTable3.getRowCount() - 1;
+        for (int f = filas; f >= 0; f--) {
+            modelo2.removeRow(f);
+        }
+    }
+    
 
     private void armarBotones() {
         ButtonGroup buttonGroup1 = new ButtonGroup();
@@ -476,11 +521,14 @@ public class Modificar_Inscripciones extends javax.swing.JInternalFrame {
 
     private void armarComboBox() {
         String[] lista1 = ((jRadioButton1.isSelected())
-                ? new String[]{"ID MATERIA", "NOMBRE", "ESTADO", "AÑO"}
-                : new String[]{"ID ALUMNO", "DNI", "APELLIDO", "NOMBRE", "FECHA NACIMIENTO", "ESTADO"});
+                ? new String[]{"ID MATERIA", "NOMBRE", "AÑO"}
+                : new String[]{"ID ALUMNO", "DNI", "APELLIDO", "NOMBRE"});
         DefaultComboBoxModel<String> model = new DefaultComboBoxModel<>(lista1);
         jComboBox1.setModel(model);
         armarCabecera();
     }
 
+    private void completarTabla3(){
+        modelo3.addRow(new Object[]{ins.getIdInscripcion(),alumno.getApellido(), alumno.getNombre(), materia.getNombre(),ins.isEstado()});
+    }
 }

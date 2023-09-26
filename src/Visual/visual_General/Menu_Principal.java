@@ -254,7 +254,7 @@ public class Menu_Principal extends javax.swing.JFrame {
         } catch (NumberFormatException ex) {
             jText_usuLIN.setText("");
             jPas_logIN.setText("");
-            JOptionPane.showMessageDialog(null, "Formato usuario erroneo. Ingrese su DNI");
+            JOptionPane.showMessageDialog(null, "Usurio Incorrecto");
         }
     }
 }

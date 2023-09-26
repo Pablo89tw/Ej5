@@ -1,6 +1,7 @@
 package Visual.visual_ADM;
 
 import Entidades.Alumno;
+import java.time.LocalDate;
 import javax.swing.JOptionPane;
 
 public class ValidarClaveADM extends javax.swing.JFrame {
@@ -21,7 +22,7 @@ public class ValidarClaveADM extends javax.swing.JFrame {
         this.id = idAlumno;
         this.codigo = codigo;
         initComponents();
-        jLabel1.setText("Reingrese su clave");
+        jLabel1.setText("Reingrese su clave " + ((aD.buscarAlumno(Integer.toString(usuario), "DNI", null)).get(0)).getApellido());
     }
  
     
