@@ -5,14 +5,17 @@
             <url>src/Visual/visual_ADM/ModificarAlumno.java</url>
             <bookmark id="1">
                 <name/>
-                <line>375</line>
+                <line>374</line>
                 <key/>
             </bookmark>
         </file>
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Pablo/Documents/NetBeansProjects/Ej5/src/Visual/visual_General/Menu_Principal.java</file>
+            <file>file:/C:/Users/MOLLO%20RAMIREZ/Desktop/CURSO/JAVA%20-%20DESARROLLO%20DE%20APLICACIONES/GUIA%204/PROYECTO%20GRUPO/Ej5/Ej5/Ej5/src/Visual/visual_ADM/CargarAlumno.java</file>
+            <file>file:/C:/Users/MOLLO%20RAMIREZ/Desktop/CURSO/JAVA%20-%20DESARROLLO%20DE%20APLICACIONES/GUIA%204/PROYECTO%20GRUPO/Ej5/Ej5/Ej5/src/Visual/visual_ADM/Administrador.java</file>
+            <file>file:/C:/Users/MOLLO%20RAMIREZ/Desktop/CURSO/JAVA%20-%20DESARROLLO%20DE%20APLICACIONES/GUIA%204/PROYECTO%20GRUPO/Ej5/Ej5/Ej5/src/Visual/visual_General/Modificar_Clave.java</file>
+            <file>file:/C:/Users/MOLLO%20RAMIREZ/Desktop/CURSO/JAVA%20-%20DESARROLLO%20DE%20APLICACIONES/GUIA%204/PROYECTO%20GRUPO/Ej5/Ej5/Ej5/src/Visual/visual_General/Menu_Principal.java</file>
         </group>
     </open-files>
 </project-private>

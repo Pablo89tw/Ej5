@@ -339,7 +339,7 @@ public class Administrador extends javax.swing.JInternalFrame {
         
         fondo_admin.add(cA);
         fondo_admin.moveToFront(cA);
-        cA.setLocation((int) fondo_admin.getLocation().getX() + 45, (int) fondo_admin.getLocation().getY() + 60);
+        cA.setLocation((int) fondo_admin.getLocation().getX() + 140, (int) fondo_admin.getLocation().getY() + 60);
         
         
         
