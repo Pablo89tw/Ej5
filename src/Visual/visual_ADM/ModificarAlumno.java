@@ -8,6 +8,7 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.table.DefaultTableModel;
 
 public class ModificarAlumno extends javax.swing.JInternalFrame {
+
     private Coneccion.loginData logD;
     private Coneccion.AlumnoData aD;
     private int idAlumno_Mod;
@@ -19,6 +20,7 @@ public class ModificarAlumno extends javax.swing.JInternalFrame {
     private boolean estado;
     private int usuario;
     private Alumno alumno;
+    private int filtroBusqueda;
 
     public ModificarAlumno(int usuario, Coneccion.AlumnoData aD, Coneccion.loginData logD) {
         this.usuario = usuario;
@@ -60,6 +62,7 @@ public class ModificarAlumno extends javax.swing.JInternalFrame {
         LogIN = new javax.swing.JCheckBox();
         logIN_activo = new javax.swing.JRadioButton();
         LogIN_inactivo = new javax.swing.JRadioButton();
+        jCheckBox4 = new javax.swing.JCheckBox();
 
         Activo.setText("Activo");
         Activo.addActionListener(new java.awt.event.ActionListener() {
@@ -191,71 +194,78 @@ public class ModificarAlumno extends javax.swing.JInternalFrame {
 
         LogIN_inactivo.setText("Inactivo");
 
+        jCheckBox4.setText("Agregar Administradores");
+        jCheckBox4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBox4ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 532, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 13, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(29, 29, 29)
-                                .addComponent(jTextField4)
-                                .addGap(27, 27, 27))
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jCheckBox1)
                                 .addGap(56, 56, 56)
                                 .addComponent(Activo)
                                 .addGap(18, 18, 18)
                                 .addComponent(Inactivo)
-                                .addGap(0, 0, Short.MAX_VALUE)))
-                        .addGap(170, 170, 170))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jCheckBox2)
-                            .addComponent(jC_N)
-                            .addComponent(jC_A)
-                            .addComponent(jCheckBox5)
-                            .addComponent(jCheckBox6)
-                            .addComponent(jCheckBox3)
-                            .addComponent(LogIN)
-                            .addComponent(jCB_Eliminar))
-                        .addGap(16, 16, 16)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGap(0, 246, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jDC_nF, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jText_nDNI)
-                                    .addComponent(jText_nN)
-                                    .addComponent(jText_nA)
-                                    .addComponent(jS_nA))
-                                .addGap(21, 21, 21)
-                                .addComponent(jButton2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(6, 6, 6))
+                                    .addComponent(jCheckBox2)
+                                    .addComponent(jC_N)
+                                    .addComponent(jC_A)
+                                    .addComponent(jCheckBox5)
+                                    .addComponent(jCheckBox6)
+                                    .addComponent(jCheckBox3)
+                                    .addComponent(LogIN)
+                                    .addComponent(jCB_Eliminar))
+                                .addGap(16, 16, 16)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(jDC_nF, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(jText_nDNI)
+                                            .addComponent(jText_nN)
+                                            .addComponent(jText_nA)
+                                            .addComponent(jS_nA))
+                                        .addGap(21, 21, 21)
+                                        .addComponent(jButton2)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(6, 6, 6))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(logIN_activo)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(LogIN_inactivo))))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(logIN_activo)
-                                .addGap(18, 18, 18)
-                                .addComponent(LogIN_inactivo)
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
+                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jTextField4)
+                                .addGap(80, 80, 80)
+                                .addComponent(jCheckBox4)
+                                .addGap(34, 34, 34))))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 532, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 6, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(10, 10, 10)
+                .addGap(9, 9, 9)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(15, 15, 15)
+                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jCheckBox4))
+                .addGap(13, 13, 13)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -290,7 +300,7 @@ public class ModificarAlumno extends javax.swing.JInternalFrame {
                     .addComponent(jCheckBox3))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 5, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(logIN_activo)
                             .addComponent(LogIN_inactivo)
@@ -330,16 +340,16 @@ public class ModificarAlumno extends javax.swing.JInternalFrame {
         estado = ((Activo.isSelected()) ? true : false);
         fechaNacimiento = jDC_nF.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
         anio = (int) jS_nA.getValue();
-             
+
         alumno = new Alumno(idAlumno_Mod, dni, apellido, nombre, fechaNacimiento, estado, anio, 1);
         aD.modificarDataAlumno(alumno);
-        
+
         int data = 0;
-        if (LogIN_inactivo.isSelected()){
-          data = 1;
+        if (LogIN_inactivo.isSelected()) {
+            data = 1;
         }
         logD.activarUsuarioLogIN(data, dni);
-        
+
         this.dispose();
 
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -364,7 +374,11 @@ public class ModificarAlumno extends javax.swing.JInternalFrame {
     private void jTextField4KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField4KeyReleased
         borrarFila();
         for (Alumno a1 : aD.buscarAlumno(jTextField4.getText(), jComboBox1.getSelectedItem().toString(), null)) {
-            if (a1.getCategoria() == 1) {
+            if (filtroBusqueda == 0) {
+                if (a1.getCategoria() == 1) {
+                    modelo.addRow(new Object[]{a1.getIdAlumno(), a1.getApellido(), a1.getNombre(), a1.getDni(), a1.getFechaNacimiento(), a1.getAnio(), a1.isEstado()});
+                }
+            } else if (filtroBusqueda == 1) {
                 modelo.addRow(new Object[]{a1.getIdAlumno(), a1.getApellido(), a1.getNombre(), a1.getDni(), a1.getFechaNacimiento(), a1.getAnio(), a1.isEstado()});
             }
         }
@@ -397,7 +411,7 @@ public class ModificarAlumno extends javax.swing.JInternalFrame {
         if (filaSeleccionada >= 0) {
             idAlumno_Mod = (int) jTable1.getValueAt(filaSeleccionada, 0);
         }
-       
+
         if ((jTable1.getValueAt(filaSeleccionada, 6)).toString().equals("true")) {
             Activo.setSelected(true);
             Inactivo.setSelected(false);
@@ -405,15 +419,14 @@ public class ModificarAlumno extends javax.swing.JInternalFrame {
             Inactivo.setSelected(true);
             Activo.setSelected(false);
         }
-     
-        if (logD.reactivarLogINusuario(aD.buscarAlumno(Integer.toString(idAlumno_Mod), "ID ALUMNO",null).get(0).getDni())==1){
+
+        if (logD.reactivarLogINusuario(aD.buscarAlumno(Integer.toString(idAlumno_Mod), "ID ALUMNO", null).get(0).getDni()) == 1) {
             logIN_activo.setSelected(false);
             LogIN_inactivo.setSelected(true);
-        } else if (logD.reactivarLogINusuario(aD.buscarAlumno(Integer.toString(idAlumno_Mod), "ID ALUMNO",null).get(0).getDni())==0){
+        } else if (logD.reactivarLogINusuario(aD.buscarAlumno(Integer.toString(idAlumno_Mod), "ID ALUMNO", null).get(0).getDni()) == 0) {
             logIN_activo.setSelected(true);
             LogIN_inactivo.setSelected(false);
         }
-            
 
         // Cargo en los cuadros los datos la tabla en los campos
         jText_nA.setText((jTable1.getValueAt(filaSeleccionada, 1)).toString());
@@ -478,11 +491,20 @@ public class ModificarAlumno extends javax.swing.JInternalFrame {
             LogIN_inactivo.setEnabled(true);
             logIN_activo.setEnabled(true);
         } else if (!LogIN.isSelected()) {
-             LogIN_inactivo.setEnabled(false);
+            LogIN_inactivo.setEnabled(false);
             logIN_activo.setEnabled(false);
         }
 
     }//GEN-LAST:event_LogINActionPerformed
+
+    private void jCheckBox4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox4ActionPerformed
+        if (jCheckBox4.isSelected()) {
+            filtroBusqueda = 1;
+        } else if (!jCheckBox4.isSelected()) {
+            filtroBusqueda = 0;
+        }
+        borrarFila();
+    }//GEN-LAST:event_jCheckBox4ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -500,6 +522,7 @@ public class ModificarAlumno extends javax.swing.JInternalFrame {
     private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JCheckBox jCheckBox2;
     private javax.swing.JCheckBox jCheckBox3;
+    private javax.swing.JCheckBox jCheckBox4;
     private javax.swing.JCheckBox jCheckBox5;
     private javax.swing.JCheckBox jCheckBox6;
     private javax.swing.JComboBox<String> jComboBox1;
@@ -547,7 +570,7 @@ public class ModificarAlumno extends javax.swing.JInternalFrame {
         ButtonGroup buttonGroup = new ButtonGroup();
         buttonGroup.add(Activo);
         buttonGroup.add(Inactivo);
-        
+
         ButtonGroup buttonGroup2 = new ButtonGroup();
         buttonGroup2.add(LogIN_inactivo);
         buttonGroup2.add(logIN_activo);
