@@ -58,7 +58,6 @@ public class CargarAlumno extends javax.swing.JInternalFrame {
 
         jTextoApellido.setFont(new java.awt.Font("ArianLT-Demi", 3, 18)); // NOI18N
         jTextoApellido.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextoApellido.setText("Mancuso");
         jTextoApellido.setBorder(null);
         jTextoApellido.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

@@ -1,4 +1,3 @@
-
 package Visual.visual_ADM;
 
 import Entidades.Materia;
@@ -14,19 +13,18 @@ public class ModificarMateria extends javax.swing.JInternalFrame {
     private String nombre;
     private boolean estado;
     private int cupo;
-    private int usuario; 
-    
- 
+    private int usuario;
+    private int filaSeleccionada;
+
     public ModificarMateria(int usuario, Coneccion.MateriaData mD) {
         this.usuario = usuario;
         this.mD = mD;
         initComponents();
         armarCabecera();
         armadoVista();
-        
+
     }
 
-    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -235,9 +233,7 @@ public class ModificarMateria extends javax.swing.JInternalFrame {
 
     private void jTextField4KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField4KeyReleased
         borrarFila();
-        for (Materia m1 : mD.buscarMateria(jTextField4.getText(), jComboBox1.getSelectedItem().toString())) {
-            modelo.addRow(new Object[]{m1.getIdMateria(),m1.getNombre(),m1.getAnio(),m1.getCupo(),m1.isEstado()});
-        }
+        llenarTabla();
     }//GEN-LAST:event_jTextField4KeyReleased
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
@@ -246,31 +242,30 @@ public class ModificarMateria extends javax.swing.JInternalFrame {
         jCheckBox5.setEnabled(true);
         jCheckBox6.setEnabled(true);
         jCheckBox3.setEnabled(true);
-        
-        
-        int filaSeleccionada = jTable1.getSelectedRow();
+
+        filaSeleccionada = jTable1.getSelectedRow();
         if (filaSeleccionada >= 0) {
             idMateria = (int) jTable1.getValueAt(filaSeleccionada, 0);
         }
 
-        if ((jTable1.getValueAt(filaSeleccionada, 4)).equals(true)){
+        if ((jTable1.getValueAt(filaSeleccionada, 4)).equals(true)) {
             Activo.setSelected(true);
-            }   else if ((jTable1.getValueAt(filaSeleccionada, 3)).toString().equals("false")){
+        } else if ((jTable1.getValueAt(filaSeleccionada, 3)).toString().equals("false")) {
             Inactivo.setSelected(true);
         }
 
         // Cargo en los cuadros los datos la tabla en los campos
         jText_Nombre.setText((jTable1.getValueAt(filaSeleccionada, 1)).toString());
-        jS_anio.setValue(jTable1.getValueAt(filaSeleccionada,2));
-        jS_cupo.setValue(jTable1.getValueAt(filaSeleccionada,3));
+        jS_anio.setValue(jTable1.getValueAt(filaSeleccionada, 2));
+        jS_cupo.setValue(jTable1.getValueAt(filaSeleccionada, 3));
 
         // Los datos que estan en los textos los guardo en las nuevos
         nombre = jTable1.getValueAt(filaSeleccionada, 1).toString();
         System.out.println(nombre);
         anio = Integer.parseInt(jTable1.getValueAt(filaSeleccionada, 2).toString());
         cupo = Integer.parseInt(jTable1.getValueAt(filaSeleccionada, 3).toString());
-        
-        
+
+
     }//GEN-LAST:event_jTable1MouseClicked
 
     private void jComboBox1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jComboBox1MouseClicked
@@ -278,38 +273,45 @@ public class ModificarMateria extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jComboBox1MouseClicked
 
     private void jCheckBox6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox6ActionPerformed
-        if (jCheckBox6.isSelected()){
-        jS_cupo.setEnabled(true);
+        if (jCheckBox6.isSelected()) {
+            jS_cupo.setEnabled(true);
         } else {
             jS_cupo.setEnabled(false);
-            jS_cupo.setValue(anio);
+            jS_cupo.setValue(cupo);
         }
     }//GEN-LAST:event_jCheckBox6ActionPerformed
 
     private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
-        if (jCheckBox1.isSelected()){
-        Activo.setEnabled(true); 
-        Inactivo.setEnabled(true);
-        } else{
-        Activo.setEnabled(false); 
-        Inactivo.setEnabled(false);
+        if (jCheckBox1.isSelected()) {
+            Activo.setEnabled(true);
+            Inactivo.setEnabled(true);
+        } else {
+            Activo.setEnabled(false);
+            Inactivo.setEnabled(false);
+            if ((jTable1.getValueAt(filaSeleccionada, 4)).equals(true)) {
+                Activo.setSelected(true);
+            } else if ((jTable1.getValueAt(filaSeleccionada, 3)).toString().equals("false")) {
+                Inactivo.setSelected(true);
+            }
         }
     }//GEN-LAST:event_jCheckBox1ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         nombre = jText_Nombre.getText();
-        estado = ((Activo.isSelected())? true:false);
+        estado = ((Activo.isSelected()) ? true : false);
         anio = (int) jS_anio.getValue();
         cupo = (int) jS_cupo.getValue();
 
-        Materia materia = new Materia (nombre, anio, estado, cupo);
+        Materia materia = new Materia(nombre, anio, estado, cupo);
         materia.setIdMateria(idMateria);
         mD.modificarMateria(materia);
+        borrarFila();
+        llenarTabla();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jCheckBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox2ActionPerformed
         if (jCheckBox2.isSelected())
-        jText_Nombre.setEnabled(true);
+            jText_Nombre.setEnabled(true);
         else {
             jText_Nombre.setText(nombre);
             jText_Nombre.setEnabled(false);
@@ -321,26 +323,26 @@ public class ModificarMateria extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jCheckBox5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox5ActionPerformed
-        if(jCheckBox5.isSelected())
-        jS_anio.setEnabled(true);
-        else
-        {
+        if (jCheckBox5.isSelected())
+            jS_anio.setEnabled(true);
+        else {
             jS_anio.setValue(anio);
             jS_anio.setEnabled(false);
         }
     }//GEN-LAST:event_jCheckBox5ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-         ValidarClaveADM vcADM = new ValidarClaveADM(usuario, idMateria, "eliminar_materia");
-            vcADM.setVisible(true);
+        ValidarClaveADM vcADM = new ValidarClaveADM(usuario, idMateria, "eliminar_materia");
+        vcADM.setVisible(true);
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jCheckBox3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox3ActionPerformed
-        if (jCheckBox3.isSelected())
-                jButton3.setEnabled(true);
-        else
+        if (jCheckBox3.isSelected()) {
+            jButton3.setEnabled(true);
+        } else {
             jButton3.setEnabled(false);
-                   
+        }
+
     }//GEN-LAST:event_jCheckBox3ActionPerformed
 
 
@@ -363,20 +365,20 @@ public class ModificarMateria extends javax.swing.JInternalFrame {
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jText_Nombre;
     // End of variables declaration//GEN-END:variables
-   
-    DefaultTableModel modelo = new DefaultTableModel() {  
+
+    DefaultTableModel modelo = new DefaultTableModel() {
         public boolean isCellEditable(int f, int c) {
             return false;
         }
     };
-    
+
     private void armarCabecera() {
         modelo.setColumnCount(0);
-            modelo.addColumn("id Materia");
-            modelo.addColumn("Nombre");
-            modelo.addColumn("Año");
-            modelo.addColumn("Cupo");
-            modelo.addColumn("Estado");
+        modelo.addColumn("id Materia");
+        modelo.addColumn("Nombre");
+        modelo.addColumn("Año");
+        modelo.addColumn("Cupo");
+        modelo.addColumn("Estado");
         jTable1.setModel(modelo);
     }
 
@@ -386,20 +388,20 @@ public class ModificarMateria extends javax.swing.JInternalFrame {
             modelo.removeRow(f);
         }
     }
-    
-    private void armadoVista(){
-        String[] lista = {"idMateria", "NOMBRE","AÑO"};
+
+    private void armadoVista() {
+        String[] lista = {"ID MATERIA", "NOMBRE", "AÑO"};
         DefaultComboBoxModel<String> model = new DefaultComboBoxModel<>(lista);
         jComboBox1.setModel(model);
-       
-        ButtonGroup buttonGroup = new ButtonGroup();      
+
+        ButtonGroup buttonGroup = new ButtonGroup();
         buttonGroup.add(Activo);
         buttonGroup.add(Inactivo);
-        
-        Activo.setEnabled(false); 
-        Inactivo.setEnabled(false); 
+
+        Activo.setEnabled(false);
+        Inactivo.setEnabled(false);
         jCheckBox1.setEnabled(false);
-        jCheckBox2.setEnabled(false); 
+        jCheckBox2.setEnabled(false);
         jCheckBox5.setEnabled(false);
         jText_Nombre.setEnabled(false);
         jS_anio.setEnabled(false);
@@ -408,9 +410,10 @@ public class ModificarMateria extends javax.swing.JInternalFrame {
         jCheckBox3.setEnabled(false);
         jButton3.setEnabled(false);
     }
+    
+    private void llenarTabla(){
+        for (Materia m1 : mD.buscarMateria(jTextField4.getText(), jComboBox1.getSelectedItem().toString())) {
+            modelo.addRow(new Object[]{m1.getIdMateria(), m1.getNombre(), m1.getAnio(), m1.getCupo(), m1.isEstado()});
+        }
+    }
 }
-
-
-
-
-

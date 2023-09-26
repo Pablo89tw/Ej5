@@ -7,7 +7,7 @@ import java.awt.Image;
 import javax.swing.ImageIcon;
 
 public class Menu_Principal extends javax.swing.JFrame {
-    
+
     private Coneccion.AlumnoData aD = new Coneccion.AlumnoData();
     private Coneccion.MateriaData mD = new Coneccion.MateriaData();
     private Coneccion.InscripcionData iD = new Coneccion.InscripcionData();
@@ -224,9 +224,11 @@ public class Menu_Principal extends javax.swing.JFrame {
 
         switch (iN.logIN(usuario, clave)) {
             case 0:
+                if (!jCheckBox1.isSelected()){
                 jPas_logIN.setText("");
                 jText_usuLIN.setText("");
-                iN.cargarRecordar(usuario, recordarme);
+                }
+
                 Administrador admin = new Administrador(usuario, aD, mD, iD, iN);
                 pantalla_principal.add(admin);
                 admin.setVisible(true);
@@ -235,21 +237,15 @@ public class Menu_Principal extends javax.swing.JFrame {
                 admin.setLocation((int) pantalla_principal.getLocation().getX() + 112, (int) pantalla_principal.getLocation().getY() + 50);
                 break;
             case 1:
+                if (!jCheckBox1.isSelected()){
                 jPas_logIN.setText("");
                 jText_usuLIN.setText("");
-                iN.cargarRecordar(usuario, recordarme);
+                }
                 Menu_Alumno MenuALM = new Menu_Alumno(usuario, aD, mD, iD);
                 pantalla_principal.add(MenuALM);
                 MenuALM.setVisible(true);
                 break;
         }
     }
-
-    public void cargaDatosCS(int usuario) {
-        if (iN.verRecordar(usuario) == 1) {
-            System.out.println(iN.buscarClave(usuario));
-            jPas_logIN.setText(iN.buscarClave(usuario));
-            jText_usuLIN.setText(iN.buscarClave(usuario));
-        }
-    }
 }
+

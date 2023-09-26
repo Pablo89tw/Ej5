@@ -52,11 +52,12 @@ public class loginData {
         return categoriaResultado;
     }
 
-    public void modificarClave(String clave_in, String clave_n1, String clave_n2, int usuario) {
+    public String modificarClave(String clave_in, String clave_n1, String clave_n2, int usuario) {
         AlumnoData();
         String clave_usuario = null;
         String sql = "SELECT Clave FROM login WHERE Usuario LIKE (?)";
         PreparedStatement ps = null;
+        String clave_nueva = null;
 
         try {
             ps = con.prepareStatement(sql);
@@ -71,7 +72,7 @@ public class loginData {
             JOptionPane.showMessageDialog(null, "Error busqueda");
         }
         if (clave_in.equals(clave_usuario) && clave_n1.equals(clave_n2)) {
-
+            clave_nueva = clave_n1;
             String sq1 = "UPDATE login SET Clave = ? WHERE Usuario LIKE ?";
             ps = null;
 
@@ -86,6 +87,7 @@ public class loginData {
                 JOptionPane.showMessageDialog(null, "Error busqueda");
             }
         }
+        return clave_nueva;
     }
 
     public void darAccesoNuevos() {
@@ -114,7 +116,7 @@ public class loginData {
             }
             cargarDNI_login(max_log, max_al);
         } catch (SQLException sqlE) {
-            JOptionPane.showMessageDialog(null, "Error busqueda");
+            JOptionPane.showMessageDialog(null, "ERROR al actualizar LOGINs");
         }
     }
 
@@ -275,45 +277,7 @@ public class loginData {
         } catch (SQLException sqlE) {
         }
     }
-
-    public void cargarRecordar(int usuario, int recordarme) {
-        AlumnoData();
-        String sql = "UPDATE login SET recordar = ? WHERE Usuario = ?";
-        PreparedStatement ps2 = null;
-
-        try {
-            ps2 = con.prepareStatement(sql);
-            if (recordarme == 0) {
-                ps2.setInt(1, 0);
-            } else if (recordarme == 1) {
-                ps2.setInt(1, 1);
-            }
-            ps2.setInt(2, usuario);
-            int resultado = ps2.executeUpdate();
-           } catch (SQLException sqlE) {
-        }
-    }
-
-    public int verRecordar(int usuario) {
-        AlumnoData();
-        int resultado = 1;
-        String sql = "SELECT recordar FROM login WHERE Usuario = ?";
-        PreparedStatement ps = null;
-
-        try {
-            ps = con.prepareStatement(sql);
-            ps.setInt(1, (usuario));
-            ResultSet rs = ps.executeQuery();
-
-            if (rs.next()) {
-                resultado = rs.getInt("recordar");
-            }
-        } catch (SQLException sqlE) {
-            JOptionPane.showMessageDialog(null, "Error busqueda");
-        }
-        return resultado;
-    }
-    
+   
     public int reactivarLogINusuario(int usuario){
         AlumnoData();
         int resultado = 1;

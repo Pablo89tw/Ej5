@@ -21,6 +21,7 @@ public class ModificarAlumno extends javax.swing.JInternalFrame {
     private int usuario;
     private Alumno alumno;
     private int filtroBusqueda;
+    private int filaSeleccionada;
 
     public ModificarAlumno(int usuario, Coneccion.AlumnoData aD, Coneccion.loginData logD) {
         this.usuario = usuario;
@@ -298,27 +299,25 @@ public class ModificarAlumno extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton3)
                     .addComponent(jCheckBox3))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
+                        .addGap(0, 1, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(logIN_activo)
-                            .addComponent(LogIN_inactivo)
-                            .addComponent(LogIN))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jButton2)
-                                    .addComponent(jButton1))
-                                .addGap(10, 10, 10))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(jButton4)
-                                .addGap(21, 21, 21))))
+                            .addComponent(LogIN_inactivo))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton4)
+                        .addGap(1, 1, 1)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButton2)
+                            .addComponent(jButton1))
+                        .addGap(10, 10, 10))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(38, 38, 38)
+                        .addComponent(LogIN)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jCB_Eliminar)
-                        .addContainerGap())))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
         pack();
@@ -349,9 +348,8 @@ public class ModificarAlumno extends javax.swing.JInternalFrame {
             data = 1;
         }
         logD.activarUsuarioLogIN(data, dni);
-
-        this.dispose();
-
+        borrarFila();
+        llenarTabla();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jComboBox1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jComboBox1MouseClicked
@@ -373,15 +371,7 @@ public class ModificarAlumno extends javax.swing.JInternalFrame {
 
     private void jTextField4KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField4KeyReleased
         borrarFila();
-        for (Alumno a1 : aD.buscarAlumno(jTextField4.getText(), jComboBox1.getSelectedItem().toString(), null)) {
-            if (filtroBusqueda == 0) {
-                if (a1.getCategoria() == 1) {
-                    modelo.addRow(new Object[]{a1.getIdAlumno(), a1.getApellido(), a1.getNombre(), a1.getDni(), a1.getFechaNacimiento(), a1.getAnio(), a1.isEstado()});
-                }
-            } else if (filtroBusqueda == 1) {
-                modelo.addRow(new Object[]{a1.getIdAlumno(), a1.getApellido(), a1.getNombre(), a1.getDni(), a1.getFechaNacimiento(), a1.getAnio(), a1.isEstado()});
-            }
-        }
+        llenarTabla();
     }//GEN-LAST:event_jTextField4KeyReleased
 
     private void jCheckBox5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox5ActionPerformed
@@ -392,8 +382,20 @@ public class ModificarAlumno extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jCheckBox5ActionPerformed
 
     private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
-        Activo.setEnabled(true);
-        Inactivo.setEnabled(true);
+        if (jCheckBox1.isSelected()) {
+            Activo.setEnabled(true);
+            Inactivo.setEnabled(true);
+        } else if (!jCheckBox1.isSelected()) {
+            Activo.setEnabled(false);
+            Inactivo.setEnabled(false);
+            if ((jTable1.getValueAt(filaSeleccionada, 6)).toString().equals("true")) {
+                Activo.setSelected(true);
+                Inactivo.setSelected(false);
+            } else if ((jTable1.getValueAt(filaSeleccionada, 6)).toString().equals("false")) {
+                Inactivo.setSelected(true);
+                Activo.setSelected(false);
+            }
+        }
     }//GEN-LAST:event_jCheckBox1ActionPerformed
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
@@ -407,7 +409,7 @@ public class ModificarAlumno extends javax.swing.JInternalFrame {
         jCheckBox3.setEnabled(true);
         LogIN.setEnabled(true);
 
-        int filaSeleccionada = jTable1.getSelectedRow();
+        filaSeleccionada = jTable1.getSelectedRow();
         if (filaSeleccionada >= 0) {
             idAlumno_Mod = (int) jTable1.getValueAt(filaSeleccionada, 0);
         }
@@ -493,6 +495,13 @@ public class ModificarAlumno extends javax.swing.JInternalFrame {
         } else if (!LogIN.isSelected()) {
             LogIN_inactivo.setEnabled(false);
             logIN_activo.setEnabled(false);
+             if (logD.reactivarLogINusuario(aD.buscarAlumno(Integer.toString(idAlumno_Mod), "ID ALUMNO", null).get(0).getDni()) == 1) {
+            logIN_activo.setSelected(false);
+            LogIN_inactivo.setSelected(true);
+        } else if (logD.reactivarLogINusuario(aD.buscarAlumno(Integer.toString(idAlumno_Mod), "ID ALUMNO", null).get(0).getDni()) == 0) {
+            logIN_activo.setSelected(true);
+            LogIN_inactivo.setSelected(false);
+        }
         }
 
     }//GEN-LAST:event_LogINActionPerformed
@@ -563,7 +572,7 @@ public class ModificarAlumno extends javax.swing.JInternalFrame {
     }
 
     private void armadoVista() {
-        String[] lista = {"idAlumno", "APELLIDO", "NOMBRE", "DNI"};
+        String[] lista = {"ID ALUMNO", "APELLIDO", "NOMBRE", "DNI"};
         DefaultComboBoxModel<String> model = new DefaultComboBoxModel<>(lista);
         jComboBox1.setModel(model);
         jCB_Eliminar.setEnabled(false);
@@ -596,5 +605,17 @@ public class ModificarAlumno extends javax.swing.JInternalFrame {
         LogIN.setEnabled(false);
         LogIN_inactivo.setEnabled(false);
         logIN_activo.setEnabled(false);
+    }
+    
+    private void llenarTabla(){
+        for (Alumno a1 : aD.buscarAlumno(jTextField4.getText(), jComboBox1.getSelectedItem().toString(), null)) {
+            if (filtroBusqueda == 0) {
+                if (a1.getCategoria() == 1) {
+                    modelo.addRow(new Object[]{a1.getIdAlumno(), a1.getApellido(), a1.getNombre(), a1.getDni(), a1.getFechaNacimiento(), a1.getAnio(), a1.isEstado()});
+                }
+            } else if (filtroBusqueda == 1) {
+                modelo.addRow(new Object[]{a1.getIdAlumno(), a1.getApellido(), a1.getNombre(), a1.getDni(), a1.getFechaNacimiento(), a1.getAnio(), a1.isEstado()});
+            }
+        }
     }
 }

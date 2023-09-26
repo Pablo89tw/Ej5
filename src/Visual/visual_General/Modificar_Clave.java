@@ -3,12 +3,15 @@ package Visual.visual_General;
 import java.awt.Graphics;
 import java.awt.Image;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 
 public class Modificar_Clave extends javax.swing.JInternalFrame {
 
     Coneccion.loginData lIn = new Coneccion.loginData();
    
     private int usuario;
+    private String clave_nueva;
+    
     public Modificar_Clave(int usuario) {
         initComponents();
         this.usuario = usuario;
@@ -186,7 +189,9 @@ public class Modificar_Clave extends javax.swing.JInternalFrame {
         System.out.println(contraseniaVieja);
         System.out.println(contraseniaN1);
         System.out.println(contraseniaN2);
-        lIn.modificarClave(contraseniaVieja, contraseniaN1, contraseniaN2, usuario);
+        clave_nueva = lIn.modificarClave(contraseniaVieja, contraseniaN1, contraseniaN2, usuario);
+        JOptionPane.showMessageDialog(null, "La clave ha sido actualizada");  
+        this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed

@@ -85,7 +85,7 @@ public class Test extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       ModificarAlumno cn = new ModificarAlumno(80000028,aD,log);
+      Cargar_Nota cn = new Cargar_Nota(aD, mD, iD);
         jDesktopPane1.add(cn);
         cn.setVisible(true);
         

@@ -157,5 +157,6 @@ public class Cargar_Materia extends javax.swing.JInternalFrame {
         ButtonGroup buttonGroup = new ButtonGroup();
         buttonGroup.add(jMat_Activ);
         buttonGroup.add(jMat_Inac);
+        jSpinner2.setValue(150);
     }
 }

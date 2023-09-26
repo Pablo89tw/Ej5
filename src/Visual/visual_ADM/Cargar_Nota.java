@@ -4,6 +4,7 @@ import Entidades.Alumno;
 import Entidades.Materia;
 import javax.swing.ButtonGroup;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 public class Cargar_Nota extends javax.swing.JInternalFrame {
@@ -11,6 +12,7 @@ public class Cargar_Nota extends javax.swing.JInternalFrame {
     private Coneccion.AlumnoData aD;
     private Coneccion.MateriaData mD;
     private Coneccion.InscripcionData iD;
+    private int check_notas;
 
     public Cargar_Nota(Coneccion.AlumnoData aD, Coneccion.MateriaData mD, Coneccion.InscripcionData iD) {
         this.aD = aD;
@@ -196,26 +198,35 @@ public class Cargar_Nota extends javax.swing.JInternalFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         int nota = 0, idAlumno = 0, idMateria = 0;
-
+        int cont=0;
         if (jR_materia.isSelected()) {
             for (int i = 0; i < jTable2.getRowCount(); i++) {
                 if (jTable2.getValueAt(i, 4) != null) {
+                    cont++;
                     nota = Integer.parseInt((jTable2.getValueAt(i, 4)).toString());
                     idAlumno = Integer.parseInt((jTable2.getValueAt(i, 0)).toString());
                     idMateria = Integer.parseInt((jTable.getValueAt(jTable.getSelectedRow(), 0)).toString());
-                    iD.cargarNota(nota, idAlumno, idMateria);
+                    check_notas = iD.cargarNota(nota, idAlumno, idMateria);
                 }
+            }
+            if (check_notas == 1) {
+                JOptionPane.showMessageDialog(null, cont + " notas editadas");
             }
         } else if (jR_alumno.isSelected()) {
             for (int i = 0; i < jTable2.getRowCount(); i++) {
                 if (jTable2.getValueAt(i, 3) != null) {
+                    cont++;
                     nota = Integer.parseInt((jTable2.getValueAt(i, 3)).toString());
                     idAlumno = Integer.parseInt((jTable.getValueAt(jTable.getSelectedRow(), 0)).toString());
                     idMateria = Integer.parseInt((jTable2.getValueAt(i, 0)).toString());
-                    iD.cargarNota(nota, idAlumno, idMateria);
+                    check_notas = iD.cargarNota(nota, idAlumno, idMateria);
                 }
             }
+            if (check_notas == 1) {
+                JOptionPane.showMessageDialog(null, cont + " notas editadas.");
+            }
         }
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableMouseClicked

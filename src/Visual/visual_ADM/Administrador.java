@@ -416,8 +416,8 @@ public class Administrador extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_inscripciones_AgregarInscripcionActionPerformed
 
     private void menu_CerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_CerrarSesionActionPerformed
-        Menu_Principal mP = new Menu_Principal();
-        mP.cargaDatosCS(usuario);
+        //Menu_Principal mP = new Menu_Principal();
+        //mP.cargaDatosCS(usuario);
         this.setVisible(false);
         
         

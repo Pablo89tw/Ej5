@@ -72,7 +72,7 @@
                                   </Group>
                               </Group>
                           </Group>
-                          <EmptySpace min="0" pref="77" max="32767" attributes="0"/>
+                          <EmptySpace min="0" pref="76" max="32767" attributes="0"/>
                       </Group>
                       <Component id="jPas_logIN" alignment="0" max="32767" attributes="0"/>
                   </Group>

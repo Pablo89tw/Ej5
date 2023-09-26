@@ -101,9 +101,11 @@ public class MateriaData {
             ps.setBoolean(3, estado);
             ps.setInt(4, cupo);
 
-            ps.executeUpdate();
-
-            ResultSet rs = ps.getGeneratedKeys();
+            int materias = ps.executeUpdate();;
+            if (materias == 1){
+                JOptionPane.showMessageDialog(null, "La materia " + nombre +" ha sido cargada con éxito.");
+            }
+            
         } catch (SQLException sqlE) {
             JOptionPane.showMessageDialog(null, "ERROR!");
         }

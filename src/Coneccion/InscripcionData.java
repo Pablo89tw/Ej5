@@ -14,15 +14,14 @@ import javax.swing.JOptionPane;
 public class InscripcionData {
 
     private Connection con;
-    
+
     AlumnoData aD = new AlumnoData();
     MateriaData mD = new MateriaData();
-    
+
     public void AlumnoData() {
         con = Conectar.getConectar();
     }
     private ArrayList<Inscripcion> arrayInscripciones_x_alumno = new ArrayList<>();
-    
 
     public void inscribirAlumno(int idMateria, int idAlumno) {
         AlumnoData();
@@ -32,19 +31,16 @@ public class InscripcionData {
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, idAlumno);
             ps.setInt(2, idMateria);
-           
-             int filasAfectadas = ps.executeUpdate();    
- 
-             if (filasAfectadas == 1){
-                 JOptionPane.showMessageDialog(null, "Se realizaron " + filasAfectadas + " inscripciones.");
-             }
+
+            int filasAfectadas = ps.executeUpdate();
         } catch (SQLException sqlE) {
             JOptionPane.showMessageDialog(null, "ERROR!");
         }
     }
 
-    public void cargarNota(int nota, int idAlumno, int idMateria) {
+    public int cargarNota(int nota, int idAlumno, int idMateria) {
         AlumnoData();
+        int check = 0;
         String sql = "UPDATE inscripcion SET nota = ? WHERE idAlumno = ? AND idMateria = ?";
         try {
             PreparedStatement ps = con.prepareStatement(sql);
@@ -53,19 +49,18 @@ public class InscripcionData {
             ps.setInt(3, idMateria);
 
             int fila = ps.executeUpdate();
-
-            if (fila == 1) {
-                JOptionPane.showMessageDialog(null, "Cambio exitoso");
-            } else {
+            
+            if (fila == 0) {
                 JOptionPane.showMessageDialog(null, "No se editó el estado del alumno");
+            } else if (fila > 0){
+                check = 1;
             }
-
+            
         } catch (SQLException sqlE) {
             JOptionPane.showMessageDialog(null, "No existe alumno cono ese id");
-        }
-    
-    }
-    
+        } return check;
+     }
+
     public ArrayList<Inscripcion> Inscripciones_x_Alumno(int usuario) {
         AlumnoData();
         Materia materia = new Materia();
@@ -76,7 +71,6 @@ public class InscripcionData {
 
 //        sql1 = "SELECT idAlumno FROM alumno WHERE dni LIKE ?";
 //        sql2 = "SELECT * FROM inscripcion WHERE idAlumno LIKE ?";
-        
         sql = "SELECT * FROM inscripcion "
                 + "INNER JOIN alumno "
                 + "ON inscripcion.idAlumno = alumno.idAlumno "
@@ -89,25 +83,22 @@ public class InscripcionData {
             ps.setInt(1, usuario);
             ResultSet rs = ps.executeQuery();
 
-                while (rs.next()) {
-                    inscripcion = new Inscripcion();
-                    inscripcion.setIdInscripcion(rs.getInt("idInscripcion"));
-                    alumno = aD.buscarAlumno(Integer.toString(rs.getInt("idAlumno")), "ID ALUMNO", null).get(0);
-                    inscripcion.setAlumno(alumno);
-                    materia = mD.buscarMateria(Integer.toString(rs.getInt("idMateria")), "ID MATERIA").get(0);
-                    inscripcion.setMateria(materia);
-                    inscripcion.setNota(rs.getInt("nota"));
-                    arrayInscripciones_x_alumno.add(inscripcion);
-                }
-            }  catch (SQLException sqlE) {
+            while (rs.next()) {
+                inscripcion = new Inscripcion();
+                inscripcion.setIdInscripcion(rs.getInt("idInscripcion"));
+                alumno = aD.buscarAlumno(Integer.toString(rs.getInt("idAlumno")), "ID ALUMNO", null).get(0);
+                inscripcion.setAlumno(alumno);
+                materia = mD.buscarMateria(Integer.toString(rs.getInt("idMateria")), "ID MATERIA").get(0);
+                inscripcion.setMateria(materia);
+                inscripcion.setNota(rs.getInt("nota"));
+                arrayInscripciones_x_alumno.add(inscripcion);
+            }
+        } catch (SQLException sqlE) {
             JOptionPane.showMessageDialog(null, "Error en la búsqueda: ");
         }
         System.out.println("Sali");
 
         return arrayInscripciones_x_alumno;
     }
-    
-   
-    
 
 }

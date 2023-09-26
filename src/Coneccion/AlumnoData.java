@@ -82,7 +82,7 @@ public class AlumnoData {
 
         String sql = "INSERT INTO alumno (dni,apellido,nombre,fechaNacimiento,estado,año,categoria) VALUES (?,?,?,?,?,?,?)";
         try {
-            PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, alumno.getDni());
             ps.setString(2, alumno.getApellido());
             ps.setString(3, alumno.getNombre());
@@ -90,13 +90,14 @@ public class AlumnoData {
             ps.setBoolean(5, alumno.isEstado());
             ps.setInt(6,alumno.getAnio());
             ps.setInt(7,1);
-            ps.executeUpdate();
-
-            ResultSet rs = ps.getGeneratedKeys();
-//            if (rs.next()) {
-//                alumno.setIdAlumno(rs.getInt("idAlumno"));
-//                JOptionPane.showMessageDialog(null, "Alumno agregado con exito");
-//            }
+           
+            int updates =  ps.executeUpdate();;
+            if (updates > 0){
+                JOptionPane.showMessageDialog(null, "El alumno " + alumno.getApellido() + " " + alumno.getNombre() +  " ha sido gregado con exito");
+           } 
+            if (updates == 0){
+                JOptionPane.showMessageDialog(null, "El alumno no ha sido cargado.");
+            }
         } catch (SQLException sqlE) {
             JOptionPane.showMessageDialog(null, "ERROR!");
         }

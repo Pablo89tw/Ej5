@@ -281,11 +281,13 @@ public class Listar_Alumnos_o_Materias extends javax.swing.JInternalFrame {
 
     private void jRadioButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton2ActionPerformed
         jComboBox_busqueda.setEditable(true);
+        jTexto_Buscar1.setText("");
         armarComboBox();
     }//GEN-LAST:event_jRadioButton2ActionPerformed
 
     private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
         jComboBox_busqueda.setEditable(true);
+        jTexto_Buscar1.setText("");
         armarComboBox();
     }//GEN-LAST:event_jRadioButton1ActionPerformed
 
