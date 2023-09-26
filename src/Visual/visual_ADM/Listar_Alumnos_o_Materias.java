@@ -27,6 +27,8 @@ public class Listar_Alumnos_o_Materias extends javax.swing.JInternalFrame {
         
          jTexto_Buscar1.setEnabled(false);
         jDateChooser_buscar.setEnabled(false);
+        jComboBox_busqueda.setEnabled(false);
+          
         
         ((javax.swing.plaf.basic.BasicInternalFrameUI) this.getUI()).setNorthPane(null);
     }
@@ -280,13 +282,15 @@ public class Listar_Alumnos_o_Materias extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jDateChooser_buscarPropertyChange
 
     private void jRadioButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton2ActionPerformed
-        jComboBox_busqueda.setEditable(true);
+        jComboBox_busqueda.setEditable(false);
+        jComboBox_busqueda.setEnabled(true);
         jTexto_Buscar1.setText("");
         armarComboBox();
     }//GEN-LAST:event_jRadioButton2ActionPerformed
 
     private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
-        jComboBox_busqueda.setEditable(true);
+        jComboBox_busqueda.setEditable(false);
+        jComboBox_busqueda.setEnabled(true);
         jTexto_Buscar1.setText("");
         armarComboBox();
     }//GEN-LAST:event_jRadioButton1ActionPerformed
