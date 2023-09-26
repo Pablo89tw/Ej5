@@ -8,7 +8,7 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.table.DefaultTableModel;
 
 public class ModificarAlumno extends javax.swing.JInternalFrame {
-
+    private Coneccion.loginData logD;
     private Coneccion.AlumnoData aD;
     private int idAlumno_Mod;
     private int dni;
@@ -18,14 +18,16 @@ public class ModificarAlumno extends javax.swing.JInternalFrame {
     private int anio;
     private boolean estado;
     private int usuario;
-    
-    public ModificarAlumno(int usuario, Coneccion.AlumnoData aD) {
+    private Alumno alumno;
+
+    public ModificarAlumno(int usuario, Coneccion.AlumnoData aD, Coneccion.loginData logD) {
         this.usuario = usuario;
         this.aD = aD;
+        this.logD = logD;
         initComponents();
         armarCabecera();
         armadoVista();
-        
+
     }
 
     @SuppressWarnings("unchecked")
@@ -55,6 +57,9 @@ public class ModificarAlumno extends javax.swing.JInternalFrame {
         jButton4 = new javax.swing.JButton();
         jCB_Eliminar = new javax.swing.JCheckBox();
         jCheckBox3 = new javax.swing.JCheckBox();
+        LogIN = new javax.swing.JCheckBox();
+        logIN_activo = new javax.swing.JRadioButton();
+        LogIN_inactivo = new javax.swing.JRadioButton();
 
         Activo.setText("Activo");
         Activo.addActionListener(new java.awt.event.ActionListener() {
@@ -175,6 +180,17 @@ public class ModificarAlumno extends javax.swing.JInternalFrame {
             }
         });
 
+        LogIN.setText("LogIN");
+        LogIN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                LogINActionPerformed(evt);
+            }
+        });
+
+        logIN_activo.setText("Activo");
+
+        LogIN_inactivo.setText("Inactivo");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -182,7 +198,7 @@ public class ModificarAlumno extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 532, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 13, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -207,24 +223,30 @@ public class ModificarAlumno extends javax.swing.JInternalFrame {
                             .addComponent(jC_A)
                             .addComponent(jCheckBox5)
                             .addComponent(jCheckBox6)
-                            .addComponent(jCB_Eliminar)
-                            .addComponent(jCheckBox3))
+                            .addComponent(jCheckBox3)
+                            .addComponent(LogIN)
+                            .addComponent(jCB_Eliminar))
                         .addGap(16, 16, 16)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jDC_nF, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jText_nDNI)
-                            .addComponent(jText_nN)
-                            .addComponent(jText_nA)
-                            .addComponent(jS_nA))
-                        .addGap(174, 174, 174))))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton1)
-                .addContainerGap())
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jDC_nF, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jText_nDNI)
+                                    .addComponent(jText_nN)
+                                    .addComponent(jText_nA)
+                                    .addComponent(jS_nA))
+                                .addGap(21, 21, 21)
+                                .addComponent(jButton2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(6, 6, 6))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(logIN_activo)
+                                .addGap(18, 18, 18)
+                                .addComponent(LogIN_inactivo)
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -266,15 +288,27 @@ public class ModificarAlumno extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton3)
                     .addComponent(jCheckBox3))
-                .addGap(3, 3, 3)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton4)
-                    .addComponent(jCB_Eliminar))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2)
-                    .addComponent(jButton1))
-                .addGap(10, 10, 10))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 5, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(logIN_activo)
+                            .addComponent(LogIN_inactivo)
+                            .addComponent(LogIN))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jButton2)
+                                    .addComponent(jButton1))
+                                .addGap(10, 10, 10))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jButton4)
+                                .addGap(21, 21, 21))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(38, 38, 38)
+                        .addComponent(jCB_Eliminar)
+                        .addContainerGap())))
         );
 
         pack();
@@ -282,7 +316,7 @@ public class ModificarAlumno extends javax.swing.JInternalFrame {
 
     private void jC_NActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jC_NActionPerformed
         if (jC_N.isSelected())
-        jText_nN.setEditable(true);
+            jText_nN.setEditable(true);
         else {
             jText_nN.setText(nombre);
             jText_nN.setEditable(false);
@@ -296,12 +330,18 @@ public class ModificarAlumno extends javax.swing.JInternalFrame {
         estado = ((Activo.isSelected()) ? true : false);
         fechaNacimiento = jDC_nF.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
         anio = (int) jS_nA.getValue();
-
-        Alumno alumno = new Alumno(idAlumno_Mod, dni, apellido, nombre, fechaNacimiento, estado, anio, 1);
+             
+        alumno = new Alumno(idAlumno_Mod, dni, apellido, nombre, fechaNacimiento, estado, anio, 1);
         aD.modificarDataAlumno(alumno);
         
-        this.dispose();
+        int data = 0;
+        if (LogIN_inactivo.isSelected()){
+          data = 1;
+        }
+        logD.activarUsuarioLogIN(data, dni);
         
+        this.dispose();
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jComboBox1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jComboBox1MouseClicked
@@ -310,8 +350,8 @@ public class ModificarAlumno extends javax.swing.JInternalFrame {
 
     private void jC_AActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jC_AActionPerformed
         if (jC_A.isSelected())
-        jText_nA.setEditable(true);
-        else{
+            jText_nA.setEditable(true);
+        else {
             jText_nA.setText(apellido);
             jText_nA.setEditable(false);
         }
@@ -324,16 +364,17 @@ public class ModificarAlumno extends javax.swing.JInternalFrame {
     private void jTextField4KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField4KeyReleased
         borrarFila();
         for (Alumno a1 : aD.buscarAlumno(jTextField4.getText(), jComboBox1.getSelectedItem().toString(), null)) {
-            if (a1.getCategoria() == 1)
-            modelo.addRow(new Object[]{a1.getIdAlumno(), a1.getApellido(), a1.getNombre(), a1.getDni(), a1.getFechaNacimiento(), a1.getAnio(), a1.isEstado()});
+            if (a1.getCategoria() == 1) {
+                modelo.addRow(new Object[]{a1.getIdAlumno(), a1.getApellido(), a1.getNombre(), a1.getDni(), a1.getFechaNacimiento(), a1.getAnio(), a1.isEstado()});
+            }
         }
     }//GEN-LAST:event_jTextField4KeyReleased
 
     private void jCheckBox5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox5ActionPerformed
-        if(jCheckBox5.isSelected())
-        jS_nA.setEnabled(true);
+        if (jCheckBox5.isSelected())
+            jS_nA.setEnabled(true);
         else
-         jS_nA.setValue(anio);
+            jS_nA.setValue(anio);
     }//GEN-LAST:event_jCheckBox5ActionPerformed
 
     private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
@@ -350,12 +391,13 @@ public class ModificarAlumno extends javax.swing.JInternalFrame {
         jCheckBox6.setEnabled(true);
         jCB_Eliminar.setEnabled(true);
         jCheckBox3.setEnabled(true);
+        LogIN.setEnabled(true);
 
         int filaSeleccionada = jTable1.getSelectedRow();
         if (filaSeleccionada >= 0) {
             idAlumno_Mod = (int) jTable1.getValueAt(filaSeleccionada, 0);
         }
-
+       
         if ((jTable1.getValueAt(filaSeleccionada, 6)).toString().equals("true")) {
             Activo.setSelected(true);
             Inactivo.setSelected(false);
@@ -363,6 +405,15 @@ public class ModificarAlumno extends javax.swing.JInternalFrame {
             Inactivo.setSelected(true);
             Activo.setSelected(false);
         }
+     
+        if (logD.reactivarLogINusuario(aD.buscarAlumno(Integer.toString(idAlumno_Mod), "ID ALUMNO",null).get(0).getDni())==1){
+            logIN_activo.setSelected(false);
+            LogIN_inactivo.setSelected(true);
+        } else if (logD.reactivarLogINusuario(aD.buscarAlumno(Integer.toString(idAlumno_Mod), "ID ALUMNO",null).get(0).getDni())==0){
+            logIN_activo.setSelected(true);
+            LogIN_inactivo.setSelected(false);
+        }
+            
 
         // Cargo en los cuadros los datos la tabla en los campos
         jText_nA.setText((jTable1.getValueAt(filaSeleccionada, 1)).toString());
@@ -377,25 +428,25 @@ public class ModificarAlumno extends javax.swing.JInternalFrame {
         anio = Integer.parseInt(jTable1.getValueAt(filaSeleccionada, 5).toString());
         dni = Integer.parseInt((jTable1.getValueAt(filaSeleccionada, 3)).toString());
         fechaNacimiento = (LocalDate) (jTable1.getValueAt(filaSeleccionada, 4));
-        
+
     }//GEN-LAST:event_jTable1MouseClicked
 
     private void jCheckBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox2ActionPerformed
         if (jCheckBox2.isSelected())
-        jText_nDNI.setEditable(true);
-        else  {
+            jText_nDNI.setEditable(true);
+        else {
             jText_nDNI.setText(Integer.toString(dni));
             jText_nDNI.setEnabled(false);
         }
     }//GEN-LAST:event_jCheckBox2ActionPerformed
 
     private void jCheckBox6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox6ActionPerformed
-        if (jCheckBox6.isSelected())
-        jDC_nF.setEnabled(true);
-        else{
-            
+        if (jCheckBox6.isSelected()) {
+            jDC_nF.setEnabled(true);
+        } else {
+
         }
-          
+
     }//GEN-LAST:event_jCheckBox6ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -413,7 +464,6 @@ public class ModificarAlumno extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_ActivoActionPerformed
 
     private void jCheckBox3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox3ActionPerformed
-
         if (jCheckBox3.isSelected()) {
             jButton3.setEnabled(true);
         } else {
@@ -423,10 +473,23 @@ public class ModificarAlumno extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jCheckBox3ActionPerformed
 
+    private void LogINActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LogINActionPerformed
+        if (LogIN.isSelected()) {
+            LogIN_inactivo.setEnabled(true);
+            logIN_activo.setEnabled(true);
+        } else if (!LogIN.isSelected()) {
+             LogIN_inactivo.setEnabled(false);
+            logIN_activo.setEnabled(false);
+        }
+
+    }//GEN-LAST:event_LogINActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JRadioButton Activo;
     private javax.swing.JRadioButton Inactivo;
+    private javax.swing.JCheckBox LogIN;
+    private javax.swing.JRadioButton LogIN_inactivo;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
@@ -448,6 +511,7 @@ public class ModificarAlumno extends javax.swing.JInternalFrame {
     private javax.swing.JTextField jText_nA;
     private javax.swing.JTextField jText_nDNI;
     private javax.swing.JTextField jText_nN;
+    private javax.swing.JRadioButton logIN_activo;
     // End of variables declaration//GEN-END:variables
 
     DefaultTableModel modelo = new DefaultTableModel() {
@@ -455,7 +519,7 @@ public class ModificarAlumno extends javax.swing.JInternalFrame {
             return false;
         }
     };
-    
+
     private void armarCabecera() {
         modelo.setColumnCount(0);
         modelo.addColumn("iD Alumno");
@@ -483,6 +547,10 @@ public class ModificarAlumno extends javax.swing.JInternalFrame {
         ButtonGroup buttonGroup = new ButtonGroup();
         buttonGroup.add(Activo);
         buttonGroup.add(Inactivo);
+        
+        ButtonGroup buttonGroup2 = new ButtonGroup();
+        buttonGroup2.add(LogIN_inactivo);
+        buttonGroup2.add(logIN_activo);
 
         Activo.setEnabled(false);
         Inactivo.setEnabled(false);
@@ -502,5 +570,8 @@ public class ModificarAlumno extends javax.swing.JInternalFrame {
         jButton3.setEnabled(false);
         jButton4.setEnabled(false);
         jButton3.setEnabled(false);
+        LogIN.setEnabled(false);
+        LogIN_inactivo.setEnabled(false);
+        logIN_activo.setEnabled(false);
     }
 }

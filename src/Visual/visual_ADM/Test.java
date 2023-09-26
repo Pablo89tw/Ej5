@@ -12,7 +12,7 @@ import java.util.HashSet;
  */
 public class Test extends javax.swing.JFrame {
 
-    
+    private Coneccion.loginData log = new Coneccion.loginData();
     private Coneccion.AlumnoData aD = new Coneccion.AlumnoData();
     private Coneccion.MateriaData mD = new Coneccion.MateriaData();
     private Coneccion.InscripcionData iD = new Coneccion.InscripcionData();
@@ -85,7 +85,7 @@ public class Test extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        Cargar_Nota cn = new Cargar_Nota(aD, mD, iD);
+       ModificarAlumno cn = new ModificarAlumno(80000028,aD,log);
         jDesktopPane1.add(cn);
         cn.setVisible(true);
         

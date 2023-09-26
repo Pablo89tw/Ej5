@@ -3,10 +3,26 @@ package Entidades;
 public class LogIN {
     private int usuario;
     private String clave;
+    private int estado;
+    private int ingresos;
+    private int recordar;
 
-    public LogIN(int usuario, String clave) {
+    public LogIN(int usuario, String clave, int estado, int ingresos, int recordar) {
         this.usuario = usuario;
         this.clave = clave;
+        this.estado = estado;
+        this.ingresos = ingresos;
+        this.recordar = recordar;
+    }
+
+    public LogIN(String clave, int estado, int ingresos, int recordar) {
+        this.clave = clave;
+        this.estado = estado;
+        this.ingresos = ingresos;
+        this.recordar = recordar;
+    }
+
+    public LogIN() {
     }
 
     public int getUsuario() {
@@ -25,5 +41,36 @@ public class LogIN {
         this.clave = clave;
     }
 
+    public int getEstado() {
+        return estado;
+    }
+
+    public void setEstado(int estado) {
+        this.estado = estado;
+    }
+
+    public int getIngresos() {
+        return ingresos;
+    }
+
+    public void setIngresos(int ingresos) {
+        this.ingresos = ingresos;
+    }
+
+    public int getRecordar() {
+        return recordar;
+    }
+
+    public void setRecordar(int recordar) {
+        this.recordar = recordar;
+    }
+
+    @Override
+    public String toString() {
+        return "LogIN{" + "usuario=" + usuario + ", clave=" + clave + ", estado=" + estado + ", ingresos=" + ingresos + ", recordar=" + recordar + '}';
+    }
+            
+    
+    
    
 }
