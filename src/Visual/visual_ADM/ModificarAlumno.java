@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 import javax.swing.ButtonGroup;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 public class ModificarAlumno extends javax.swing.JInternalFrame {
@@ -397,7 +398,8 @@ public class ModificarAlumno extends javax.swing.JInternalFrame {
     private void jCheckBox5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox5ActionPerformed
         if (jCheckBox5.isSelected())
         jS_nA.setEnabled(true);
-        else
+        else if (!jCheckBox5.isSelected())
+        jS_nA.setEnabled(false);
         jS_nA.setValue(anio);
     }//GEN-LAST:event_jCheckBox5ActionPerformed
 
@@ -415,10 +417,12 @@ public class ModificarAlumno extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jC_AActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        try { 
         dni = Integer.parseInt(jText_nDNI.getText());
         nombre = jText_nN.getText();
         apellido = jText_nA.getText();
         estado = ((Activo.isSelected()) ? true : false);
+        try {
         fechaNacimiento = jDC_nF.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
         anio = (int) jS_nA.getValue();
 
@@ -430,7 +434,22 @@ public class ModificarAlumno extends javax.swing.JInternalFrame {
             data = 1;
         }
         logD.activarUsuarioLogIN(data, dni);
+        } catch (NullPointerException dniE){
+            JOptionPane.showMessageDialog(null, "Error al cargar datos");
+            jText_nDNI.setText((jTable1.getValueAt(filaSeleccionada, 3)).toString());
+            jText_nA.setText((jTable1.getValueAt(filaSeleccionada, 1)).toString());
+            jText_nN.setText((jTable1.getValueAt(filaSeleccionada, 2)).toString());
+            jDC_nF.setDate(java.sql.Date.valueOf(fechaNacimiento));
 
+        }
+        } catch (NumberFormatException dcF) {
+            JOptionPane.showMessageDialog(null, "Error al cargar datos");
+            jText_nDNI.setText((jTable1.getValueAt(filaSeleccionada, 3)).toString());
+            jText_nA.setText((jTable1.getValueAt(filaSeleccionada, 1)).toString());
+            jText_nN.setText((jTable1.getValueAt(filaSeleccionada, 2)).toString());
+            jDC_nF.setDate(java.sql.Date.valueOf(fechaNacimiento));
+        }
+        
         borrarFila();
         llenarTabla();
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -495,17 +514,18 @@ public class ModificarAlumno extends javax.swing.JInternalFrame {
     private void jCheckBox6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox6ActionPerformed
         if (jCheckBox6.isSelected()) {
             jDC_nF.setEnabled(true);
-        } else {
-
+        } else if (!jCheckBox6.isSelected()) {
+            jDC_nF.setEnabled(false);
+        
         }
     }//GEN-LAST:event_jCheckBox6ActionPerformed
 
     private void jCheckBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox2ActionPerformed
         if (jCheckBox2.isSelected())
-        jText_nDNI.setEditable(true);
-        else {
+            jText_nDNI.setEditable(true);
+         else if (!jCheckBox2.isSelected()) {
             jText_nDNI.setText(Integer.toString(dni));
-            jText_nDNI.setEnabled(false);
+            jText_nDNI.setEditable(false);
         }
     }//GEN-LAST:event_jCheckBox2ActionPerformed
 

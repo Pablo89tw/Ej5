@@ -12,7 +12,14 @@
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Pablo/Documents/NetBeansProjects/Ej5/src/Visual/visual_ADM/Modificar_Inscripciones.java</file>
+            <file>file:/C:/Users/Usuario/Documents/GitHub/Ej5.5/src/Visual/visual_ADM/ModificarAlumno.java</file>
+            <file>file:/C:/Users/Usuario/Documents/GitHub/Ej5.5/src/Visual/visual_ADM/ModificarMateria.java</file>
+            <file>file:/C:/Users/Usuario/Documents/GitHub/Ej5.5/src/Coneccion/Conectar.java</file>
+            <file>file:/C:/Users/Usuario/Documents/GitHub/Ej5.5/src/Coneccion/InscripcionData.java</file>
+            <file>file:/C:/Users/Usuario/Documents/GitHub/Ej5.5/src/Coneccion/MateriaData.java</file>
+            <file>file:/C:/Users/Usuario/Documents/GitHub/Ej5.5/src/Coneccion/AlumnoData.java</file>
+            <file>file:/C:/Users/Usuario/Documents/GitHub/Ej5.5/src/Visual/visual_ADM/Modificar_Inscripciones.java</file>
+            <file>file:/C:/Users/Usuario/Documents/GitHub/Ej5.5/src/Coneccion/loginData.java</file>
         </group>
     </open-files>
 </project-private>
