@@ -486,6 +486,7 @@ public class ModificarMateria extends javax.swing.JInternalFrame {
         modelo.addColumn("Cupo");
         modelo.addColumn("Estado");
         jTable1.setModel(modelo);
+        jTable1.getTableHeader().setReorderingAllowed(false);
     }
 
     private void borrarFila() {

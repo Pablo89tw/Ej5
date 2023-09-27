@@ -326,6 +326,7 @@ public class Listar_Alumnos_o_Materias extends javax.swing.JInternalFrame {
             modelo.addColumn("Estado");
         }
         jTable.setModel(modelo);
+        jTable.getTableHeader().setReorderingAllowed(false);
     }
 
     private void borrarFila() {

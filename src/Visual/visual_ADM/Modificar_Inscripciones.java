@@ -521,6 +521,7 @@ public class Modificar_Inscripciones extends javax.swing.JInternalFrame {
             modelo.addColumn("Estado");
         }
         jTable1.setModel(modelo);
+        jTable1.getTableHeader().setReorderingAllowed(false);
 
         modelo2.setColumnCount(0);
         if (jRadioButton2.isSelected()) {
@@ -537,6 +538,7 @@ public class Modificar_Inscripciones extends javax.swing.JInternalFrame {
             modelo2.addColumn("Estado");
         }
         jTable2.setModel(modelo2);
+        jTable2.getTableHeader().setReorderingAllowed(false);
             
         modelo3.setColumnCount(0);
         modelo3.addColumn("id Inscripcion");
@@ -545,6 +547,7 @@ public class Modificar_Inscripciones extends javax.swing.JInternalFrame {
         modelo3.addColumn("Materia");
         modelo3.addColumn("Estado");
         jTable3.setModel(modelo3);
+        jTable3.getTableHeader().setReorderingAllowed(false);
     }
 
     private void borrarFila() {

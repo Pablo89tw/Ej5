@@ -380,13 +380,15 @@ public class Inscribir_Alumno extends javax.swing.JInternalFrame {
         modelo_al.addColumn("F.Nac");
         modelo_al.addColumn("Estado");
         jTable_insAlum.setModel(modelo_al);
-
+        jTable_insAlum.getTableHeader().setReorderingAllowed(false);
+        
         modelo_mat.setColumnCount(0);
         modelo_mat.addColumn("iD Materia");
         modelo_mat.addColumn("Nombre");
         modelo_mat.addColumn("AÑO");
         modelo_mat.addColumn("ESTADO");
         jTable_insMat.setModel(modelo_mat);
+        jTable_insMat.getTableHeader().setReorderingAllowed(false);
     }
 
     private void borrarFilaAl() {

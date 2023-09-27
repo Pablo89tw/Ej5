@@ -2,6 +2,7 @@ package Visual.visual_ADM;
 
 import Entidades.Alumno;
 import Entidades.Materia;
+import Entidades.Inscripcion;
 import javax.swing.ButtonGroup;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
@@ -19,19 +20,19 @@ public class Cargar_Nota extends javax.swing.JInternalFrame {
         this.mD = mD;
         this.iD = iD;
         initComponents();
-        unirUnirBotones();
+        unirUnirBotones();       
     }
 
     DefaultTableModel modelo2 = new DefaultTableModel() {
         public boolean isCellEditable(int f, int c) {
             if (jR_alumno.isSelected()) {
-                return c == 3;
-            } else {
                 return c == 4;
+            } else {
+                return c == 5;
             }
         }
     };
-
+    
     DefaultTableModel modelo = new DefaultTableModel() {
         public boolean isCellEditable(int f, int c) {
             return false;
@@ -202,9 +203,9 @@ public class Cargar_Nota extends javax.swing.JInternalFrame {
         try {
             if (jR_materia.isSelected()) {
                 for (int i = 0; i < jTable2.getRowCount(); i++) {
-                    if (jTable2.getValueAt(i, 4) != null) {
+                    if (jTable2.getValueAt(i, 5) != null) {
                         cont++;
-                        nota = Integer.parseInt((jTable2.getValueAt(i, 4)).toString());
+                        nota = Integer.parseInt((jTable2.getValueAt(i, 5)).toString());
                         idAlumno = Integer.parseInt((jTable2.getValueAt(i, 0)).toString());
                         idMateria = Integer.parseInt((jTable.getValueAt(jTable.getSelectedRow(), 0)).toString());
                         check_notas = iD.cargarNota(nota, idAlumno, idMateria);
@@ -215,9 +216,9 @@ public class Cargar_Nota extends javax.swing.JInternalFrame {
                 }
             } else if (jR_alumno.isSelected()) {
                 for (int i = 0; i < jTable2.getRowCount(); i++) {
-                    if (jTable2.getValueAt(i, 3) != null) {
+                    if (jTable2.getValueAt(i, 4) != null) {
                         cont++;
-                        nota = Integer.parseInt((jTable2.getValueAt(i, 3)).toString());
+                        nota = Integer.parseInt((jTable2.getValueAt(i, 4)).toString());
                         idAlumno = Integer.parseInt((jTable.getValueAt(jTable.getSelectedRow(), 0)).toString());
                         idMateria = Integer.parseInt((jTable2.getValueAt(i, 0)).toString());
                         check_notas = iD.cargarNota(nota, idAlumno, idMateria);
@@ -230,6 +231,7 @@ public class Cargar_Nota extends javax.swing.JInternalFrame {
         } catch (NumberFormatException ex) {
             JOptionPane.showMessageDialog(null, "Formato nota incorrecto");
         }
+        actualizarTabla();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableMouseClicked
@@ -241,14 +243,16 @@ public class Cargar_Nota extends javax.swing.JInternalFrame {
         if (jR_materia.isSelected()) {
             int idMateria = (int) jTable.getValueAt(jTable.getSelectedRow(), 0);
             for (Alumno a1 : aD.alumnosXmateria(idMateria)) {
+                Inscripcion ins = iD.buscarInscripcion(idMateria, a1.getIdAlumno());
                 if (a1.getCategoria() == 1) {
-                    modelo2.addRow(new Object[]{a1.getIdAlumno(), a1.getApellido(), a1.getNombre(), a1.getDni()});
+                    modelo2.addRow(new Object[]{a1.getIdAlumno(), a1.getApellido(), a1.getNombre(), a1.getDni(), ins.getNota()});
                 }
             }
         } else if (jR_alumno.isSelected()) {
             int idAlumno = (int) jTable.getValueAt(jTable.getSelectedRow(), 0);
             for (Materia m1 : mD.materiaXalumno(idAlumno)) {
-                modelo2.addRow(new Object[]{m1.getIdMateria(), m1.getNombre(), m1.getAnio()});
+                Inscripcion ins = iD.buscarInscripcion(m1.getIdMateria(), idAlumno);
+                modelo2.addRow(new Object[]{m1.getIdMateria(), m1.getNombre(), m1.getAnio(), ins.getNota()});
             }
         }
     }//GEN-LAST:event_jTableMousePressed
@@ -312,7 +316,8 @@ public class Cargar_Nota extends javax.swing.JInternalFrame {
             modelo.addColumn("DNI");
         }
         jTable.setModel(modelo);
-    }
+        jTable.getTableHeader().setReorderingAllowed(false);
+        }
 
     private void armarCabecera2() {
         modelo2.setColumnCount(0);
@@ -321,14 +326,17 @@ public class Cargar_Nota extends javax.swing.JInternalFrame {
             modelo2.addColumn("Nombre");
             modelo2.addColumn("AÑO");
             modelo2.addColumn("Nota");
+            modelo2.addColumn("Nueva Nota");
         } else if (jR_materia.isSelected()) {
             modelo2.addColumn("iD Alumno");
             modelo2.addColumn("Apellido");
             modelo2.addColumn("Nombre");
             modelo2.addColumn("DNI");
             modelo2.addColumn("Nota");
+            modelo2.addColumn("Nueva Nota");
         }
         jTable2.setModel(modelo2);
+        jTable2.getTableHeader().setReorderingAllowed(false);
     }
 
     private void borrarFila() {
@@ -344,4 +352,23 @@ public class Cargar_Nota extends javax.swing.JInternalFrame {
             modelo2.removeRow(f);
         }
     }
+    
+    private void actualizarTabla(){
+        borrarFila2();
+        if (jR_materia.isSelected()) {
+            int idMateria = (int) jTable.getValueAt(jTable.getSelectedRow(), 0);
+            for (Alumno a1 : aD.alumnosXmateria(idMateria)) {
+                Inscripcion ins = iD.buscarInscripcion(idMateria, a1.getIdAlumno());
+                if (a1.getCategoria() == 1) {
+                    modelo2.addRow(new Object[]{a1.getIdAlumno(), a1.getApellido(), a1.getNombre(), a1.getDni(), ins.getNota()});
+                }
+            }
+        } else if (jR_alumno.isSelected()) {
+            int idAlumno = (int) jTable.getValueAt(jTable.getSelectedRow(), 0);
+            for (Materia m1 : mD.materiaXalumno(idAlumno)) {
+                Inscripcion ins = iD.buscarInscripcion(m1.getIdMateria(), idAlumno);
+                modelo2.addRow(new Object[]{m1.getIdMateria(), m1.getNombre(), m1.getAnio(), ins.getNota()});
+            }
+        }
+}
 }

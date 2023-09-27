@@ -5,28 +5,26 @@
             <url>src/Visual/visual_ADM/ModificarAlumno.java</url>
             <bookmark id="1">
                 <name/>
-                <line>454</line>
+                <line>570</line>
                 <key/>
             </bookmark>
         </file>
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-<<<<<<< HEAD
-            <file>file:/C:/Users/MOLLO%20RAMIREZ/Desktop/CURSO/JAVA%20-%20DESARROLLO%20DE%20APLICACIONES/GUIA%204/PROYECTO%20GRUPO/Ej5/Ej5/Ej5/src/Visual/visual_ADM/Modificar_Inscripciones.java</file>
-            <file>file:/C:/Users/MOLLO%20RAMIREZ/Desktop/CURSO/JAVA%20-%20DESARROLLO%20DE%20APLICACIONES/GUIA%204/PROYECTO%20GRUPO/Ej5/Ej5/Ej5/src/Visual/visual_ADM/Cargar_Materia.java</file>
-            <file>file:/C:/Users/MOLLO%20RAMIREZ/Desktop/CURSO/JAVA%20-%20DESARROLLO%20DE%20APLICACIONES/GUIA%204/PROYECTO%20GRUPO/Ej5/Ej5/Ej5/src/Visual/visual_ADM/Administrador.java</file>
-            <file>file:/C:/Users/MOLLO%20RAMIREZ/Desktop/CURSO/JAVA%20-%20DESARROLLO%20DE%20APLICACIONES/GUIA%204/PROYECTO%20GRUPO/Ej5/Ej5/Ej5/src/Visual/visual_ADM/ModificarMateria.java</file>
-=======
-            <file>file:/C:/Users/Usuario/Documents/GitHub/Ej5.5/src/Visual/visual_ADM/ModificarAlumno.java</file>
-            <file>file:/C:/Users/Usuario/Documents/GitHub/Ej5.5/src/Visual/visual_ADM/ModificarMateria.java</file>
-            <file>file:/C:/Users/Usuario/Documents/GitHub/Ej5.5/src/Coneccion/Conectar.java</file>
-            <file>file:/C:/Users/Usuario/Documents/GitHub/Ej5.5/src/Coneccion/InscripcionData.java</file>
-            <file>file:/C:/Users/Usuario/Documents/GitHub/Ej5.5/src/Coneccion/MateriaData.java</file>
-            <file>file:/C:/Users/Usuario/Documents/GitHub/Ej5.5/src/Coneccion/AlumnoData.java</file>
-            <file>file:/C:/Users/Usuario/Documents/GitHub/Ej5.5/src/Visual/visual_ADM/Modificar_Inscripciones.java</file>
-            <file>file:/C:/Users/Usuario/Documents/GitHub/Ej5.5/src/Coneccion/loginData.java</file>
->>>>>>> main
+            <file>file:/C:/Users/Pablo/Documents/NetBeansProjects/Ej5/src/Visual/visual_ADM/ModificarAlumno.java</file>
+            <file>file:/C:/Users/Pablo/Documents/NetBeansProjects/Ej5/src/Visual/visual_ADM/Modificar_Inscripciones.java</file>
+            <file>file:/C:/Users/Pablo/Documents/NetBeansProjects/Ej5/src/Coneccion/Conectar.java</file>
+            <file>file:/C:/Users/Pablo/Documents/NetBeansProjects/Ej5/src/Visual/visual_ADM/Administrador.java</file>
+            <file>file:/C:/Users/Pablo/Documents/NetBeansProjects/Ej5/src/Visual/visual_ADM/ModificarMateria.java</file>
+            <file>file:/C:/Users/Pablo/Documents/NetBeansProjects/Ej5/src/Coneccion/MateriaData.java</file>
+            <file>file:/C:/Users/Pablo/Documents/NetBeansProjects/Ej5/src/Visual/visual_General/Modificar_Clave.java</file>
+            <file>file:/C:/Users/Pablo/Documents/NetBeansProjects/Ej5/src/Coneccion/InscripcionData.java</file>
+            <file>file:/C:/Users/Pablo/Documents/NetBeansProjects/Ej5/src/Visual/visual_General/Menu_Principal.java</file>
+            <file>file:/C:/Users/Pablo/Documents/NetBeansProjects/Ej5/src/Coneccion/AlumnoData.java</file>
+            <file>file:/C:/Users/Pablo/Documents/NetBeansProjects/Ej5/src/Visual/visual_ALUMNO/Menu_Alumno.java</file>
+            <file>file:/C:/Users/Pablo/Documents/NetBeansProjects/Ej5/src/Visual/visual_ADM/Cargar_Nota.java</file>
+            <file>file:/C:/Users/Pablo/Documents/NetBeansProjects/Ej5/src/Coneccion/loginData.java</file>
         </group>
     </open-files>
 </project-private>

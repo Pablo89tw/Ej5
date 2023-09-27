@@ -441,7 +441,7 @@ public class ModificarAlumno extends javax.swing.JInternalFrame {
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jButton2)
                         .addComponent(jButton1)))
-                .addContainerGap(13, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -452,7 +452,7 @@ public class ModificarAlumno extends javax.swing.JInternalFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 468, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -480,9 +480,7 @@ public class ModificarAlumno extends javax.swing.JInternalFrame {
         jS_nA.setEnabled(true);
         else if (!CheckBox_ANIO.isSelected())
         jS_nA.setEnabled(false);
-        jS_nA.setValue(anio);
-        //jS_nA.setEnabled(false);
-        
+        jS_nA.setValue(anio);     
         
     }//GEN-LAST:event_CheckBox_ANIOActionPerformed
 
@@ -492,15 +490,14 @@ public class ModificarAlumno extends javax.swing.JInternalFrame {
 
     private void CheckBox_APELLIDOActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CheckBox_APELLIDOActionPerformed
         if (CheckBox_APELLIDO.isSelected()) {
-            Text_APELLIDO.setEditable(true);
+            Text_APELLIDO.setEnabled(true);
         } else {
             Text_APELLIDO.setText(apellido);
-            Text_APELLIDO.setEditable(false);
+            Text_APELLIDO.setEnabled(false);
         }
     }//GEN-LAST:event_CheckBox_APELLIDOActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-
         dni = Integer.parseInt(Text_DNI.getText());
         nombre = Text_NOMBRE.getText();
         apellido = Text_APELLIDO.getText();
@@ -545,10 +542,10 @@ public class ModificarAlumno extends javax.swing.JInternalFrame {
 
     private void CheckBox_NOMBREActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CheckBox_NOMBREActionPerformed
         if (CheckBox_NOMBRE.isSelected())
-        Text_NOMBRE.setEditable(true);
+        Text_NOMBRE.setEnabled(true);
         else {
             Text_NOMBRE.setText(nombre);
-            Text_NOMBRE.setEditable(false);
+            Text_NOMBRE.setEnabled(false);
         }
     }//GEN-LAST:event_CheckBox_NOMBREActionPerformed
 
@@ -603,37 +600,12 @@ public class ModificarAlumno extends javax.swing.JInternalFrame {
     private void CheckBox_FECHA_NACActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CheckBox_FECHA_NACActionPerformed
         if (CheckBox_FECHA_NAC.isSelected()) {
             jDC_nF.setEnabled(true);
-
-        } else {
+        } else if (!CheckBox_FECHA_NAC.isSelected()) {
             jDC_nF.setEnabled(false);
-
-
-        }/* else if (!CheckBox_FECHA_NAC.isSelected()) {
-            jDC_nF.setEnabled(false);
-        
-
-        }*/
+        }
     }//GEN-LAST:event_CheckBox_FECHA_NACActionPerformed
 
-
-    private void CheckBox_DNIActionPerformed(java.awt.event.ActionEvent evt) {                                             
-        if (CheckBox_DNI.isSelected()) {
-            Text_DNI.setEditable(true);
-        } else {
-            Text_DNI.setText(Integer.toString(dni));
-            Text_DNI.setEnabled(false);
-        }
-    }
-
-    private void jCheckBox2ActionPerformed(java.awt.event.ActionEvent evt) {                                           
-        if (CheckBox_DNI.isSelected())
-            Text_DNI.setEditable(true);
-         else if (!CheckBox_DNI.isSelected()) {
-            Text_DNI.setText(Integer.toString(dni));
-            Text_DNI.setEditable(false);
-
-        }
-    }                                            
+                                         
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
         CheckBox_CONDICION.setEnabled(true); CheckBox_DNI.setEnabled(true);
@@ -691,6 +663,16 @@ public class ModificarAlumno extends javax.swing.JInternalFrame {
         borrarFila();
     }//GEN-LAST:event_CheckBox_Agr_ADMINActionPerformed
 
+    private void CheckBox_DNIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CheckBox_DNIActionPerformed
+        System.out.println("pepe");
+        if (CheckBox_DNI.isSelected()) {
+            Text_DNI.setEnabled(true);
+        } else {
+            Text_DNI.setText(Integer.toString(dni));
+            Text_DNI.setEnabled(false);
+        }
+    }//GEN-LAST:event_CheckBox_DNIActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JRadioButton Activo;
@@ -740,6 +722,7 @@ public class ModificarAlumno extends javax.swing.JInternalFrame {
         modelo.addColumn("Año");
         modelo.addColumn("Estado");
         jTable1.setModel(modelo);
+        jTable1.getTableHeader().setReorderingAllowed(false);
     }
 
     private void borrarFila() {
@@ -765,13 +748,13 @@ public class ModificarAlumno extends javax.swing.JInternalFrame {
         Activo.setEnabled(false);
         Inactivo.setEnabled(false);
         
-        Text_APELLIDO.setEditable(false);
+        Text_APELLIDO.setEnabled(false);
         Text_APELLIDO.setEnabled(false);
         
-        Text_NOMBRE.setEditable(false);
+        Text_NOMBRE.setEnabled(false);
         Text_NOMBRE.setEnabled(false);
         
-        Text_DNI.setEditable(false);
+        Text_DNI.setEnabled(false);
         Text_DNI.setEnabled(false);
         
         jS_nA.setEnabled(false);

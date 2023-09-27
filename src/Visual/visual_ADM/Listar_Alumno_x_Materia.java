@@ -174,6 +174,7 @@ public class Listar_Alumno_x_Materia extends javax.swing.JInternalFrame {
         modelo.addColumn("AÑO");
         modelo.addColumn("ESTADO");
         jTable1.setModel(modelo);
+        jTable1.getTableHeader().setReorderingAllowed(false);
 
         modelo2.addColumn("iD Alumno");
         modelo2.addColumn("Apellido");
@@ -182,6 +183,7 @@ public class Listar_Alumno_x_Materia extends javax.swing.JInternalFrame {
         modelo2.addColumn("F.Nac");
         modelo2.addColumn("Estado");
         jTable3.setModel(modelo2);
+        jTable3.getTableHeader().setReorderingAllowed(false);
     }
 
     private void borrarFila1() {

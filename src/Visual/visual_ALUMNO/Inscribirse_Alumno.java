@@ -199,6 +199,7 @@ public class Inscribirse_Alumno extends javax.swing.JInternalFrame {
         modelo_mat.addColumn("AÑO");
         modelo_mat.addColumn("ESTADO");
         jTable.setModel(modelo_mat);
+        jTable.getTableHeader().setReorderingAllowed(false);
 
         String[] listaCMmat = {"ID MATERIA", "NOMBRE"};
         DefaultComboBoxModel<String> model_mat = new DefaultComboBoxModel<>(listaCMmat);
