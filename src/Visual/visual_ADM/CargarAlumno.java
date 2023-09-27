@@ -101,7 +101,7 @@ public class CargarAlumno extends javax.swing.JInternalFrame {
         jSpinner1.setPreferredSize(new java.awt.Dimension(55, 27));
 
         jButton1.setFont(new java.awt.Font("ArianLT-Bold", 3, 14)); // NOI18N
-        jButton1.setText("CERRAR");
+        jButton1.setText("Cerrar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -109,7 +109,7 @@ public class CargarAlumno extends javax.swing.JInternalFrame {
         });
 
         AgregarAlumno.setFont(new java.awt.Font("ArianLT-Bold", 3, 14)); // NOI18N
-        AgregarAlumno.setText("AGREGAR");
+        AgregarAlumno.setText("Agregar");
         AgregarAlumno.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 AgregarAlumnoActionPerformed(evt);

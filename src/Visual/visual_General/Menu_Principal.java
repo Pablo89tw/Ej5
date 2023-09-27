@@ -51,13 +51,13 @@ public class Menu_Principal extends javax.swing.JFrame {
         pantalla_principal.setDragMode(javax.swing.JDesktopPane.OUTLINE_DRAG_MODE);
         pantalla_principal.setPreferredSize(new java.awt.Dimension(1024, 768));
 
-        jText_usuLIN.setFont(new java.awt.Font("Arial", 3, 18)); // NOI18N
+        jText_usuLIN.setFont(new java.awt.Font("ArianLT-Demi", 3, 18)); // NOI18N
         jText_usuLIN.setForeground(new java.awt.Color(255, 255, 255));
         jText_usuLIN.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jText_usuLIN.setBorder(null);
         jText_usuLIN.setOpaque(false);
 
-        jPas_logIN.setFont(new java.awt.Font("Arial", 3, 18)); // NOI18N
+        jPas_logIN.setFont(new java.awt.Font("ArianLT-Demi", 3, 18)); // NOI18N
         jPas_logIN.setForeground(new java.awt.Color(255, 255, 255));
         jPas_logIN.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jPas_logIN.setBorder(null);
@@ -145,7 +145,7 @@ public class Menu_Principal extends javax.swing.JFrame {
         pantalla_principalLayout.setVerticalGroup(
             pantalla_principalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pantalla_principalLayout.createSequentialGroup()
-                .addContainerGap(308, Short.MAX_VALUE)
+                .addContainerGap(298, Short.MAX_VALUE)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jText_usuLIN, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
