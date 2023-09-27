@@ -1,9 +1,11 @@
 package Coneccion;
 
+import Entidades.LogIN;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 public class loginData {
@@ -315,6 +317,46 @@ public class loginData {
            } catch (SQLException sqlE) {
         }
     }
-}       
+     
+     public ArrayList<LogIN> cuentasA_Recordar(){
+        ArrayList<LogIN> logIN_array = new ArrayList<>();
+        LogIN log;
+        AlumnoData();
+        String resultado = null;
+        String sql = "SELECT (usuario,clave) FROM login WHERE recordar LIKE 1";
+        PreparedStatement ps = null;
+
+        try {
+            ps = con.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                log = new LogIN();
+                log.setClave(rs.getString("clave"));
+                log.setUsuario(rs.getInt("estado"));
+                logIN_array.add(log);
+            }
+        } catch (SQLException sqlE) {
+            JOptionPane.showMessageDialog(null, "Error cargar usuarios actualizar");
+        }
+        return logIN_array;
+     }
+       
+    public void actualizarRecordar(int num, int usuario){
+        AlumnoData();
+        String sql2 = "UPDATE login SET recordar = ? WHERE Usuario = ?";
+        PreparedStatement ps2 = null;
+        try {
+            ps2 = con.prepareStatement(sql2);
+            ps2.setInt(1, num);
+            ps2.setInt(2, usuario);
+            int resultado = ps2.executeUpdate();
+        } catch (SQLException sqlE) {
+        }
+        
+        
+        
+}
+}
  
 

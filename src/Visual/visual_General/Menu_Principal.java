@@ -1,9 +1,11 @@
 package Visual.visual_General;
 
+import Entidades.LogIN;
 import Visual.visual_ADM.Administrador;
 import Visual.visual_ALUMNO.Menu_Alumno;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
@@ -16,9 +18,12 @@ public class Menu_Principal extends javax.swing.JFrame {
     private int recordarme;
     private int usuario;
     private String clave;
+    private ArrayList<LogIN> logIN = new ArrayList();
 
     public Menu_Principal() {
         initComponents();
+        checkLogIN();
+        logIN = iN.cuentasA_Recordar();
     }
 
     @SuppressWarnings("unchecked")
@@ -56,6 +61,11 @@ public class Menu_Principal extends javax.swing.JFrame {
         jText_usuLIN.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jText_usuLIN.setBorder(null);
         jText_usuLIN.setOpaque(false);
+        jText_usuLIN.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jText_usuLINKeyReleased(evt);
+            }
+        });
 
         jPas_logIN.setFont(new java.awt.Font("ArianLT-Demi", 3, 18)); // NOI18N
         jPas_logIN.setForeground(new java.awt.Color(255, 255, 255));
@@ -136,7 +146,7 @@ public class Menu_Principal extends javax.swing.JFrame {
                                 .addGroup(pantalla_principalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jButton1)
                                     .addComponent(jCheckBox1))))
-                        .addGap(0, 77, Short.MAX_VALUE))
+                        .addGap(0, 76, Short.MAX_VALUE))
                     .addComponent(jPas_logIN))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(showPass, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -145,7 +155,7 @@ public class Menu_Principal extends javax.swing.JFrame {
         pantalla_principalLayout.setVerticalGroup(
             pantalla_principalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pantalla_principalLayout.createSequentialGroup()
-                .addContainerGap(298, Short.MAX_VALUE)
+                .addContainerGap(304, Short.MAX_VALUE)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jText_usuLIN, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -195,6 +205,14 @@ public class Menu_Principal extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jCheckBox1ActionPerformed
 
+    private void jText_usuLINKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jText_usuLINKeyReleased
+        for (int i = 0; i < logIN.size(); i++) {
+            if (Integer.toString(logIN.get(i).getUsuario()).equals(jText_usuLIN.getText())){
+                jPas_logIN.setText(logIN.get(i).getClave());
+            }
+                }  
+    }//GEN-LAST:event_jText_usuLINKeyReleased
+
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -230,6 +248,11 @@ public class Menu_Principal extends javax.swing.JFrame {
                     if (!jCheckBox1.isSelected()) {
                         jPas_logIN.setText("");
                         jText_usuLIN.setText("");
+                        iN.actualizarRecordar(0, usuario);
+                        checkLogIN();
+                    } else if (jCheckBox1.isSelected()){
+                        iN.actualizarRecordar(1, usuario);
+                        checkLogIN();    
                     }
 
                     Administrador admin = new Administrador(usuario, aD, mD, iD, iN);
@@ -256,5 +279,15 @@ public class Menu_Principal extends javax.swing.JFrame {
             jPas_logIN.setText("");
             JOptionPane.showMessageDialog(null, "Usurio Incorrecto");
         }
+    
     }
+    private void checkLogIN(){ 
+        
+        
+        
+
+
+}
+    
+    
 }
