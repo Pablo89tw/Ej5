@@ -65,7 +65,7 @@ public class InscripcionData {
         Materia materia = new Materia();
         Alumno alumno = new Alumno();
         Inscripcion inscripcion;
-        String sql, sql2;
+        String sql = null;
         arrayInscripciones_x_alumno.clear();
 
         sql = "SELECT * FROM inscripcion "
@@ -88,15 +88,12 @@ public class InscripcionData {
                 materia = mD.buscarMateria(Integer.toString(rs.getInt("idMateria")), "ID MATERIA").get(0);
                 inscripcion.setMateria(materia);
                 inscripcion.setNota(rs.getInt("nota"));
-                inscripcion.setEstado(rs.getInt("esado"));
-                
+                inscripcion.setEstado(rs.getInt("estado"));
                 arrayInscripciones_x_alumno.add(inscripcion);
             }
         } catch (SQLException sqlE) {
             JOptionPane.showMessageDialog(null, "Error en la búsqueda: ");
         }
-        System.out.println("Sali");
-
         return arrayInscripciones_x_alumno;
     }
 
