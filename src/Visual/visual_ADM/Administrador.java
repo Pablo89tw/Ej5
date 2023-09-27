@@ -17,10 +17,10 @@ import Visual.visual_General.Modificar_Clave;
 public class Administrador extends javax.swing.JInternalFrame {
 
     private int usuario;
-    private Coneccion.AlumnoData aD;
-    private Coneccion.MateriaData mD;
-    private Coneccion.InscripcionData iD;
-    private Coneccion.loginData logD;
+    private final Coneccion.AlumnoData aD;
+    private final Coneccion.MateriaData mD;
+    private final Coneccion.InscripcionData iD;
+    private final Coneccion.loginData logD;
 
     public Administrador(int usuario, Coneccion.AlumnoData aD,Coneccion.MateriaData mD,Coneccion.InscripcionData iD, Coneccion.loginData logD) {
         this.usuario = usuario;

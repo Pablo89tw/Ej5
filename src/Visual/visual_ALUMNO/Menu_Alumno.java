@@ -10,6 +10,7 @@ public class Menu_Alumno extends javax.swing.JInternalFrame {
     private Coneccion.MateriaData mD;
     private Coneccion.InscripcionData iD;
     private Alumno alumno;
+
     public Menu_Alumno(int usuario, Coneccion.AlumnoData aD, Coneccion.MateriaData mD, Coneccion.InscripcionData iD) {
         this.aD = aD;
         this.mD = mD;
@@ -194,7 +195,7 @@ public class Menu_Alumno extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jMenuItem7ActionPerformed
 
     private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
-            this.setVisible(false);      
+        this.setVisible(false);
     }//GEN-LAST:event_jMenuItem8ActionPerformed
 
 
@@ -219,11 +220,11 @@ public class Menu_Alumno extends javax.swing.JInternalFrame {
     private javax.swing.JMenuItem jMenuItem9;
     // End of variables declaration//GEN-END:variables
 
-    private void armarVista(){
-    String text = null;
+    private void armarVista() {
+        String text = null;
         for (Alumno a1 : aD.buscarAlumno(Integer.toString(usuario), "DNI", null)) {
             text = ("Bienvenido " + a1.getNombre() + ", " + a1.getApellido());
         }
         jLabel1.setText(text);
-}
+    }
 }

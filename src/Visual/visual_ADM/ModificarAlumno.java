@@ -9,10 +9,10 @@ import javax.swing.table.DefaultTableModel;
 
 public class ModificarAlumno extends javax.swing.JInternalFrame {
 
-    private Coneccion.loginData logD;
-    private Coneccion.AlumnoData aD;
-    private Coneccion.MateriaData mD;
-    private Coneccion.InscripcionData iD;
+    private final Coneccion.loginData logD;
+    private final Coneccion.AlumnoData aD;
+    private final Coneccion.MateriaData mD;
+    private final Coneccion.InscripcionData iD;
     private int idAlumno_Mod;
     private int dni;
     private String apellido;

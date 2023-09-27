@@ -22,12 +22,14 @@ public class loginData {
     public int logIN(int usuario, String clave_in) {
         AlumnoData();
         String sql = "SELECT * FROM login WHERE Usuario LIKE (?)";
-        PreparedStatement ps = null;
-
+        PreparedStatement ps = null; 
+        categoriaResultado = 5;
+        ResultSet rs = null;
+        ResultSet rs2 = null;
         try {
             ps = con.prepareStatement(sql);
             ps.setString(1, Integer.toString(usuario));
-            ResultSet rs = ps.executeQuery();
+            rs = ps.executeQuery();
 
             if (rs.next()) {
                 if (rs.getString("Clave").equals(clave_in) && rs.getInt("estado") == 0){
@@ -36,7 +38,7 @@ public class loginData {
                     String sq12 = "SELECT categoria FROM alumno WHERE dni LIKE (?)";
                     ps2 = con.prepareStatement(sq12);
                     ps2.setString(1, Integer.toString(usuario));
-                    ResultSet rs2 = ps2.executeQuery();
+                    rs2 = ps2.executeQuery();
                     if (rs2.next()) {
                         categoriaResultado = rs2.getInt("categoria");
                     }
