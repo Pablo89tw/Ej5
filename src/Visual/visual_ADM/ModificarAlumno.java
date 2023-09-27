@@ -5,9 +5,13 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 import javax.swing.ButtonGroup;
 import javax.swing.DefaultComboBoxModel;
+
 import javax.swing.ImageIcon;
 import java.awt.Graphics;
 import java.awt.Image;
+
+import javax.swing.JOptionPane;
+
 import javax.swing.table.DefaultTableModel;
 
 public class ModificarAlumno extends javax.swing.JInternalFrame {
@@ -474,7 +478,8 @@ public class ModificarAlumno extends javax.swing.JInternalFrame {
     private void CheckBox_ANIOActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CheckBox_ANIOActionPerformed
         if (CheckBox_ANIO.isSelected())
         jS_nA.setEnabled(true);
-        else
+        else if (!CheckBox_ANIO.isSelected())
+        jS_nA.setEnabled(false);
         jS_nA.setValue(anio);
         //jS_nA.setEnabled(false);
         
@@ -495,10 +500,18 @@ public class ModificarAlumno extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_CheckBox_APELLIDOActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+
         dni = Integer.parseInt(Text_DNI.getText());
         nombre = Text_NOMBRE.getText();
         apellido = Text_APELLIDO.getText();
+
+        try { 
+        dni = Integer.parseInt(Text_DNI.getText());
+        nombre = Text_NOMBRE.getText();
+        apellido = Text_APELLIDO.getText();
+
         estado = ((Activo.isSelected()) ? true : false);
+        try {
         fechaNacimiento = jDC_nF.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
         anio = (int) jS_nA.getValue();
 
@@ -510,7 +523,22 @@ public class ModificarAlumno extends javax.swing.JInternalFrame {
             data = 1;
         }
         logD.activarUsuarioLogIN(data, dni);
+        } catch (NullPointerException dniE){
+            JOptionPane.showMessageDialog(null, "Error al cargar datos");
+            Text_DNI.setText((jTable1.getValueAt(filaSeleccionada, 3)).toString());
+            Text_APELLIDO.setText((jTable1.getValueAt(filaSeleccionada, 1)).toString());
+            Text_NOMBRE.setText((jTable1.getValueAt(filaSeleccionada, 2)).toString());
+            jDC_nF.setDate(java.sql.Date.valueOf(fechaNacimiento));
 
+        }
+        } catch (NumberFormatException dcF) {
+            JOptionPane.showMessageDialog(null, "Error al cargar datos");
+            Text_DNI.setText((jTable1.getValueAt(filaSeleccionada, 3)).toString());
+            Text_APELLIDO.setText((jTable1.getValueAt(filaSeleccionada, 1)).toString());
+            Text_NOMBRE.setText((jTable1.getValueAt(filaSeleccionada, 2)).toString());
+            jDC_nF.setDate(java.sql.Date.valueOf(fechaNacimiento));
+        }
+        
         borrarFila();
         llenarTabla();
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -575,20 +603,37 @@ public class ModificarAlumno extends javax.swing.JInternalFrame {
     private void CheckBox_FECHA_NACActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CheckBox_FECHA_NACActionPerformed
         if (CheckBox_FECHA_NAC.isSelected()) {
             jDC_nF.setEnabled(true);
+
         } else {
             jDC_nF.setEnabled(false);
 
-        }
+
+        }/* else if (!CheckBox_FECHA_NAC.isSelected()) {
+            jDC_nF.setEnabled(false);
+        
+
+        }*/
     }//GEN-LAST:event_CheckBox_FECHA_NACActionPerformed
 
-    private void CheckBox_DNIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CheckBox_DNIActionPerformed
+
+    private void CheckBox_DNIActionPerformed(java.awt.event.ActionEvent evt) {                                             
         if (CheckBox_DNI.isSelected()) {
             Text_DNI.setEditable(true);
         } else {
             Text_DNI.setText(Integer.toString(dni));
             Text_DNI.setEnabled(false);
         }
-    }//GEN-LAST:event_CheckBox_DNIActionPerformed
+    }
+
+    private void jCheckBox2ActionPerformed(java.awt.event.ActionEvent evt) {                                           
+        if (CheckBox_DNI.isSelected())
+            Text_DNI.setEditable(true);
+         else if (!CheckBox_DNI.isSelected()) {
+            Text_DNI.setText(Integer.toString(dni));
+            Text_DNI.setEditable(false);
+
+        }
+    }                                            
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
         CheckBox_CONDICION.setEnabled(true); CheckBox_DNI.setEnabled(true);
