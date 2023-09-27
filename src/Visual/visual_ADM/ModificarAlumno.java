@@ -5,6 +5,9 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 import javax.swing.ButtonGroup;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.ImageIcon;
+import java.awt.Graphics;
+import java.awt.Image;
 import javax.swing.table.DefaultTableModel;
 
 public class ModificarAlumno extends javax.swing.JInternalFrame {
@@ -34,58 +37,237 @@ public class ModificarAlumno extends javax.swing.JInternalFrame {
         initComponents();
         armarCabecera();
         armadoVista();
+        
+        ((javax.swing.plaf.basic.BasicInternalFrameUI) this.getUI()).setNorthPane(null);
     }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jDesktopPane1 = new javax.swing.JDesktopPane();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jCheckBox4 = new javax.swing.JCheckBox();
-        jTextField4 = new javax.swing.JTextField();
+        ImageIcon icon12 = new ImageIcon(getClass().getResource("/Visual/visual_General/Img/FONDO PRINCIPAL 02.jpg"));
+        Image image12 = icon12.getImage();
+        jPanel1 = new javax.swing.JPanel(){
+
+            public void paintComponent(Graphics g){
+                g.drawImage(image12,0,0,getWidth(),getHeight(),this);
+            }
+
+        };
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
+        CheckBox_ELIMINAR = new javax.swing.JCheckBox();
+        LogIN_inactivo = new javax.swing.JRadioButton();
+        logIN_activo = new javax.swing.JRadioButton();
+        CheckBox_LOGIN = new javax.swing.JCheckBox();
+        jButton3 = new javax.swing.JButton();
+        CheckBox_CLAVE = new javax.swing.JCheckBox();
+        jDC_nF = new com.toedter.calendar.JDateChooser();
+        CheckBox_FECHA_NAC = new javax.swing.JCheckBox();
+        jS_nA = new javax.swing.JSpinner();
+        CheckBox_ANIO = new javax.swing.JCheckBox();
+        Text_APELLIDO = new javax.swing.JTextField();
+        CheckBox_APELLIDO = new javax.swing.JCheckBox();
+        Text_NOMBRE = new javax.swing.JTextField();
+        CheckBox_NOMBRE = new javax.swing.JCheckBox();
+        Text_DNI = new javax.swing.JTextField();
+        CheckBox_DNI = new javax.swing.JCheckBox();
+        Inactivo = new javax.swing.JRadioButton();
+        Activo = new javax.swing.JRadioButton();
+        CheckBox_CONDICION = new javax.swing.JCheckBox();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        jS_nA = new javax.swing.JSpinner();
-        jCheckBox2 = new javax.swing.JCheckBox();
-        jCheckBox6 = new javax.swing.JCheckBox();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jCB_Eliminar = new javax.swing.JCheckBox();
-        jDC_nF = new com.toedter.calendar.JDateChooser();
-        jCheckBox3 = new javax.swing.JCheckBox();
-        Activo = new javax.swing.JRadioButton();
-        LogIN = new javax.swing.JCheckBox();
-        jC_N = new javax.swing.JCheckBox();
-        logIN_activo = new javax.swing.JRadioButton();
-        jButton1 = new javax.swing.JButton();
-        LogIN_inactivo = new javax.swing.JRadioButton();
-        Inactivo = new javax.swing.JRadioButton();
-        jC_A = new javax.swing.JCheckBox();
-        jButton2 = new javax.swing.JButton();
-        jText_nDNI = new javax.swing.JTextField();
-        jCheckBox5 = new javax.swing.JCheckBox();
-        jText_nN = new javax.swing.JTextField();
-        jText_nA = new javax.swing.JTextField();
-        jCheckBox1 = new javax.swing.JCheckBox();
+        CheckBox_Agr_ADMIN = new javax.swing.JCheckBox();
+        jTextField4 = new javax.swing.JTextField();
+        jComboBox1 = new javax.swing.JComboBox<>();
+        jLabel5 = new javax.swing.JLabel();
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jComboBox1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jComboBox1MouseClicked(evt);
-            }
-        });
+        setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 51, 102), 6));
+        setPreferredSize(new java.awt.Dimension(700, 500));
 
-        jCheckBox4.setText("Agregar Administradores");
-        jCheckBox4.addActionListener(new java.awt.event.ActionListener() {
+        jPanel1.setBackground(new java.awt.Color(0, 102, 255));
+
+        jButton1.setFont(new java.awt.Font("ArianLT-Bold", 3, 14)); // NOI18N
+        jButton1.setText("Actualizar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox4ActionPerformed(evt);
+                jButton1ActionPerformed(evt);
             }
         });
 
-        jTextField4.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                jTextField4KeyReleased(evt);
+        jButton2.setFont(new java.awt.Font("ArianLT-Bold", 3, 14)); // NOI18N
+        jButton2.setText("Cerrar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        jButton4.setFont(new java.awt.Font("ArianLT-Demi", 3, 14)); // NOI18N
+        jButton4.setText("Eliminar Alumno");
+        jButton4.setPreferredSize(new java.awt.Dimension(145, 25));
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+
+        CheckBox_ELIMINAR.setFont(new java.awt.Font("ArianLT-Demi", 3, 14)); // NOI18N
+        CheckBox_ELIMINAR.setForeground(new java.awt.Color(255, 255, 255));
+        CheckBox_ELIMINAR.setText("Eliminar");
+        CheckBox_ELIMINAR.setOpaque(false);
+        CheckBox_ELIMINAR.setPreferredSize(new java.awt.Dimension(81, 20));
+        CheckBox_ELIMINAR.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CheckBox_ELIMINARActionPerformed(evt);
+            }
+        });
+
+        LogIN_inactivo.setFont(new java.awt.Font("ArianLT-Demi", 3, 14)); // NOI18N
+        LogIN_inactivo.setForeground(new java.awt.Color(255, 255, 255));
+        LogIN_inactivo.setText("Inactivo");
+        LogIN_inactivo.setOpaque(false);
+        LogIN_inactivo.setPreferredSize(new java.awt.Dimension(81, 20));
+
+        logIN_activo.setFont(new java.awt.Font("ArianLT-Demi", 3, 14)); // NOI18N
+        logIN_activo.setForeground(new java.awt.Color(255, 255, 255));
+        logIN_activo.setText("Activo");
+        logIN_activo.setOpaque(false);
+        logIN_activo.setPreferredSize(new java.awt.Dimension(71, 20));
+
+        CheckBox_LOGIN.setFont(new java.awt.Font("ArianLT-Demi", 3, 14)); // NOI18N
+        CheckBox_LOGIN.setForeground(new java.awt.Color(255, 255, 255));
+        CheckBox_LOGIN.setText("LogIN");
+        CheckBox_LOGIN.setOpaque(false);
+        CheckBox_LOGIN.setPreferredSize(new java.awt.Dimension(67, 20));
+        CheckBox_LOGIN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CheckBox_LOGINActionPerformed(evt);
+            }
+        });
+
+        jButton3.setFont(new java.awt.Font("ArianLT-Demi", 3, 14)); // NOI18N
+        jButton3.setText("Restablecer Contraseña");
+        jButton3.setPreferredSize(new java.awt.Dimension(205, 25));
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
+        CheckBox_CLAVE.setFont(new java.awt.Font("ArianLT-Demi", 3, 14)); // NOI18N
+        CheckBox_CLAVE.setForeground(new java.awt.Color(255, 255, 255));
+        CheckBox_CLAVE.setText("Clave");
+        CheckBox_CLAVE.setOpaque(false);
+        CheckBox_CLAVE.setPreferredSize(new java.awt.Dimension(63, 20));
+        CheckBox_CLAVE.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CheckBox_CLAVEActionPerformed(evt);
+            }
+        });
+
+        jDC_nF.setFont(new java.awt.Font("ArianLT-Demi", 3, 14)); // NOI18N
+        jDC_nF.setOpaque(false);
+        jDC_nF.setPreferredSize(new java.awt.Dimension(87, 25));
+
+        CheckBox_FECHA_NAC.setFont(new java.awt.Font("ArianLT-Demi", 3, 14)); // NOI18N
+        CheckBox_FECHA_NAC.setForeground(new java.awt.Color(255, 255, 255));
+        CheckBox_FECHA_NAC.setText("Fecha Nacimiento");
+        CheckBox_FECHA_NAC.setOpaque(false);
+        CheckBox_FECHA_NAC.setPreferredSize(new java.awt.Dimension(151, 20));
+        CheckBox_FECHA_NAC.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CheckBox_FECHA_NACActionPerformed(evt);
+            }
+        });
+
+        jS_nA.setFont(new java.awt.Font("ArianLT-Demi", 3, 14)); // NOI18N
+        jS_nA.setModel(new javax.swing.SpinnerNumberModel(1, 1, 6, 1));
+        jS_nA.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 6));
+        jS_nA.setPreferredSize(new java.awt.Dimension(33, 25));
+
+        CheckBox_ANIO.setFont(new java.awt.Font("ArianLT-Demi", 3, 14)); // NOI18N
+        CheckBox_ANIO.setForeground(new java.awt.Color(255, 255, 255));
+        CheckBox_ANIO.setText("Año");
+        CheckBox_ANIO.setOpaque(false);
+        CheckBox_ANIO.setPreferredSize(new java.awt.Dimension(53, 20));
+        CheckBox_ANIO.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CheckBox_ANIOActionPerformed(evt);
+            }
+        });
+
+        Text_APELLIDO.setFont(new java.awt.Font("ArianLT-Demi", 3, 14)); // NOI18N
+        Text_APELLIDO.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 6, 0, 0));
+        Text_APELLIDO.setPreferredSize(new java.awt.Dimension(77, 25));
+
+        CheckBox_APELLIDO.setFont(new java.awt.Font("ArianLT-Demi", 3, 14)); // NOI18N
+        CheckBox_APELLIDO.setForeground(new java.awt.Color(255, 255, 255));
+        CheckBox_APELLIDO.setText("Apellido");
+        CheckBox_APELLIDO.setOpaque(false);
+        CheckBox_APELLIDO.setPreferredSize(new java.awt.Dimension(79, 20));
+        CheckBox_APELLIDO.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CheckBox_APELLIDOActionPerformed(evt);
+            }
+        });
+
+        Text_NOMBRE.setFont(new java.awt.Font("ArianLT-Demi", 3, 14)); // NOI18N
+        Text_NOMBRE.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 6, 0, 0));
+        Text_NOMBRE.setPreferredSize(new java.awt.Dimension(74, 25));
+
+        CheckBox_NOMBRE.setFont(new java.awt.Font("ArianLT-Demi", 3, 14)); // NOI18N
+        CheckBox_NOMBRE.setForeground(new java.awt.Color(255, 255, 255));
+        CheckBox_NOMBRE.setText("Nombre");
+        CheckBox_NOMBRE.setOpaque(false);
+        CheckBox_NOMBRE.setPreferredSize(new java.awt.Dimension(83, 20));
+        CheckBox_NOMBRE.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CheckBox_NOMBREActionPerformed(evt);
+            }
+        });
+
+        Text_DNI.setFont(new java.awt.Font("ArianLT-Demi", 3, 14)); // NOI18N
+        Text_DNI.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 6, 0, 0));
+        Text_DNI.setPreferredSize(new java.awt.Dimension(32, 25));
+
+        CheckBox_DNI.setFont(new java.awt.Font("ArianLT-Demi", 3, 14)); // NOI18N
+        CheckBox_DNI.setForeground(new java.awt.Color(255, 255, 255));
+        CheckBox_DNI.setText("DNI");
+        CheckBox_DNI.setOpaque(false);
+        CheckBox_DNI.setPreferredSize(new java.awt.Dimension(51, 20));
+        CheckBox_DNI.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CheckBox_DNIActionPerformed(evt);
+            }
+        });
+
+        Inactivo.setFont(new java.awt.Font("ArianLT-Demi", 3, 14)); // NOI18N
+        Inactivo.setForeground(new java.awt.Color(255, 255, 255));
+        Inactivo.setText("Inactivo");
+        Inactivo.setOpaque(false);
+        Inactivo.setPreferredSize(new java.awt.Dimension(81, 20));
+
+        Activo.setFont(new java.awt.Font("ArianLT-Demi", 3, 14)); // NOI18N
+        Activo.setForeground(new java.awt.Color(255, 255, 255));
+        Activo.setText("Activo");
+        Activo.setOpaque(false);
+        Activo.setPreferredSize(new java.awt.Dimension(71, 20));
+        Activo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ActivoActionPerformed(evt);
+            }
+        });
+
+        CheckBox_CONDICION.setFont(new java.awt.Font("ArianLT-Demi", 3, 14)); // NOI18N
+        CheckBox_CONDICION.setForeground(new java.awt.Color(255, 255, 255));
+        CheckBox_CONDICION.setText("Condicion");
+        CheckBox_CONDICION.setOpaque(false);
+        CheckBox_CONDICION.setPreferredSize(new java.awt.Dimension(95, 20));
+        CheckBox_CONDICION.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CheckBox_CONDICIONActionPerformed(evt);
             }
         });
 
@@ -107,281 +289,176 @@ public class ModificarAlumno extends javax.swing.JInternalFrame {
         });
         jScrollPane1.setViewportView(jTable1);
 
-        jCheckBox2.setText("DNI");
-        jCheckBox2.addActionListener(new java.awt.event.ActionListener() {
+        CheckBox_Agr_ADMIN.setFont(new java.awt.Font("ArianLT-Demi", 3, 14)); // NOI18N
+        CheckBox_Agr_ADMIN.setForeground(new java.awt.Color(255, 255, 255));
+        CheckBox_Agr_ADMIN.setText("Agregar Administradores");
+        CheckBox_Agr_ADMIN.setOpaque(false);
+        CheckBox_Agr_ADMIN.setPreferredSize(new java.awt.Dimension(205, 25));
+        CheckBox_Agr_ADMIN.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox2ActionPerformed(evt);
+                CheckBox_Agr_ADMINActionPerformed(evt);
             }
         });
 
-        jCheckBox6.setText("Fecha Nacimiento");
-        jCheckBox6.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox6ActionPerformed(evt);
+        jTextField4.setFont(new java.awt.Font("ArianLT-Bold", 3, 14)); // NOI18N
+        jTextField4.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 6, 0, 0));
+        jTextField4.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextField4KeyReleased(evt);
             }
         });
 
-        jButton3.setText("Restablecer Contraseña");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
-            }
-        });
+        jComboBox1.setFont(new java.awt.Font("ArianLT-Bold", 3, 14)); // NOI18N
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox1.setPreferredSize(new java.awt.Dimension(79, 25));
 
-        jButton4.setText("ELIMINAR ALUMNO");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
-            }
-        });
+        jLabel5.setBackground(new java.awt.Color(255, 51, 102));
+        jLabel5.setFont(new java.awt.Font("ArianLT-Bold", 3, 18)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel5.setText("MODIFICAR ALUMNO");
+        jLabel5.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        jLabel5.setOpaque(true);
 
-        jCB_Eliminar.setText("Eliminar");
-        jCB_Eliminar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCB_EliminarActionPerformed(evt);
-            }
-        });
-
-        jCheckBox3.setText("Clave");
-        jCheckBox3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox3ActionPerformed(evt);
-            }
-        });
-
-        Activo.setText("Activo");
-        Activo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ActivoActionPerformed(evt);
-            }
-        });
-
-        LogIN.setText("LogIN");
-        LogIN.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                LogINActionPerformed(evt);
-            }
-        });
-
-        jC_N.setText("Nombre");
-        jC_N.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jC_NActionPerformed(evt);
-            }
-        });
-
-        logIN_activo.setText("Activo");
-
-        jButton1.setText("Actualizar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
-        LogIN_inactivo.setText("Inactivo");
-
-        Inactivo.setText("Inactivo");
-
-        jC_A.setText("Apellido");
-        jC_A.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jC_AActionPerformed(evt);
-            }
-        });
-
-        jButton2.setText("Salir");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
-
-        jCheckBox5.setText("Año");
-        jCheckBox5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox5ActionPerformed(evt);
-            }
-        });
-
-        jCheckBox1.setText("Condicion");
-        jCheckBox1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox1ActionPerformed(evt);
-            }
-        });
-
-        jDesktopPane1.setLayer(jComboBox1, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jDesktopPane1.setLayer(jCheckBox4, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jDesktopPane1.setLayer(jTextField4, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jDesktopPane1.setLayer(jScrollPane1, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jDesktopPane1.setLayer(jS_nA, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jDesktopPane1.setLayer(jCheckBox2, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jDesktopPane1.setLayer(jCheckBox6, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jDesktopPane1.setLayer(jButton3, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jDesktopPane1.setLayer(jButton4, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jDesktopPane1.setLayer(jCB_Eliminar, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jDesktopPane1.setLayer(jDC_nF, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jDesktopPane1.setLayer(jCheckBox3, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jDesktopPane1.setLayer(Activo, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jDesktopPane1.setLayer(LogIN, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jDesktopPane1.setLayer(jC_N, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jDesktopPane1.setLayer(logIN_activo, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jDesktopPane1.setLayer(jButton1, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jDesktopPane1.setLayer(LogIN_inactivo, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jDesktopPane1.setLayer(Inactivo, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jDesktopPane1.setLayer(jC_A, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jDesktopPane1.setLayer(jButton2, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jDesktopPane1.setLayer(jText_nDNI, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jDesktopPane1.setLayer(jCheckBox5, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jDesktopPane1.setLayer(jText_nN, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jDesktopPane1.setLayer(jText_nA, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jDesktopPane1.setLayer(jCheckBox1, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-        javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
-        jDesktopPane1.setLayout(jDesktopPane1Layout);
-        jDesktopPane1Layout.setHorizontalGroup(
-            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDesktopPane1Layout.createSequentialGroup()
-                        .addGap(1, 1, 1)
-                        .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 5, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jTextField4)
-                                .addGap(80, 80, 80)
-                                .addComponent(jCheckBox4)
-                                .addGap(34, 34, 34))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 532, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                                .addComponent(jCheckBox1)
-                                .addGap(56, 56, 56)
-                                .addComponent(Activo)
-                                .addGap(18, 18, 18)
-                                .addComponent(Inactivo)
-                                .addGap(205, 205, 205))
-                            .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                                .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jCheckBox2)
-                                    .addComponent(jC_N)
-                                    .addComponent(jC_A)
-                                    .addComponent(jCheckBox5)
-                                    .addComponent(jCheckBox6)
-                                    .addComponent(jCheckBox3)
-                                    .addComponent(LogIN)
-                                    .addComponent(jCB_Eliminar))
-                                .addGap(16, 16, 16)
-                                .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                                        .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(jDC_nF, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(jText_nDNI)
-                                            .addComponent(jText_nN)
-                                            .addComponent(jText_nA)
-                                            .addComponent(jS_nA))
-                                        .addGap(21, 21, 21)
-                                        .addComponent(jButton2)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                                        .addComponent(logIN_activo)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(LogIN_inactivo)))))))
-                .addContainerGap())
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(24, 24, 24)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(CheckBox_DNI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(Text_DNI, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(Activo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(19, 19, 19)
+                                    .addComponent(Inactivo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(10, 10, 10)
+                                    .addComponent(jTextField4)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(CheckBox_Agr_ADMIN, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 635, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(CheckBox_NOMBRE, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(Text_NOMBRE, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(logIN_activo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(LogIN_inactivo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(CheckBox_ANIO, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(Text_APELLIDO, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jDC_nF, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(CheckBox_FECHA_NAC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(CheckBox_APELLIDO, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(144, 144, 144))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jS_nA, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jButton1)
+                                        .addGap(114, 114, 114)
+                                        .addComponent(jButton2))
+                                    .addComponent(CheckBox_CONDICION, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(CheckBox_LOGIN, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(CheckBox_ELIMINAR, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(26, 26, 26)
+                                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(CheckBox_CLAVE, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
+                .addContainerGap(28, Short.MAX_VALUE))
         );
-        jDesktopPane1Layout.setVerticalGroup(
-            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(17, 17, 17)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jCheckBox4))
-                .addGap(13, 13, 13)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(CheckBox_Agr_ADMIN, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jCheckBox1)
-                    .addComponent(Activo)
-                    .addComponent(Inactivo))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jCheckBox2)
-                    .addComponent(jText_nDNI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jC_N)
-                    .addComponent(jText_nN, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jC_A)
-                    .addComponent(jText_nA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jCheckBox5)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDesktopPane1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 3, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jS_nA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jCheckBox6)
-                    .addComponent(jDC_nF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton3)
-                    .addComponent(jCheckBox3))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(logIN_activo)
-                            .addComponent(LogIN_inactivo))
+                .addComponent(CheckBox_DNI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton4)
-                        .addGap(1, 1, 1)
-                        .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton2)
-                            .addComponent(jButton1)))
-                    .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                        .addComponent(LogIN)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jCB_Eliminar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
+                        .addComponent(Text_DNI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(10, 10, 10)
+                        .addComponent(CheckBox_NOMBRE, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(Activo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(CheckBox_CONDICION, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(Inactivo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(Text_NOMBRE, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(10, 10, 10)
+                        .addComponent(CheckBox_APELLIDO, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, 0)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(CheckBox_CLAVE, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Text_APELLIDO, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(10, 10, 10)
+                        .addComponent(CheckBox_FECHA_NAC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, 0)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jDC_nF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(CheckBox_ELIMINAR, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(logIN_activo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(LogIN_inactivo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(CheckBox_LOGIN, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(10, 10, 10)
+                .addComponent(CheckBox_ANIO, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jS_nA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jButton2)
+                        .addComponent(jButton1)))
+                .addContainerGap(13, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jDesktopPane1)
-                .addContainerGap())
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(jDesktopPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 468, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
-        if (jCheckBox1.isSelected()) {
+    private void CheckBox_CONDICIONActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CheckBox_CONDICIONActionPerformed
+        if (CheckBox_CONDICION.isSelected()) {
             Activo.setEnabled(true);
             Inactivo.setEnabled(true);
-        } else if (!jCheckBox1.isSelected()) {
+        } else if (!CheckBox_CONDICION.isSelected()) {
             Activo.setEnabled(false);
             Inactivo.setEnabled(false);
             if ((jTable1.getValueAt(filaSeleccionada, 6)).toString().equals("true")) {
@@ -392,32 +469,35 @@ public class ModificarAlumno extends javax.swing.JInternalFrame {
                 Activo.setSelected(false);
             }
         }
-    }//GEN-LAST:event_jCheckBox1ActionPerformed
+    }//GEN-LAST:event_CheckBox_CONDICIONActionPerformed
 
-    private void jCheckBox5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox5ActionPerformed
-        if (jCheckBox5.isSelected())
+    private void CheckBox_ANIOActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CheckBox_ANIOActionPerformed
+        if (CheckBox_ANIO.isSelected())
         jS_nA.setEnabled(true);
         else
         jS_nA.setValue(anio);
-    }//GEN-LAST:event_jCheckBox5ActionPerformed
+        //jS_nA.setEnabled(false);
+        
+        
+    }//GEN-LAST:event_CheckBox_ANIOActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void jC_AActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jC_AActionPerformed
-        if (jC_A.isSelected())
-        jText_nA.setEditable(true);
-        else {
-            jText_nA.setText(apellido);
-            jText_nA.setEditable(false);
+    private void CheckBox_APELLIDOActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CheckBox_APELLIDOActionPerformed
+        if (CheckBox_APELLIDO.isSelected()) {
+            Text_APELLIDO.setEditable(true);
+        } else {
+            Text_APELLIDO.setText(apellido);
+            Text_APELLIDO.setEditable(false);
         }
-    }//GEN-LAST:event_jC_AActionPerformed
+    }//GEN-LAST:event_CheckBox_APELLIDOActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        dni = Integer.parseInt(jText_nDNI.getText());
-        nombre = jText_nN.getText();
-        apellido = jText_nA.getText();
+        dni = Integer.parseInt(Text_DNI.getText());
+        nombre = Text_NOMBRE.getText();
+        apellido = Text_APELLIDO.getText();
         estado = ((Activo.isSelected()) ? true : false);
         fechaNacimiento = jDC_nF.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
         anio = (int) jS_nA.getValue();
@@ -435,20 +515,20 @@ public class ModificarAlumno extends javax.swing.JInternalFrame {
         llenarTabla();
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jC_NActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jC_NActionPerformed
-        if (jC_N.isSelected())
-        jText_nN.setEditable(true);
+    private void CheckBox_NOMBREActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CheckBox_NOMBREActionPerformed
+        if (CheckBox_NOMBRE.isSelected())
+        Text_NOMBRE.setEditable(true);
         else {
-            jText_nN.setText(nombre);
-            jText_nN.setEditable(false);
+            Text_NOMBRE.setText(nombre);
+            Text_NOMBRE.setEditable(false);
         }
-    }//GEN-LAST:event_jC_NActionPerformed
+    }//GEN-LAST:event_CheckBox_NOMBREActionPerformed
 
-    private void LogINActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LogINActionPerformed
-        if (LogIN.isSelected()) {
+    private void CheckBox_LOGINActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CheckBox_LOGINActionPerformed
+        if (CheckBox_LOGIN.isSelected()) {
             LogIN_inactivo.setEnabled(true);
             logIN_activo.setEnabled(true);
-        } else if (!LogIN.isSelected()) {
+        } else if (!CheckBox_LOGIN.isSelected()) {
             LogIN_inactivo.setEnabled(false);
             logIN_activo.setEnabled(false);
             if (logD.reactivarLogINusuario(aD.buscarAlumno(Integer.toString(idAlumno_Mod), "ID ALUMNO", null).get(0).getDni()) == 1) {
@@ -459,28 +539,28 @@ public class ModificarAlumno extends javax.swing.JInternalFrame {
                 LogIN_inactivo.setSelected(false);
             }
         }
-    }//GEN-LAST:event_LogINActionPerformed
+    }//GEN-LAST:event_CheckBox_LOGINActionPerformed
 
     private void ActivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ActivoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_ActivoActionPerformed
 
-    private void jCheckBox3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox3ActionPerformed
-        if (jCheckBox3.isSelected()) {
+    private void CheckBox_CLAVEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CheckBox_CLAVEActionPerformed
+        if (CheckBox_CLAVE.isSelected()) {
             jButton3.setEnabled(true);
         } else {
             jButton3.setEnabled(false);
         }
 
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBox3ActionPerformed
+        
+    }//GEN-LAST:event_CheckBox_CLAVEActionPerformed
 
-    private void jCB_EliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCB_EliminarActionPerformed
-        if (jCB_Eliminar.isSelected()){
+    private void CheckBox_ELIMINARActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CheckBox_ELIMINARActionPerformed
+        if (CheckBox_ELIMINAR.isSelected()){
             jButton4.setEnabled(true);
         } else
         jButton4.setEnabled(false);
-    }//GEN-LAST:event_jCB_EliminarActionPerformed
+    }//GEN-LAST:event_CheckBox_ELIMINARActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         ValidarClaveADM vcADM = new ValidarClaveADM(usuario, idAlumno_Mod, "eliminar_alumno",logD,aD,mD,iD);
@@ -492,28 +572,29 @@ public class ModificarAlumno extends javax.swing.JInternalFrame {
         vcADM.setVisible(true);
     }//GEN-LAST:event_jButton3ActionPerformed
 
-    private void jCheckBox6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox6ActionPerformed
-        if (jCheckBox6.isSelected()) {
+    private void CheckBox_FECHA_NACActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CheckBox_FECHA_NACActionPerformed
+        if (CheckBox_FECHA_NAC.isSelected()) {
             jDC_nF.setEnabled(true);
         } else {
+            jDC_nF.setEnabled(false);
 
         }
-    }//GEN-LAST:event_jCheckBox6ActionPerformed
+    }//GEN-LAST:event_CheckBox_FECHA_NACActionPerformed
 
-    private void jCheckBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox2ActionPerformed
-        if (jCheckBox2.isSelected())
-        jText_nDNI.setEditable(true);
-        else {
-            jText_nDNI.setText(Integer.toString(dni));
-            jText_nDNI.setEnabled(false);
+    private void CheckBox_DNIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CheckBox_DNIActionPerformed
+        if (CheckBox_DNI.isSelected()) {
+            Text_DNI.setEditable(true);
+        } else {
+            Text_DNI.setText(Integer.toString(dni));
+            Text_DNI.setEnabled(false);
         }
-    }//GEN-LAST:event_jCheckBox2ActionPerformed
+    }//GEN-LAST:event_CheckBox_DNIActionPerformed
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
-        jCheckBox1.setEnabled(true); jCheckBox2.setEnabled(true);
-        jC_A.setEnabled(true); jC_N.setEnabled(true); jCheckBox5.setEnabled(true);
-        jCheckBox6.setEnabled(true); jCB_Eliminar.setEnabled(true); jCheckBox3.setEnabled(true);
-        LogIN.setEnabled(true);
+        CheckBox_CONDICION.setEnabled(true); CheckBox_DNI.setEnabled(true);
+        CheckBox_APELLIDO.setEnabled(true); CheckBox_NOMBRE.setEnabled(true); CheckBox_ANIO.setEnabled(true);
+        CheckBox_FECHA_NAC.setEnabled(true); CheckBox_ELIMINAR.setEnabled(true); CheckBox_CLAVE.setEnabled(true);
+        CheckBox_LOGIN.setEnabled(true);
 
         filaSeleccionada = jTable1.getSelectedRow();
         if (filaSeleccionada >= 0) {
@@ -537,9 +618,9 @@ public class ModificarAlumno extends javax.swing.JInternalFrame {
             LogIN_inactivo.setSelected(false);
         }
 
-        jText_nA.setText((jTable1.getValueAt(filaSeleccionada, 1)).toString());
-        jText_nN.setText((jTable1.getValueAt(filaSeleccionada, 2)).toString());
-        jText_nDNI.setText((jTable1.getValueAt(filaSeleccionada, 3)).toString());
+        Text_APELLIDO.setText((jTable1.getValueAt(filaSeleccionada, 1)).toString());
+        Text_NOMBRE.setText((jTable1.getValueAt(filaSeleccionada, 2)).toString());
+        Text_DNI.setText((jTable1.getValueAt(filaSeleccionada, 3)).toString());
         jS_nA.setValue(jTable1.getValueAt(filaSeleccionada, 5));
         jDC_nF.setDate(java.sql.Date.valueOf((LocalDate) jTable1.getValueAt(filaSeleccionada, 4)));
 
@@ -556,48 +637,45 @@ public class ModificarAlumno extends javax.swing.JInternalFrame {
         llenarTabla();
     }//GEN-LAST:event_jTextField4KeyReleased
 
-    private void jCheckBox4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox4ActionPerformed
-        if (jCheckBox4.isSelected()) {
+    private void CheckBox_Agr_ADMINActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CheckBox_Agr_ADMINActionPerformed
+        if (CheckBox_Agr_ADMIN.isSelected()) {
             filtroBusqueda = 1;
-        } else if (!jCheckBox4.isSelected()) {
+        } else if (!CheckBox_Agr_ADMIN.isSelected()) {
             filtroBusqueda = 0;
         }
         borrarFila();
-    }//GEN-LAST:event_jCheckBox4ActionPerformed
-
-    private void jComboBox1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jComboBox1MouseClicked
-
-    }//GEN-LAST:event_jComboBox1MouseClicked
+    }//GEN-LAST:event_CheckBox_Agr_ADMINActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JRadioButton Activo;
+    private javax.swing.JCheckBox CheckBox_ANIO;
+    private javax.swing.JCheckBox CheckBox_APELLIDO;
+    private javax.swing.JCheckBox CheckBox_Agr_ADMIN;
+    private javax.swing.JCheckBox CheckBox_CLAVE;
+    private javax.swing.JCheckBox CheckBox_CONDICION;
+    private javax.swing.JCheckBox CheckBox_DNI;
+    private javax.swing.JCheckBox CheckBox_ELIMINAR;
+    private javax.swing.JCheckBox CheckBox_FECHA_NAC;
+    private javax.swing.JCheckBox CheckBox_LOGIN;
+    private javax.swing.JCheckBox CheckBox_NOMBRE;
     private javax.swing.JRadioButton Inactivo;
-    private javax.swing.JCheckBox LogIN;
     private javax.swing.JRadioButton LogIN_inactivo;
+    private javax.swing.JTextField Text_APELLIDO;
+    private javax.swing.JTextField Text_DNI;
+    private javax.swing.JTextField Text_NOMBRE;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
-    private javax.swing.JCheckBox jCB_Eliminar;
-    private javax.swing.JCheckBox jC_A;
-    private javax.swing.JCheckBox jC_N;
-    private javax.swing.JCheckBox jCheckBox1;
-    private javax.swing.JCheckBox jCheckBox2;
-    private javax.swing.JCheckBox jCheckBox3;
-    private javax.swing.JCheckBox jCheckBox4;
-    private javax.swing.JCheckBox jCheckBox5;
-    private javax.swing.JCheckBox jCheckBox6;
     private javax.swing.JComboBox<String> jComboBox1;
     private com.toedter.calendar.JDateChooser jDC_nF;
-    private javax.swing.JDesktopPane jDesktopPane1;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JSpinner jS_nA;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jText_nA;
-    private javax.swing.JTextField jText_nDNI;
-    private javax.swing.JTextField jText_nN;
     private javax.swing.JRadioButton logIN_activo;
     // End of variables declaration//GEN-END:variables
 
@@ -630,7 +708,7 @@ public class ModificarAlumno extends javax.swing.JInternalFrame {
         String[] lista = {"ID ALUMNO", "APELLIDO", "NOMBRE", "DNI"};
         DefaultComboBoxModel<String> model = new DefaultComboBoxModel<>(lista);
         jComboBox1.setModel(model);
-        jCB_Eliminar.setEnabled(false);
+        CheckBox_ELIMINAR.setEnabled(false);
         ButtonGroup buttonGroup = new ButtonGroup();
         buttonGroup.add(Activo);
         buttonGroup.add(Inactivo);
@@ -641,23 +719,31 @@ public class ModificarAlumno extends javax.swing.JInternalFrame {
 
         Activo.setEnabled(false);
         Inactivo.setEnabled(false);
-        jText_nA.setEditable(false);
-        jText_nN.setEditable(false);
-        jText_nDNI.setEditable(false);
+        
+        Text_APELLIDO.setEditable(false);
+        Text_APELLIDO.setEnabled(false);
+        
+        Text_NOMBRE.setEditable(false);
+        Text_NOMBRE.setEnabled(false);
+        
+        Text_DNI.setEditable(false);
+        Text_DNI.setEnabled(false);
+        
         jS_nA.setEnabled(false);
         jDC_nF.setEnabled(false);
-        jCheckBox1.setEnabled(false);
-        jCheckBox2.setEnabled(false);
-        jC_A.setEnabled(false);
-        jC_N.setEnabled(false);
-        jCheckBox5.setEnabled(false);
-        jCheckBox6.setEnabled(false);
+        
+        CheckBox_CONDICION.setEnabled(false);
+        CheckBox_DNI.setEnabled(false);
+        CheckBox_APELLIDO.setEnabled(false);
+        CheckBox_NOMBRE.setEnabled(false);
+        CheckBox_ANIO.setEnabled(false);
+        CheckBox_FECHA_NAC.setEnabled(false);
         jButton3.setEnabled(false);
-        jCheckBox3.setEnabled(false);
+        CheckBox_CLAVE.setEnabled(false);
         jButton3.setEnabled(false);
         jButton4.setEnabled(false);
         jButton3.setEnabled(false);
-        LogIN.setEnabled(false);
+        CheckBox_LOGIN.setEnabled(false);
         LogIN_inactivo.setEnabled(false);
         logIN_activo.setEnabled(false);
     }

@@ -254,6 +254,7 @@ public class Administrador extends javax.swing.JInternalFrame {
         });
         menu_Inscripciones.add(inscripciones_AgregarInscripcion);
 
+        jMenuItem3.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
         jMenuItem3.setText("MODIFICAR");
         jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -262,6 +263,7 @@ public class Administrador extends javax.swing.JInternalFrame {
         });
         menu_Inscripciones.add(jMenuItem3);
 
+        jMenuItem1.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
         jMenuItem1.setText("CARGAR NOTA");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -270,6 +272,7 @@ public class Administrador extends javax.swing.JInternalFrame {
         });
         menu_Inscripciones.add(jMenuItem1);
 
+        jMenuItem2.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
         jMenuItem2.setText("VER");
         jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -364,7 +367,7 @@ public class Administrador extends javax.swing.JInternalFrame {
         
         fondo_admin.add(mA);
         fondo_admin.moveToFront(mA);
-        mA.setLocation((int) fondo_admin.getLocation().getX() + 45, (int) fondo_admin.getLocation().getY() + 60);
+        mA.setLocation((int) fondo_admin.getLocation().getX() + 45, (int) fondo_admin.getLocation().getY() + 15);
         
         
     }//GEN-LAST:event_alumno_ModificarAlumnoActionPerformed
@@ -390,7 +393,7 @@ public class Administrador extends javax.swing.JInternalFrame {
         
         fondo_admin.add(cM);
         fondo_admin.moveToFront(cM);
-        cM.setLocation((int) fondo_admin.getLocation().getX() + 45, (int) fondo_admin.getLocation().getY() + 60);
+        cM.setLocation((int) fondo_admin.getLocation().getX() + 150, (int) fondo_admin.getLocation().getY() + 120);
         
         
     }//GEN-LAST:event_materia_AgregarMateriaActionPerformed
@@ -405,7 +408,7 @@ public class Administrador extends javax.swing.JInternalFrame {
         
         fondo_admin.add(mmF);
         fondo_admin.moveToFront(mmF);
-        mmF.setLocation((int) fondo_admin.getLocation().getX() + 45, (int) fondo_admin.getLocation().getY() + 60);
+        mmF.setLocation((int) fondo_admin.getLocation().getX() + 95, (int) fondo_admin.getLocation().getY() + 50);
         
         
     }//GEN-LAST:event_materia_ModificarMateriaActionPerformed
@@ -420,7 +423,7 @@ public class Administrador extends javax.swing.JInternalFrame {
         
         fondo_admin.add(ia);
         fondo_admin.moveToFront(ia);
-        ia.setLocation((int) fondo_admin.getLocation().getX() + 45, (int) fondo_admin.getLocation().getY() + 60);
+        ia.setLocation((int) fondo_admin.getLocation().getX() + 53, (int) fondo_admin.getLocation().getY() + 20);
         
     }//GEN-LAST:event_inscripciones_AgregarInscripcionActionPerformed
 
@@ -451,9 +454,17 @@ public class Administrador extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+        
+        fondo_admin.removeAll();
+        fondo_admin.repaint();
+        
         Modificar_Inscripciones mI = new Modificar_Inscripciones(usuario, aD, mD, iD, logD);
-        fondo_admin.add(mI);
         mI.setVisible(true);
+        
+        fondo_admin.add(mI);
+        fondo_admin.moveToFront(mI);
+        mI.setLocation((int) fondo_admin.getLocation().getX() + 110, (int) fondo_admin.getLocation().getY() + 10);
+        
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
 
