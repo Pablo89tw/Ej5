@@ -11,7 +11,7 @@ import javax.swing.JOptionPane;
 public class loginData {
 
     private int contadorIngresos = 0;
-    private int categoriaResultado = 5;
+    private int categoriaResultado;
     private Connection con;
     private int usuario;
     private String clave_in, clave;
@@ -22,9 +22,10 @@ public class loginData {
     }
 
     public int logIN(int usuario, String clave_in) {
+        categoriaResultado = 5;
         AlumnoData();
         String sql = "SELECT * FROM login WHERE Usuario LIKE (?)";
-        PreparedStatement ps = null; 
+        PreparedStatement ps = null;
         categoriaResultado = 5;
         ResultSet rs = null;
         ResultSet rs2 = null;
@@ -34,7 +35,7 @@ public class loginData {
             rs = ps.executeQuery();
 
             if (rs.next()) {
-                if (rs.getString("Clave").equals(clave_in) && rs.getInt("estado") == 0){
+                if (rs.getString("Clave").equals(clave_in) && rs.getInt("estado") == 0) {
                     ingresosReseteo(usuario);
                     PreparedStatement ps2 = null;
                     String sq12 = "SELECT categoria FROM alumno WHERE dni LIKE (?)";
@@ -49,8 +50,8 @@ public class loginData {
                 } else if (!rs.getString("Clave").equals(clave_in)) {
                     ingresoFallido(usuario);
                 }
-                } else {
-            JOptionPane.showMessageDialog(null, "Usuario inexistente");
+            } else {
+                JOptionPane.showMessageDialog(null, "Usuario inexistente");
             }
         } catch (SQLException sqlE) {
             JOptionPane.showMessageDialog(null, "Usuario inexistente");
@@ -72,7 +73,6 @@ public class loginData {
 
             if (rs.next()) {
                 clave_usuario = rs.getString("Clave");
-                System.out.println(clave_usuario);
             }
         } catch (SQLException sqlE) {
             JOptionPane.showMessageDialog(null, "Error busqueda");
@@ -210,7 +210,7 @@ public class loginData {
                     int exito = ps2.executeUpdate();
 
                 } catch (SQLException sqlE) {
-                    System.out.println("Error");
+
                 }
             }
         } else {
@@ -230,7 +230,7 @@ public class loginData {
             ResultSet rs = ps.executeQuery();
 
             if (rs.next()) {
-                
+
                 if (rs.getInt("ingresos") < 2 && rs.getInt("estado") == 0) {
                     JOptionPane.showMessageDialog(null, "La cuenta o la contraseña es incorrecta");
                     ingreso_n = rs.getInt("ingresos") + 1;
@@ -248,7 +248,7 @@ public class loginData {
                         JOptionPane.showMessageDialog(null, "Error en la actualización");
                     }
                 } else if (rs.getInt("ingresos") >= 2) {
-                       String sql3 = "UPDATE login SET estado = ?, ingresos = ? WHERE Usuario = ?";
+                    String sql3 = "UPDATE login SET estado = ?, ingresos = ? WHERE Usuario = ?";
                     PreparedStatement ps3 = null;
 
                     try {
@@ -260,7 +260,7 @@ public class loginData {
                         int resultado2 = ps3.executeUpdate();
 
                         if (resultado2 == 1) {
-                            JOptionPane.showMessageDialog(null, "Usuario Bloqueado");
+                            JOptionPane.showMessageDialog(null, "Usuario Bloquead. Comuniquese con la oficina de Daniel Vidaurre");
                         }
                     } catch (SQLException sqlE) {
                         JOptionPane.showMessageDialog(null, "Error");
@@ -268,7 +268,7 @@ public class loginData {
                 }
             }
         } catch (SQLException sqlE) {
-      }
+        }
     }
 
     private void ingresosReseteo(int usuario) {
@@ -283,8 +283,8 @@ public class loginData {
         } catch (SQLException sqlE) {
         }
     }
-   
-    public int reactivarLogINusuario(int usuario){
+
+    public int reactivarLogINusuario(int usuario) {
         AlumnoData();
         int resultado = 1;
         String sql = "SELECT estado FROM login WHERE Usuario = ?";
@@ -303,8 +303,8 @@ public class loginData {
         }
         return resultado;
     }
-    
-     public void activarUsuarioLogIN(int data, int usuario) {
+
+    public void activarUsuarioLogIN(int data, int usuario) {
         AlumnoData();
         String sql = "UPDATE login SET estado = ? WHERE Usuario = ?";
         PreparedStatement ps2 = null;
@@ -314,11 +314,11 @@ public class loginData {
             ps2.setInt(1, data);
             ps2.setInt(2, usuario);
             int resultado = ps2.executeUpdate();
-           } catch (SQLException sqlE) {
+        } catch (SQLException sqlE) {
         }
     }
-     
-     public ArrayList<LogIN> cuentasA_Recordar(){
+
+    public ArrayList<LogIN> cuentasA_Recordar() {
         ArrayList<LogIN> logIN_array = new ArrayList<>();
         LogIN log;
         AlumnoData();
@@ -340,9 +340,9 @@ public class loginData {
             JOptionPane.showMessageDialog(null, "Error cargar usuarios actualizar");
         }
         return logIN_array;
-     }
-       
-    public void actualizarRecordar(int num, int usuario){
+    }
+
+    public void actualizarRecordar(int num, int usuario) {
         AlumnoData();
         String sql2 = "UPDATE login SET recordar = ? WHERE Usuario = ?";
         PreparedStatement ps2 = null;
@@ -353,10 +353,5 @@ public class loginData {
             int resultado = ps2.executeUpdate();
         } catch (SQLException sqlE) {
         }
-        
-        
-        
+    }
 }
-}
- 
-

@@ -167,7 +167,7 @@ public class AlumnoData {
 
     public void eliminarAlumno(int idAlumno) {
         AlumnoData();
-        System.out.println(idAlumno);
+       
         try {
             String sql = "DELETE FROM alumno WHERE idAlumno LIKE ?";
 

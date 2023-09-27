@@ -359,7 +359,6 @@ public class ModificarMateria extends javax.swing.JInternalFrame {
 
         // Los datos que estan en los textos los guardo en las nuevos
         nombre = jTable1.getValueAt(filaSeleccionada, 1).toString();
-        System.out.println(nombre);
         anio = Integer.parseInt(jTable1.getValueAt(filaSeleccionada, 2).toString());
         cupo = Integer.parseInt(jTable1.getValueAt(filaSeleccionada, 3).toString());
 

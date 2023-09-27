@@ -19,7 +19,6 @@ public class Menu_Principal extends javax.swing.JFrame {
     private int usuario;
     private String clave;
     private ArrayList<LogIN> logIN = new ArrayList();
-
     public Menu_Principal() {
         initComponents();
         checkLogIN();
@@ -234,15 +233,15 @@ public class Menu_Principal extends javax.swing.JFrame {
 
     private void inicioSesion() {
         try {
-            usuario = Integer.parseInt(jText_usuLIN.getText());
-            clave = String.valueOf(jPas_logIN.getPassword());
+            int usuario = Integer.parseInt(jText_usuLIN.getText());
+            String clave = String.valueOf(jPas_logIN.getPassword());
 
             if (jCheckBox1.isSelected()) {
                 recordarme = 1;
             } else if (!jCheckBox1.isSelected()) {
                 recordarme = 0;
             }
-
+            
             switch (iN.logIN(usuario, clave)) {
                 case 0:
                     if (!jCheckBox1.isSelected()) {
