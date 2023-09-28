@@ -3,8 +3,11 @@ package Visual.visual_ADM;
 import Entidades.Alumno;
 import Entidades.Materia;
 import Entidades.Inscripcion;
+import java.awt.Graphics;
+import java.awt.Image;
 import javax.swing.ButtonGroup;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -20,7 +23,9 @@ public class Cargar_Nota extends javax.swing.JInternalFrame {
         this.mD = mD;
         this.iD = iD;
         initComponents();
-        unirUnirBotones();       
+        unirUnirBotones();
+        
+        ((javax.swing.plaf.basic.BasicInternalFrameUI) this.getUI()).setNorthPane(null);
     }
 
     DefaultTableModel modelo2 = new DefaultTableModel() {
@@ -43,28 +48,67 @@ public class Cargar_Nota extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        ImageIcon icon28 = new ImageIcon(getClass().getResource("/Visual/visual_General/Img/FONDO PRINCIPAL 02.jpg"));
+        Image image28 = icon28.getImage();
+        jPanel1 = new javax.swing.JPanel(){
+
+            public void paintComponent(Graphics g){
+                g.drawImage(image28,0,0,getWidth(),getHeight(),this);
+            }
+
+        };
+        jLabel1 = new javax.swing.JLabel();
+        jR_alumno = new javax.swing.JRadioButton();
+        jR_materia = new javax.swing.JRadioButton();
         jCB = new javax.swing.JComboBox<>();
         jText = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable = new javax.swing.JTable();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable2 = new javax.swing.JTable();
         jButton2 = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        jR_alumno = new javax.swing.JRadioButton();
-        jR_materia = new javax.swing.JRadioButton();
+        jButton1 = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
 
-        jText.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                jTextKeyReleased(evt);
+        setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 51, 102), 6));
+        setPreferredSize(new java.awt.Dimension(530, 400));
+
+        jPanel1.setBackground(new java.awt.Color(0, 51, 153));
+        jPanel1.setPreferredSize(new java.awt.Dimension(521, 400));
+
+        jLabel1.setFont(new java.awt.Font("ArianLT-Demi", 3, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("Buscar");
+
+        jR_alumno.setFont(new java.awt.Font("ArianLT-Demi", 3, 18)); // NOI18N
+        jR_alumno.setForeground(new java.awt.Color(255, 255, 255));
+        jR_alumno.setText("Alumno");
+        jR_alumno.setOpaque(false);
+        jR_alumno.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jR_alumnoActionPerformed(evt);
             }
         });
 
-        jButton1.setText("Cargar Notas");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jR_materia.setFont(new java.awt.Font("ArianLT-Demi", 3, 18)); // NOI18N
+        jR_materia.setForeground(new java.awt.Color(255, 255, 255));
+        jR_materia.setText("Materia");
+        jR_materia.setOpaque(false);
+        jR_materia.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jR_materiaActionPerformed(evt);
+            }
+        });
+
+        jCB.setFont(new java.awt.Font("ArianLT-Bold", 3, 14)); // NOI18N
+        jCB.setBorder(null);
+        jCB.setPreferredSize(new java.awt.Dimension(36, 25));
+
+        jText.setFont(new java.awt.Font("ArianLT-Demi", 3, 14)); // NOI18N
+        jText.setPreferredSize(new java.awt.Dimension(6, 25));
+        jText.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextKeyReleased(evt);
             }
         });
 
@@ -107,95 +151,99 @@ public class Cargar_Nota extends javax.swing.JInternalFrame {
         });
         jScrollPane1.setViewportView(jTable2);
 
-        jButton2.setText("Salir");
+        jButton2.setFont(new java.awt.Font("ArianLT-Bold", 3, 14)); // NOI18N
+        jButton2.setText("Cerrar");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
 
-        jLabel1.setText("Buscar");
-
-        jR_alumno.setText("Alumno");
-        jR_alumno.addActionListener(new java.awt.event.ActionListener() {
+        jButton1.setFont(new java.awt.Font("ArianLT-Bold", 3, 14)); // NOI18N
+        jButton1.setText("Cargar Notas");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jR_alumnoActionPerformed(evt);
+                jButton1ActionPerformed(evt);
             }
         });
 
-        jR_materia.setText("Materia");
-        jR_materia.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jR_materiaActionPerformed(evt);
-            }
-        });
+        jLabel5.setBackground(new java.awt.Color(255, 51, 102));
+        jLabel5.setFont(new java.awt.Font("ArianLT-Bold", 3, 18)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel5.setText("CARGA DE NOTAS");
+        jLabel5.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        jLabel5.setOpaque(true);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton1))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 425, Short.MAX_VALUE)
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                            .addComponent(jLabel1)
-                            .addGap(41, 41, 41)
-                            .addComponent(jR_alumno)
-                            .addGap(53, 53, 53)
-                            .addComponent(jR_materia))
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                            .addComponent(jCB, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(18, 18, 18)
-                            .addComponent(jText, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(34, 34, 34)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(jCB, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jText, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jR_alumno)
+                                .addGap(53, 53, 53)
+                                .addComponent(jR_materia))))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jButton1)
+                        .addGap(86, 86, 86)
+                        .addComponent(jButton2))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(35, Short.MAX_VALUE))
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(17, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(jR_alumno)
                     .addComponent(jR_materia))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jCB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
-                .addContainerGap())
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton2)
+                    .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addGap(29, 29, 29))
+        );
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jTextKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextKeyReleased
-        borrarFila();
-        if (jR_alumno.isSelected()) {
-            for (Alumno a1 : aD.buscarAlumno(jText.getText(), jCB.getSelectedItem().toString(), null)) {
-                if (a1.getCategoria() != 0) {
-                    modelo.addRow(new Object[]{a1.getIdAlumno(), a1.getApellido(), a1.getNombre(), a1.getDni()});
-                }
-            }
-        } else if (jR_materia.isSelected()) {
-            for (Materia m1 : mD.buscarMateria(jText.getText(), jCB.getSelectedItem().toString())) {
-                modelo.addRow(new Object[]{m1.getIdMateria(), m1.getNombre(), m1.getAnio()});
-            }
-        }
-    }//GEN-LAST:event_jTextKeyReleased
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         int nota = 0, idAlumno = 0, idMateria = 0;
@@ -234,9 +282,13 @@ public class Cargar_Nota extends javax.swing.JInternalFrame {
         actualizarTabla();
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableMouseClicked
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_jButton2ActionPerformed
 
-    }//GEN-LAST:event_jTableMouseClicked
+    private void jTable2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable2MouseClicked
+
+    }//GEN-LAST:event_jTable2MouseClicked
 
     private void jTableMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableMousePressed
         borrarFila2();
@@ -257,21 +309,24 @@ public class Cargar_Nota extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_jTableMousePressed
 
-    private void jTable2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable2MouseClicked
+    private void jTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableMouseClicked
 
-    }//GEN-LAST:event_jTable2MouseClicked
+    }//GEN-LAST:event_jTableMouseClicked
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        this.dispose();
-    }//GEN-LAST:event_jButton2ActionPerformed
-
-    private void jR_alumnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jR_alumnoActionPerformed
-        String[] lista1 = {"ID ALUMNO", "DNI", "APELLIDO", "NOMBRE"};
-        DefaultComboBoxModel<String> model = new DefaultComboBoxModel<>(lista1);
-        jCB.setModel(model);
-        armarCabecera();
-        armarCabecera2();
-    }//GEN-LAST:event_jR_alumnoActionPerformed
+    private void jTextKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextKeyReleased
+        borrarFila();
+        if (jR_alumno.isSelected()) {
+            for (Alumno a1 : aD.buscarAlumno(jText.getText(), jCB.getSelectedItem().toString(), null)) {
+                if (a1.getCategoria() != 0) {
+                    modelo.addRow(new Object[]{a1.getIdAlumno(), a1.getApellido(), a1.getNombre(), a1.getDni()});
+                }
+            }
+        } else if (jR_materia.isSelected()) {
+            for (Materia m1 : mD.buscarMateria(jText.getText(), jCB.getSelectedItem().toString())) {
+                modelo.addRow(new Object[]{m1.getIdMateria(), m1.getNombre(), m1.getAnio()});
+            }
+        }
+    }//GEN-LAST:event_jTextKeyReleased
 
     private void jR_materiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jR_materiaActionPerformed
         String[] lista1 = {"ID MATERIA", "NOMBRE", "AÑO"};
@@ -282,12 +337,22 @@ public class Cargar_Nota extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jR_materiaActionPerformed
 
+    private void jR_alumnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jR_alumnoActionPerformed
+        String[] lista1 = {"ID ALUMNO", "DNI", "APELLIDO", "NOMBRE"};
+        DefaultComboBoxModel<String> model = new DefaultComboBoxModel<>(lista1);
+        jCB.setModel(model);
+        armarCabecera();
+        armarCabecera2();
+    }//GEN-LAST:event_jR_alumnoActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JComboBox<String> jCB;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JRadioButton jR_alumno;
     private javax.swing.JRadioButton jR_materia;
     private javax.swing.JScrollPane jScrollPane1;

@@ -287,9 +287,18 @@ public class Menu_Principal extends javax.swing.JFrame {
                         jPas_logIN.setText("");
                         jText_usuLIN.setText("");
                     }
+                    jPas_logIN.setText("");
+                    jText_usuLIN.setText("");
+                    
                     Menu_Alumno MenuALM = new Menu_Alumno(usuario, aD, mD, iD);
                     pantalla_principal.add(MenuALM);
                     MenuALM.setVisible(true);
+                    
+                    pantalla_principal.moveToFront(MenuALM);
+                    MenuALM.setLocation((int) pantalla_principal.getLocation().getX() + 112, (int) pantalla_principal.getLocation().getY() + 50);
+                    
+                    
+                    
                     break;
             }
 
