@@ -192,7 +192,7 @@ public class loginData {
 
     public void cargarDNI_login(int min, int max) {
         AlumnoData();
-        int dni = 0;
+        int dni =0;
         String clave;
         if (min < max) {
             for (int i = (min + 1); i <= max; i++) {

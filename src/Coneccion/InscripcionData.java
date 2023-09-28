@@ -32,6 +32,8 @@ public class InscripcionData {
             ps.setInt(2, idMateria);
 
             int filasAfectadas = ps.executeUpdate();
+            if (filasAfectadas == 1)
+                    JOptionPane.showMessageDialog(null, "Alumno inscripto");
         } catch (SQLException sqlE) {
             JOptionPane.showMessageDialog(null, "ERROR!");
         }

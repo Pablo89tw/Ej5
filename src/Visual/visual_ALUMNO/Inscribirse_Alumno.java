@@ -18,7 +18,7 @@ public class Inscribirse_Alumno extends javax.swing.JInternalFrame {
 
     private Alumno alumno;
     private int idMateria = 0;
-   
+
     public Inscribirse_Alumno(int usuario, Coneccion.AlumnoData aD, Coneccion.MateriaData mD, Coneccion.InscripcionData iD) {
         this.aD = aD;
         this.mD = mD;
@@ -29,7 +29,7 @@ public class Inscribirse_Alumno extends javax.swing.JInternalFrame {
         jText.setEnabled(false);
         jButton.setEnabled(false);
         llenarTablaMaterias();
-        
+
         ((javax.swing.plaf.basic.BasicInternalFrameUI) this.getUI()).setNorthPane(null);
     }
 
@@ -195,10 +195,12 @@ public class Inscribirse_Alumno extends javax.swing.JInternalFrame {
 
     private void jTextKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextKeyReleased
         borrarFila();
-        ArrayList<Materia> materiaNoInscripto = new ArrayList<>(mD.buscarMateria(Integer.toString(alumno.getIdAlumno()),"NO_INSCRIPTO"));
+        String activo;
+        ArrayList<Materia> materiaNoInscripto = new ArrayList<>(mD.buscarMateria(Integer.toString(alumno.getIdAlumno()), "NO_INSCRIPTO"));
         for (Materia m1 : mD.buscarMateria(jText.getText(), jCB.getSelectedItem().toString())) {
-            if (m1.getAnio() == alumno.getAnio()){
-                modelo_mat.addRow(new Object[]{m1.getIdMateria(), m1.getNombre(), m1.getAnio(), m1.isEstado()});
+            if (m1.getAnio() == alumno.getAnio()) {
+                activo = ((m1.isEstado()) ? "Activo" : "Inactivo");
+                modelo_mat.addRow(new Object[]{m1.getIdMateria(), m1.getNombre(), m1.getAnio(), activo});
             }
         }
     }//GEN-LAST:event_jTextKeyReleased
@@ -218,7 +220,7 @@ public class Inscribirse_Alumno extends javax.swing.JInternalFrame {
         switch (JOptionPane.showConfirmDialog(rootPane, text_Mess)) {
             case 0:
                 iD.inscribirAlumno(idMateria, alumno.getIdAlumno());
-                llenarTablaMaterias();    
+                llenarTablaMaterias();
                 break;
             case 1:
                 jText.setText("");
@@ -263,12 +265,15 @@ public class Inscribirse_Alumno extends javax.swing.JInternalFrame {
             modelo_mat.removeRow(f);
         }
     }
-    
-    private void llenarTablaMaterias(){
-    borrarFila();
-    for (Materia m1 : mD.buscarMateria(Integer.toString(alumno.getIdAlumno()),"NO_INSCRIPTO")) {
-            if (m1.getAnio() == alumno.getAnio() && m1.isEstado())
-                modelo_mat.addRow(new Object[]{m1.getIdMateria(), m1.getNombre(), m1.getAnio(), m1.isEstado()});
+
+    private void llenarTablaMaterias() {
+        borrarFila();
+        String activo;
+        for (Materia m1 : mD.buscarMateria(Integer.toString(alumno.getIdAlumno()), "NO_INSCRIPTO")) {
+            if (m1.getAnio() == alumno.getAnio() && m1.isEstado()) {
+                activo = ((m1.isEstado()) ? "Activo" : "Inactivo");
+                modelo_mat.addRow(new Object[]{m1.getIdMateria(), m1.getNombre(), m1.getAnio(), activo});
             }
+        }
     }
 }

@@ -199,11 +199,8 @@ public class Cargar_Materia extends javax.swing.JInternalFrame {
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
         String nombre = jText_agrMat.getText();
         int anio = Integer.parseInt(jSpinner1.getValue().toString());
-
         boolean estado = true;
-        if (jMat_Activ.isSelected()) {
-            estado = true;
-        } else if (jMat_Inac.isSelected()) {
+        if (jMat_Inac.isSelected()) {
             estado = false;
         }
         int cupo = Integer.parseInt(jSpinner2.getValue().toString());
@@ -212,6 +209,7 @@ public class Cargar_Materia extends javax.swing.JInternalFrame {
             mD.cargarMateria(nombre, anio, estado, cupo);
         } else {
             JOptionPane.showMessageDialog(null, "Nombre incorreto");
+            jText_agrMat.setText("");
         }
     }//GEN-LAST:event_jButton1MouseClicked
 
@@ -240,6 +238,8 @@ public class Cargar_Materia extends javax.swing.JInternalFrame {
         ButtonGroup buttonGroup = new ButtonGroup();
         buttonGroup.add(jMat_Activ);
         buttonGroup.add(jMat_Inac);
+        jSpinner1.setValue(1);
         jSpinner2.setValue(150);
+        jMat_Activ.setSelected(true);
     }
 }
