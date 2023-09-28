@@ -7,17 +7,16 @@ import java.awt.Image;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
-
 public class CargarAlumno extends javax.swing.JInternalFrame {
 
-    private Alumno alumno; 
+    private Alumno alumno;
     private Coneccion.AlumnoData aD;
-    
+
     public CargarAlumno(Coneccion.AlumnoData aD) {
         this.aD = aD;
         initComponents();
         jSpinner1.setValue(1);
-        
+
         ((javax.swing.plaf.basic.BasicInternalFrameUI) this.getUI()).setNorthPane(null);
     }
 
@@ -230,22 +229,33 @@ public class CargarAlumno extends javax.swing.JInternalFrame {
     private javax.swing.JTextField jTextoApellido;
     // End of variables declaration//GEN-END:variables
 
-private void armarAlumno(){
-    try {
-    alumno = new Alumno();
-    alumno.setApellido(jTextoApellido.getText());
-    alumno.setNombre(TextoNombre.getText());
-    alumno.setDni(Integer.parseInt(TextoDni.getText()));
-    alumno.setFechaNacimiento((jCalenderAlumno.getDate()).toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
-    alumno.setAnio((int)(jSpinner1.getValue()));
-    alumno.setEstado(true);
-    aD.cargarAlumno(alumno);
-    this.dispose();
-    } catch (NumberFormatException ex) {
-        TextoDni.setText("");
-        JOptionPane.showMessageDialog(null, "Formato usuario erroneo. Ingrese su DNI");
+    private void armarAlumno() {
+        try {
+            alumno = new Alumno();
+            alumno.setApellido(jTextoApellido.getText());
+            alumno.setNombre(TextoNombre.getText());
+            alumno.setDni(Integer.parseInt(TextoDni.getText()));
+            if (jCalenderAlumno.getDate() != null) {
+                alumno.setFechaNacimiento((jCalenderAlumno.getDate()).toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
+            }
+            alumno.setAnio((int) (jSpinner1.getValue()));
+
+            if (!jTextoApellido.getText().isBlank()
+                    && !TextoNombre.getText().isBlank()
+                    && !TextoDni.getText().isBlank()
+                    && jCalenderAlumno.getDate() != null) {
+                alumno.setEstado(true);
+                aD.cargarAlumno(alumno);
+                this.dispose();
+            } else {
+                JOptionPane.showMessageDialog(null, "Complete todos los campos.");
+            }
+
+        } catch (NumberFormatException ex) {
+            TextoDni.setText("");
+            JOptionPane.showMessageDialog(null, "Formato de datos incorrecto.");
+        } 
+        
     }
-    ;
-}
 
 }

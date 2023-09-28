@@ -5,6 +5,7 @@ import Visual.visual_ADM.Administrador;
 import Visual.visual_ALUMNO.Menu_Alumno;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
@@ -22,7 +23,6 @@ public class Menu_Principal extends javax.swing.JFrame {
     
     public Menu_Principal() {
         initComponents();
-         logIN = iN.cuentasA_Recordar();
     }
 
     @SuppressWarnings("unchecked")
@@ -61,6 +61,9 @@ public class Menu_Principal extends javax.swing.JFrame {
         jText_usuLIN.setBorder(null);
         jText_usuLIN.setOpaque(false);
         jText_usuLIN.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jText_usuLINFocusGained(evt);
+            }
             public void focusLost(java.awt.event.FocusEvent evt) {
                 jText_usuLINFocusLost(evt);
             }
@@ -79,14 +82,6 @@ public class Menu_Principal extends javax.swing.JFrame {
         jPas_logIN.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 jPas_logINFocusGained(evt);
-            }
-        });
-        jPas_logIN.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jPas_logINMouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jPas_logINMouseEntered(evt);
             }
         });
 
@@ -223,16 +218,8 @@ public class Menu_Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_jCheckBox1ActionPerformed
 
     private void jText_usuLINKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jText_usuLINKeyReleased
-
+       
     }//GEN-LAST:event_jText_usuLINKeyReleased
-
-    private void jPas_logINMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPas_logINMouseClicked
-     
-    }//GEN-LAST:event_jPas_logINMouseClicked
-
-    private void jPas_logINMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPas_logINMouseEntered
-   
-    }//GEN-LAST:event_jPas_logINMouseEntered
 
     private void jPas_logINFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jPas_logINFocusGained
         // TODO add your handling code here:
@@ -246,6 +233,10 @@ public class Menu_Principal extends javax.swing.JFrame {
             } 
                 } 
     }//GEN-LAST:event_jText_usuLINFocusLost
+
+    private void jText_usuLINFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jText_usuLINFocusGained
+         logIN = iN.cuentasA_Recordar();
+    }//GEN-LAST:event_jText_usuLINFocusGained
 
     
     
@@ -302,14 +293,15 @@ public class Menu_Principal extends javax.swing.JFrame {
                     MenuALM.setVisible(true);
                     break;
             }
-
-        } catch (NumberFormatException ex) {
+        }
+         catch (NumberFormatException ex) {
             jText_usuLIN.setText("");
             jPas_logIN.setText("");
             JOptionPane.showMessageDialog(null, "Usurio Incorrecto");
+        } 
         }
     
     }
-}
+
 
 

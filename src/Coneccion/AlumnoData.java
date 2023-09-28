@@ -93,14 +93,18 @@ public class AlumnoData {
            
             int updates =  ps.executeUpdate();;
             if (updates > 0){
-                JOptionPane.showMessageDialog(null, "El alumno " + alumno.getApellido() + " " + alumno.getNombre() +  " ha sido gregado con exito");
+                JOptionPane.showMessageDialog(null, "El alumno " + alumno.getApellido() + " " + alumno.getNombre() +  " ha sido cargado con exito");
            } 
             if (updates == 0){
                 JOptionPane.showMessageDialog(null, "El alumno no ha sido cargado.");
             }
-        } catch (SQLException sqlE) {
-            JOptionPane.showMessageDialog(null, "ERROR!");
-        }
+        } catch (SQLException e) {
+            if (e.getSQLState().equals("23000") && e.getErrorCode() == 1062) {
+                JOptionPane.showMessageDialog(null, "El DNI ya se encuentra cargado en la bsae datos.");
+            } else {
+                JOptionPane.showMessageDialog(null, "El alumno no ha sido cargado");
+            }
+        } 
     }
     
     public void modificarDataAlumno(Alumno alumno) {
@@ -127,10 +131,13 @@ public class AlumnoData {
                 JOptionPane.showMessageDialog(null, "Alumno no existe");
             }
 
-        } catch (SQLException sqlE) {
+        } catch (SQLException e) {
+             if (e.getSQLState().equals("23000") && e.getErrorCode() == 1062) {
+                JOptionPane.showMessageDialog(null, "El DNI ya se encuentra cargado en la bsae datos.");
+            } else {
             JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Alumno");
         }
-
+        }
     }
     
     public ArrayList<Alumno> alumnosXmateria(int idMateria) {

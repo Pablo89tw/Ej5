@@ -59,7 +59,7 @@ public class loginData {
         return categoriaResultado;
     }
 
-    public String modificarClave(String clave_in, String clave_n1, String clave_n2, int usuario) {
+    public int modificarClave(String clave_in, String clave_n, int usuario) {
         AlumnoData();
         String clave_usuario = null;
         String sql = "SELECT Clave FROM login WHERE Usuario LIKE (?)";
@@ -77,23 +77,30 @@ public class loginData {
         } catch (SQLException sqlE) {
             JOptionPane.showMessageDialog(null, "Error busqueda");
         }
-        if (clave_in.equals(clave_usuario) && clave_n1.equals(clave_n2)) {
-            clave_nueva = clave_n1;
+        if (clave_in.equals(clave_usuario)) {
+            clave_nueva = clave_n;
             String sq1 = "UPDATE login SET Clave = ? WHERE Usuario LIKE ?";
             ps = null;
 
             try {
                 ps = con.prepareStatement(sq1);
-                ps.setString(1, clave_n1);
+                ps.setString(1, clave_n);
                 ps.setInt(2, usuario);
 
                 int rowsAffected = ps.executeUpdate();
+                if (rowsAffected == 1) {
+                    JOptionPane.showMessageDialog(null, "La clave ha sido actualizada con éxito.");
+                    return 0;
+                }
 
             } catch (SQLException sqlE) {
-                JOptionPane.showMessageDialog(null, "Error busqueda");
             }
+        } else {
+            JOptionPane.showMessageDialog(null, "La clave no ha sido actualizada.");
+            return 1;
         }
-        return clave_nueva;
+        return 3;
+
     }
 
     public void darAccesoNuevos() {

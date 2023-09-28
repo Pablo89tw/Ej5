@@ -11,7 +11,6 @@ import Visual.visual_ADM.Inscribir_Alumno;
 import Visual.visual_ADM.Listar_Alumnos_o_Materias;
 import Visual.visual_ADM.ModificarAlumno;
 import Entidades.Alumno;
-import Visual.visual_General.Menu_Principal;
 import Visual.visual_General.Modificar_Clave;
 
 public class Administrador extends javax.swing.JInternalFrame {

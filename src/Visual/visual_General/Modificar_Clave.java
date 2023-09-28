@@ -71,6 +71,11 @@ public class Modificar_Clave extends javax.swing.JInternalFrame {
         jLabel2.setText("Clave nueva");
 
         jP_cN1.setFont(new java.awt.Font("ArianLT-Bold", 2, 14)); // NOI18N
+        jP_cN1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jP_cN1KeyReleased(evt);
+            }
+        });
 
         jLabel3.setFont(new java.awt.Font("ArianLT-Demi", 3, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
@@ -80,6 +85,11 @@ public class Modificar_Clave extends javax.swing.JInternalFrame {
         jP_cN2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 jP_cN2MouseExited(evt);
+            }
+        });
+        jP_cN2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jP_cN2KeyReleased(evt);
             }
         });
 
@@ -243,12 +253,16 @@ public class Modificar_Clave extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        if (!(jP_cN1.getText().equals(jP_cN2.getText()))){
+            jLabel5.setVisible(true);
+        } else if ((jP_cN1.getText().equals(jP_cN2.getText())) && (!(jP_cV.equals("")))){
         String contraseniaVieja = jP_cV.getText();
         String contraseniaN1 = jP_cN1.getText();
-        String contraseniaN2 = jP_cN2.getText();
-        clave_nueva = lIn.modificarClave(contraseniaVieja, contraseniaN1, contraseniaN2, usuario);
-        JOptionPane.showMessageDialog(null, "La clave ha sido actualizada");
-        this.dispose();
+        int ret = lIn.modificarClave(contraseniaVieja, contraseniaN1, usuario);
+        
+        if (ret == 0)
+            this.dispose();
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -260,9 +274,7 @@ public class Modificar_Clave extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jLabel5ComponentShown
 
     private void jP_cN2MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jP_cN2MouseExited
-        if (!(jP_cN1.getText().equals(jP_cN2.getText()))){
-            jLabel5.setVisible(true);
-        }
+        
     }//GEN-LAST:event_jP_cN2MouseExited
 
     private void showPassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showPassActionPerformed
@@ -302,6 +314,14 @@ public class Modificar_Clave extends javax.swing.JInternalFrame {
         
         
     }//GEN-LAST:event_showPass2ActionPerformed
+
+    private void jP_cN1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jP_cN1KeyReleased
+        jLabel5.setVisible(false);
+    }//GEN-LAST:event_jP_cN1KeyReleased
+
+    private void jP_cN2KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jP_cN2KeyReleased
+        jLabel5.setVisible(false);
+    }//GEN-LAST:event_jP_cN2KeyReleased
 
   
 
