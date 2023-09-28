@@ -504,6 +504,7 @@ public class ModificarAlumno extends javax.swing.JInternalFrame {
         nombre = Text_NOMBRE.getText();
         apellido = Text_APELLIDO.getText();
         estado = ((Activo.isSelected()) ? true : false);
+        try{
         fechaNacimiento = jDC_nF.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
         anio = (int) jS_nA.getValue();
 
@@ -518,6 +519,9 @@ public class ModificarAlumno extends javax.swing.JInternalFrame {
 
         borrarFila();
         llenarTabla();
+        }catch (NullPointerException ex) {
+            JOptionPane.showMessageDialog(null, "Formato de Fecha de Nacimiento incorrecto");
+        }
        }catch (NumberFormatException ex){
           JOptionPane.showMessageDialog(null, "Formato DNI incorrecto");
           Text_DNI.setText((jTable1.getValueAt(filaSeleccionada, 3)).toString());
