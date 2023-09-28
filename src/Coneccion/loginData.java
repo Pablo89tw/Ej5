@@ -10,20 +10,11 @@ import javax.swing.JOptionPane;
 
 public class loginData {
 
-    private int contadorIngresos = 0;
     private int categoriaResultado;
-    private Connection con;
-    private int usuario;
-    private String clave_in, clave;
-    private int count = 0;
-
-    public void AlumnoData() {
-        con = Conectar.getConectar();
-    }
+    private Connection con = Conectar.getConectar();
+  
 
     public int logIN(int usuario, String clave_in) {
-        categoriaResultado = 5;
-        AlumnoData();
         String sql = "SELECT * FROM login WHERE Usuario LIKE (?)";
         PreparedStatement ps = null;
         categoriaResultado = 5;
@@ -60,7 +51,6 @@ public class loginData {
     }
 
     public int modificarClave(String clave_in, String clave_n, int usuario) {
-        AlumnoData();
         String clave_usuario = null;
         String sql = "SELECT Clave FROM login WHERE Usuario LIKE (?)";
         PreparedStatement ps = null;
@@ -105,8 +95,6 @@ public class loginData {
 
     public void darAccesoNuevos() {
         int max_al = 0, max_log = 0;
-
-        AlumnoData();
         String sql = "SELECT idAlumno FROM alumno";
         String sql1 = "SELECT alumno.idAlumno FROM alumno INNER JOIN logIN ON alumno.dni = logIN.usuario";
         PreparedStatement ps = null;
@@ -134,7 +122,6 @@ public class loginData {
     }
 
     public String buscarClave(int usuario) {
-        AlumnoData();
         String resultado = null;
         String sql = "SELECT Clave FROM logIN WHERE Usuario LIKE (?)";
         PreparedStatement ps = null;
@@ -157,7 +144,6 @@ public class loginData {
     }
 
     public void resteoClave(int idAlumno) {
-        AlumnoData();
         int alumno_dni = 0;
         String sql = "SELECT dni FROM alumno WHERE idAlumno = ?";
         String sql2 = "UPDATE login SET Clave = ? WHERE usuario LIKE ?";
@@ -191,7 +177,6 @@ public class loginData {
     }
 
     public void cargarDNI_login(int min, int max) {
-        AlumnoData();
         int dni =0;
         String clave;
         if (min < max) {
@@ -227,7 +212,6 @@ public class loginData {
     }
 
     public void ingresoFallido(int usuario) {
-        AlumnoData();
         int ingreso_n;
         String sql = "SELECT * FROM login WHERE Usuario = ?";
         PreparedStatement ps = null;
@@ -279,7 +263,6 @@ public class loginData {
     }
 
     private void ingresosReseteo(int usuario) {
-        AlumnoData();
         String sql2 = "UPDATE login SET ingresos = ? WHERE Usuario = ?";
         PreparedStatement ps2 = null;
         try {
@@ -292,7 +275,6 @@ public class loginData {
     }
 
     public int reactivarLogINusuario(int usuario) {
-        AlumnoData();
         int resultado = 1;
         String sql = "SELECT estado FROM login WHERE Usuario = ?";
         PreparedStatement ps = null;
@@ -312,7 +294,6 @@ public class loginData {
     }
 
     public void activarUsuarioLogIN(int data, int usuario) {
-        AlumnoData();
         String sql = "UPDATE login SET estado = ? WHERE Usuario = ?";
         PreparedStatement ps2 = null;
 
@@ -328,7 +309,6 @@ public class loginData {
     public ArrayList<LogIN> cuentasA_Recordar() {
         ArrayList<LogIN> logIN_array = new ArrayList<>();
         LogIN log;
-        AlumnoData();
         String resultado = null;
         String sql = "SELECT clave,usuario FROM login WHERE recordar = 1";
         PreparedStatement ps = null;
@@ -350,7 +330,6 @@ public class loginData {
     }
 
     public void actualizarRecordar(int num, int usuario) {
-        AlumnoData();
         String sql2 = "UPDATE login SET recordar = ? WHERE Usuario = ?";
         PreparedStatement ps2 = null;
         try {

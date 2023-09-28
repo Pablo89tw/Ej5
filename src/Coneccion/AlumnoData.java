@@ -11,18 +11,11 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
-public class AlumnoData {
-    private Connection con;
-    
-    public void AlumnoData() {
-        con = Conectar.getConectar();
-    }
-    
+public class AlumnoData { 
+    private Connection con = Conectar.getConectar();
     private ArrayList<Alumno> arrayAlumno = new ArrayList<>();
-   
-
+       
     public ArrayList<Alumno> buscarAlumno(String data, String codigo, LocalDate fecha) {
-        AlumnoData();
         arrayAlumno.clear();
         String sql;
 
@@ -78,9 +71,7 @@ public class AlumnoData {
     }
     
     public void cargarAlumno(Alumno alumno) {
-        AlumnoData();
-
-        String sql = "INSERT INTO alumno (dni,apellido,nombre,fechaNacimiento,estado,año,categoria) VALUES (?,?,?,?,?,?,?)";
+            String sql = "INSERT INTO alumno (dni,apellido,nombre,fechaNacimiento,estado,año,categoria) VALUES (?,?,?,?,?,?,?)";
         try {
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, alumno.getDni());
@@ -108,7 +99,6 @@ public class AlumnoData {
     }
     
     public void modificarDataAlumno(Alumno alumno) {
-        AlumnoData();
         int exito = 0;
         String sql = "UPDATE alumno SET dni = ?, apellido = ?, nombre = ?, fechaNacimiento = ?, estado = ?, año = ? WHERE idAlumno = ?";
         PreparedStatement ps = null;
@@ -141,7 +131,6 @@ public class AlumnoData {
     }
     
     public ArrayList<Alumno> alumnosXmateria(int idMateria) {
-        AlumnoData();
         String sql;
         arrayAlumno.clear();
         sql = "SELECT * FROM alumno INNER JOIN inscripcion ON alumno.idAlumno = inscripcion.idAlumno WHERE inscripcion.idMateria = ?";
@@ -173,9 +162,7 @@ public class AlumnoData {
     }
 
     public void eliminarAlumno(int idAlumno) {
-        AlumnoData();
-       
-        try {
+         try {
             String sql = "DELETE FROM alumno WHERE idAlumno LIKE ?";
 
             PreparedStatement ps = con.prepareStatement(sql);
@@ -193,8 +180,4 @@ public class AlumnoData {
             JOptionPane.showMessageDialog(null, "No existe alumno cono ese id");
         }
     }
-    
-    
-    
-
 }

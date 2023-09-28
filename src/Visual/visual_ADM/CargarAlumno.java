@@ -241,9 +241,9 @@ public class CargarAlumno extends javax.swing.JInternalFrame {
             alumno.setAnio((int) (jSpinner1.getValue()));
         
             
-           if (!jTextoApellido.getText().isBlank()
-                    && !TextoNombre.getText().isBlank()
-                    && !TextoDni.getText().isBlank()
+           if (!jTextoApellido.getText().trim().isEmpty()
+                    && !TextoNombre.getText().trim().isEmpty()
+                    && !TextoDni.getText().trim().isEmpty()
                     && jCalenderAlumno.getDate() != null) {
                 alumno.setEstado(true);
                 aD.cargarAlumno(alumno);

@@ -6,7 +6,6 @@ import Visual.visual_ALUMNO.Menu_Alumno;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.util.ArrayList;
-import java.util.Set;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
@@ -16,9 +15,6 @@ public class Menu_Principal extends javax.swing.JFrame {
     private Coneccion.MateriaData mD = new Coneccion.MateriaData();
     private Coneccion.InscripcionData iD = new Coneccion.InscripcionData();
     private Coneccion.loginData iN = new Coneccion.loginData();
-    private int recordarme;
-    private int usuario;
-    private String clave;
     private ArrayList<LogIN> logIN = new ArrayList();
     
     public Menu_Principal() {

@@ -11,16 +11,10 @@ import javax.swing.JOptionPane;
 
 public class MateriaData {
 
-    private Connection con;
-
-    public void AlumnoData() {
-        con = Conectar.getConectar();
-    }
-
+    private Connection con = Conectar.getConectar();
     private ArrayList<Materia> arrayMateria = new ArrayList<>();
     
     public ArrayList<Materia> buscarMateria(String data, String codigo) {
-        AlumnoData();
         String sql;
         arrayMateria.clear();
         switch (codigo) {
@@ -63,7 +57,6 @@ public class MateriaData {
     }
 
     public ArrayList<Materia> materiaXalumno(int idAlumno) {
-        AlumnoData();
         String sql;
         arrayMateria.clear();
         sql = "SELECT * FROM materia INNER JOIN inscripcion ON materia.idMateria = inscripcion.idMateria WHERE inscripcion.idAlumno = ?";
@@ -91,8 +84,6 @@ public class MateriaData {
     }
 
     public void cargarMateria(String nombre, int anio, boolean estado, int cupo) {
-        AlumnoData();
-
         String sql = "INSERT INTO materia (nombre,año,estado,cupo) VALUES (?,?,?,?)";
         try {
             PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
@@ -112,7 +103,6 @@ public class MateriaData {
     }
 
     public void modificarMateria(Materia materia){
-        AlumnoData();
         String sql = "UPDATE materia SET nombre = ?, año = ?, estado = ?, cupo = ? WHERE idMateria = ?";
         PreparedStatement ps = null;
 
@@ -139,7 +129,6 @@ public class MateriaData {
     }
       
       public void eliminarMateria(int idMateria) {
-        AlumnoData();
         try {
             String sql = "DELETE FROM materia WHERE idMateria LIKE ?";
 

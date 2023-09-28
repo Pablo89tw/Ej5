@@ -12,20 +12,13 @@ import javax.swing.JOptionPane;
 
 public class InscripcionData {
 
-    private Connection con;
-
-    AlumnoData aD = new AlumnoData();
-    MateriaData mD = new MateriaData();
-
-    public void AlumnoData() {
-        con = Conectar.getConectar();
-    }
+    private Connection con = Conectar.getConectar();
+    private AlumnoData aD = new AlumnoData();
+    private MateriaData mD = new MateriaData();
     private ArrayList<Inscripcion> arrayInscripciones_x_alumno = new ArrayList<>();
 
     public void inscribirAlumno(int idMateria, int idAlumno) {
-        AlumnoData();
-
-        String sql = "INSERT INTO inscripcion (idAlumno,idMateria) VALUES (?,?)";
+            String sql = "INSERT INTO inscripcion (idAlumno,idMateria) VALUES (?,?)";
         try {
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, idAlumno);
@@ -40,7 +33,6 @@ public class InscripcionData {
     }
 
     public int cargarNota(int nota, int idAlumno, int idMateria) {
-        AlumnoData();
         int check = 0;
         String sql = "UPDATE inscripcion SET nota = ? WHERE idAlumno = ? AND idMateria = ?";
         try {
@@ -63,7 +55,6 @@ public class InscripcionData {
      }
 
     public ArrayList<Inscripcion> Inscripciones_x_Alumno(int usuario) {
-        AlumnoData();
         Materia materia = new Materia();
         Alumno alumno = new Alumno();
         Inscripcion inscripcion;
@@ -100,7 +91,6 @@ public class InscripcionData {
     }
 
     public Inscripcion buscarInscripcion(int idMateria, int idAlumno){
-        AlumnoData();
         Inscripcion iS = new Inscripcion();
         String sql = "SELECT * FROM inscripcion WHERE idAlumno = ? AND idMateria = ?";
         PreparedStatement ps = null;      
@@ -127,7 +117,6 @@ public class InscripcionData {
     }
     
      public void actualizarEstadoInscripcion(int estado, int idInscripcion) {
-        AlumnoData();
         String sql = "UPDATE inscripcion SET estado = ? WHERE idInscripcion = ?";
         try {
             PreparedStatement ps = con.prepareStatement(sql);
@@ -146,7 +135,6 @@ public class InscripcionData {
      }
      
      public void eliminarInscripcion(int idInscripcion){
-        AlumnoData();
         try {
             String sql = "DELETE FROM inscripcion WHERE idInscripcion LIKE ?";
 
