@@ -372,7 +372,6 @@ public class Modificar_Inscripciones extends javax.swing.JInternalFrame {
         } else if (jRadioButton2.isSelected()) {
             if (filaSeleccionada >= 0) {
                 alumno = aD.buscarAlumno(Integer.toString((int) jTable1.getValueAt(filaSeleccionada, 0)),"ID ALUMNO", null).get(0);
-                System.out.println(alumno);
                 for (Materia m1 : mD.materiaXalumno(alumno.getIdAlumno())) {
                     String activo = ((m1.isEstado())? "Activo":"Inactivo");
                     modelo2.addRow(new Object[]{m1.getIdMateria(), m1.getNombre(), m1.getAnio(), activo});
@@ -398,7 +397,7 @@ public class Modificar_Inscripciones extends javax.swing.JInternalFrame {
             }
         } else if (jRadioButton2.isSelected()) {
             if (filaSeleccionada >= 0) {
-                materia = mD.buscarMateria(Integer.toString((int)jTable1.getValueAt(filaSeleccionada, 0)),"ID MATERIA").get(0);
+                materia = mD.buscarMateria(Integer.toString((int)jTable2.getValueAt(filaSeleccionada, 0)),"ID MATERIA").get(0);
             }
         }
 

@@ -594,12 +594,9 @@ public class ModificarAlumno extends javax.swing.JInternalFrame {
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
         CheckBox_CONDICION.setEnabled(true);
         CheckBox_DNI.setEnabled(true);
-        CheckBox_APELLIDO.setEnabled(true);      
+        CheckBox_APELLIDO.setEnabled(true);
         CheckBox_NOMBRE.setEnabled(true);
-        
-        if (jTable1.getValueAt(filaSeleccionada, 5) != "ADM"){
         CheckBox_ANIO.setEnabled(true);
-        }
         CheckBox_FECHA_NAC.setEnabled(true);
         CheckBox_ELIMINAR.setEnabled(true);
         CheckBox_CLAVE.setEnabled(true);
@@ -630,24 +627,13 @@ public class ModificarAlumno extends javax.swing.JInternalFrame {
         Text_APELLIDO.setText((jTable1.getValueAt(filaSeleccionada, 1)).toString());
         Text_NOMBRE.setText((jTable1.getValueAt(filaSeleccionada, 2)).toString());
         Text_DNI.setText((jTable1.getValueAt(filaSeleccionada, 3)).toString());
-         if (!jTable1.getValueAt(filaSeleccionada, 5).equals("ADM")){
-        jS_nA.setValue(aD.buscarAlumno(Text_DNI.getText(), "DNI", null).get(0).getAnio());
-        } else if (jTable1.getValueAt(filaSeleccionada, 5).equals("ADM")){
-            jS_nA.setValue(0);
-        }
-                
-        
+        jS_nA.setValue(jTable1.getValueAt(filaSeleccionada, 5));
         jDC_nF.setDate(java.sql.Date.valueOf((LocalDate) jTable1.getValueAt(filaSeleccionada, 4)));
 
         
         apellido = jTable1.getValueAt(filaSeleccionada, 1).toString();
         nombre = jTable1.getValueAt(filaSeleccionada, 2).toString();
-       
-        if (!jTable1.getValueAt(filaSeleccionada, 5).equals("ADM")){    
-            anio = Integer.parseInt(jTable1.getValueAt(filaSeleccionada, 5).toString());
-        } else if (!jTable1.getValueAt(filaSeleccionada, 5).equals("ADM")) {
-        anio = 0;
-        }
+        anio = Integer.parseInt(jTable1.getValueAt(filaSeleccionada, 5).toString());
         dni = Integer.parseInt((jTable1.getValueAt(filaSeleccionada, 3)).toString());
         fechaNacimiento = (LocalDate) (jTable1.getValueAt(filaSeleccionada, 4));
     }//GEN-LAST:event_jTable1MouseClicked
@@ -783,13 +769,11 @@ public class ModificarAlumno extends javax.swing.JInternalFrame {
             if (filtroBusqueda == 0) {
                 if (a1.getCategoria() == 1) {
                     String activo = ((a1.isEstado())? "Activo":"Inactivo");
-                    String anio = ((a1.getAnio() == 0)? "ADM":Integer.toString(a1.getAnio()));
-                    modelo.addRow(new Object[]{a1.getIdAlumno(), a1.getApellido(), a1.getNombre(), a1.getDni(), a1.getFechaNacimiento(), anio, activo});
+                    modelo.addRow(new Object[]{a1.getIdAlumno(), a1.getApellido(), a1.getNombre(), a1.getDni(), a1.getFechaNacimiento(), a1.getAnio(), activo});
                 }
             } else if (filtroBusqueda == 1) {
                 String activo = ((a1.isEstado())? "Activo":"Inactivo");
-                String anio = ((a1.getAnio() == 0)? "ADM":Integer.toString(a1.getAnio()));
-                modelo.addRow(new Object[]{a1.getIdAlumno(), a1.getApellido(), a1.getNombre(), a1.getDni(), a1.getFechaNacimiento(), anio, activo});
+                modelo.addRow(new Object[]{a1.getIdAlumno(), a1.getApellido(), a1.getNombre(), a1.getDni(), a1.getFechaNacimiento(), a1.getAnio(), activo});
             }
         }
     }
