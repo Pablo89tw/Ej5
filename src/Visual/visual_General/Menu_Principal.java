@@ -19,10 +19,10 @@ public class Menu_Principal extends javax.swing.JFrame {
     private int usuario;
     private String clave;
     private ArrayList<LogIN> logIN = new ArrayList();
+    
     public Menu_Principal() {
         initComponents();
-        checkLogIN();
-        logIN = iN.cuentasA_Recordar();
+         logIN = iN.cuentasA_Recordar();
     }
 
     @SuppressWarnings("unchecked")
@@ -60,6 +60,11 @@ public class Menu_Principal extends javax.swing.JFrame {
         jText_usuLIN.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jText_usuLIN.setBorder(null);
         jText_usuLIN.setOpaque(false);
+        jText_usuLIN.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jText_usuLINFocusLost(evt);
+            }
+        });
         jText_usuLIN.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 jText_usuLINKeyReleased(evt);
@@ -71,6 +76,19 @@ public class Menu_Principal extends javax.swing.JFrame {
         jPas_logIN.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jPas_logIN.setBorder(null);
         jPas_logIN.setOpaque(false);
+        jPas_logIN.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jPas_logINFocusGained(evt);
+            }
+        });
+        jPas_logIN.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPas_logINMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jPas_logINMouseEntered(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("ArianLT-Bold", 3, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
@@ -205,13 +223,32 @@ public class Menu_Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_jCheckBox1ActionPerformed
 
     private void jText_usuLINKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jText_usuLINKeyReleased
+
+    }//GEN-LAST:event_jText_usuLINKeyReleased
+
+    private void jPas_logINMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPas_logINMouseClicked
+     
+    }//GEN-LAST:event_jPas_logINMouseClicked
+
+    private void jPas_logINMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPas_logINMouseEntered
+   
+    }//GEN-LAST:event_jPas_logINMouseEntered
+
+    private void jPas_logINFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jPas_logINFocusGained
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jPas_logINFocusGained
+
+    private void jText_usuLINFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jText_usuLINFocusLost
         for (int i = 0; i < logIN.size(); i++) {
             if (Integer.toString(logIN.get(i).getUsuario()).equals(jText_usuLIN.getText())){
                 jPas_logIN.setText(logIN.get(i).getClave());
-            }
-                }  
-    }//GEN-LAST:event_jText_usuLINKeyReleased
+                jCheckBox1.setSelected(true);
+            } 
+                } 
+    }//GEN-LAST:event_jText_usuLINFocusLost
 
+    
+    
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -235,25 +272,18 @@ public class Menu_Principal extends javax.swing.JFrame {
         try {
             int usuario = Integer.parseInt(jText_usuLIN.getText());
             String clave = String.valueOf(jPas_logIN.getPassword());
-
-            if (jCheckBox1.isSelected()) {
-                recordarme = 1;
-            } else if (!jCheckBox1.isSelected()) {
-                recordarme = 0;
-            }
-            
+          
             switch (iN.logIN(usuario, clave)) {
                 case 0:
                     if (!jCheckBox1.isSelected()) {
-                        jPas_logIN.setText("");
-                        jText_usuLIN.setText("");
                         iN.actualizarRecordar(0, usuario);
-                        checkLogIN();
+                        logIN = iN.cuentasA_Recordar();
                     } else if (jCheckBox1.isSelected()){
                         iN.actualizarRecordar(1, usuario);
-                        checkLogIN();    
+                        logIN = iN.cuentasA_Recordar();    
                     }
-
+                    jPas_logIN.setText("");
+                    jText_usuLIN.setText("");
                     Administrador admin = new Administrador(usuario, aD, mD, iD, iN);
                     pantalla_principal.add(admin);
                     admin.setVisible(true);
@@ -280,13 +310,6 @@ public class Menu_Principal extends javax.swing.JFrame {
         }
     
     }
-    private void checkLogIN(){ 
-        
-        
-        
+}
 
 
-}
-    
-    
-}

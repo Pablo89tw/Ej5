@@ -65,7 +65,6 @@ public class Inscribir_Alumno extends javax.swing.JInternalFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable_insAlum = new javax.swing.JTable();
         jComboBox_insAlum1 = new javax.swing.JComboBox<>();
-        jComboBox_insAlum = new javax.swing.JComboBox<>();
         jText_insAlum = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -165,14 +164,6 @@ public class Inscribir_Alumno extends javax.swing.JInternalFrame {
             }
         });
 
-        jComboBox_insAlum.setFont(new java.awt.Font("ArianLT-Bold", 3, 14)); // NOI18N
-        jComboBox_insAlum.setPreferredSize(new java.awt.Dimension(28, 25));
-        jComboBox_insAlum.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                jComboBox_insAlumItemStateChanged(evt);
-            }
-        });
-
         jText_insAlum.setFont(new java.awt.Font("ArianLT-Demi", 3, 14)); // NOI18N
         jText_insAlum.setPreferredSize(new java.awt.Dimension(6, 25));
         jText_insAlum.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -200,15 +191,12 @@ public class Inscribir_Alumno extends javax.swing.JInternalFrame {
                 .addGap(30, 30, 30)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(jComboBox_insAlum1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jText_insAlum, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
-                                .addComponent(jComboBox_insAlum, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING))
+                        .addComponent(jSeparator1)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addComponent(jComboBox_insAlum1, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(18, 18, 18)
+                            .addComponent(jText_insAlum, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jScrollPane2)
                         .addComponent(jLabel4)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -219,7 +207,7 @@ public class Inscribir_Alumno extends javax.swing.JInternalFrame {
                                 .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                                     .addComponent(jComboBox_insMat, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGap(18, 18, 18)
-                                    .addComponent(jText_insMat, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jText_insMat, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 598, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addComponent(jSeparator2))
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -234,10 +222,10 @@ public class Inscribir_Alumno extends javax.swing.JInternalFrame {
                 .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBox_insAlum, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jComboBox_insAlum1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jText_insAlum, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -325,10 +313,6 @@ public class Inscribir_Alumno extends javax.swing.JInternalFrame {
         jButton_inscribir.setEnabled(true);
     }//GEN-LAST:event_jTable_insMatMousePressed
 
-    private void jComboBox_insAlumItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox_insAlumItemStateChanged
-        jText_insAlum.setEnabled(true);
-    }//GEN-LAST:event_jComboBox_insAlumItemStateChanged
-
     private void jComboBox_insMatItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox_insMatItemStateChanged
         jText_insMat.setEnabled(true);
     }//GEN-LAST:event_jComboBox_insMatItemStateChanged
@@ -354,7 +338,6 @@ public class Inscribir_Alumno extends javax.swing.JInternalFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton_inscribir;
-    private javax.swing.JComboBox<String> jComboBox_insAlum;
     private javax.swing.JComboBox<String> jComboBox_insAlum1;
     private javax.swing.JComboBox<String> jComboBox_insMat;
     private javax.swing.JLabel jLabel2;

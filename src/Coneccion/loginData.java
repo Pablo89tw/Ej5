@@ -323,7 +323,7 @@ public class loginData {
         LogIN log;
         AlumnoData();
         String resultado = null;
-        String sql = "SELECT (usuario,clave) FROM login WHERE recordar LIKE 1";
+        String sql = "SELECT clave,usuario FROM login WHERE recordar = 1";
         PreparedStatement ps = null;
 
         try {
@@ -332,12 +332,12 @@ public class loginData {
 
             while (rs.next()) {
                 log = new LogIN();
-                log.setClave(rs.getString("clave"));
-                log.setUsuario(rs.getInt("estado"));
+                log.setClave(rs.getString("Clave"));
+                log.setUsuario(rs.getInt("Usuario"));
                 logIN_array.add(log);
             }
         } catch (SQLException sqlE) {
-            JOptionPane.showMessageDialog(null, "Error cargar usuarios actualizar");
+            JOptionPane.showMessageDialog(null, "Error base datos de LogIN");
         }
         return logIN_array;
     }
