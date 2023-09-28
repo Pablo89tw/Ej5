@@ -9,6 +9,7 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.sql.SQLException;
 
 import javax.swing.JOptionPane;
 
@@ -480,9 +481,8 @@ public class ModificarAlumno extends javax.swing.JInternalFrame {
             jS_nA.setEnabled(true);
         } else if (!CheckBox_ANIO.isSelected()) {
             jS_nA.setEnabled(false);
+            jS_nA.setValue(anio);
         }
-        jS_nA.setValue(anio);
-
     }//GEN-LAST:event_CheckBox_ANIOActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -499,7 +499,7 @@ public class ModificarAlumno extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_CheckBox_APELLIDOActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       
+       try{
         dni = Integer.parseInt(Text_DNI.getText());
         nombre = Text_NOMBRE.getText();
         apellido = Text_APELLIDO.getText();
@@ -518,6 +518,10 @@ public class ModificarAlumno extends javax.swing.JInternalFrame {
 
         borrarFila();
         llenarTabla();
+       }catch (NumberFormatException ex){
+          JOptionPane.showMessageDialog(null, "Formato DNI incorrecto");
+          Text_DNI.setText((jTable1.getValueAt(filaSeleccionada, 3)).toString());
+       }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void CheckBox_NOMBREActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CheckBox_NOMBREActionPerformed
@@ -568,7 +572,9 @@ public class ModificarAlumno extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_CheckBox_ELIMINARActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-      
+       ValidarClaveADM vcADM = new ValidarClaveADM(usuario, idAlumno_Mod, "eliminar_alumno", logD, aD, mD, iD);
+       vcADM.setVisible(true);
+       llenarTabla();
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -602,10 +608,10 @@ public class ModificarAlumno extends javax.swing.JInternalFrame {
         }
         // Cargo en los cuadros los datos la tabla en los campos
 
-        if ((jTable1.getValueAt(filaSeleccionada, 6)).toString().equals("true")) {
+        if ((jTable1.getValueAt(filaSeleccionada, 6)).toString().equals("Activo")) {
             Activo.setSelected(true);
             Inactivo.setSelected(false);
-        } else if ((jTable1.getValueAt(filaSeleccionada, 6)).toString().equals("false")) {
+        } else if ((jTable1.getValueAt(filaSeleccionada, 6)).toString().equals("Inactivo")) {
             Inactivo.setSelected(true);
             Activo.setSelected(false);
         }
@@ -715,7 +721,7 @@ public class ModificarAlumno extends javax.swing.JInternalFrame {
     }
 
     private void armadoVista() {
-        String[] lista = {"ID ALUMNO", "APELLIDO", "NOMBRE", "DNI"};
+        String[] lista = {"ID ALUMNO", "APELLIDO", "NOMBRE", "DNI", "ESTADO"};
         DefaultComboBoxModel<String> model = new DefaultComboBoxModel<>(lista);
         jComboBox1.setModel(model);
         CheckBox_ELIMINAR.setEnabled(false);
@@ -762,10 +768,12 @@ public class ModificarAlumno extends javax.swing.JInternalFrame {
         for (Alumno a1 : aD.buscarAlumno(jTextField4.getText(), jComboBox1.getSelectedItem().toString(), null)) {
             if (filtroBusqueda == 0) {
                 if (a1.getCategoria() == 1) {
-                    modelo.addRow(new Object[]{a1.getIdAlumno(), a1.getApellido(), a1.getNombre(), a1.getDni(), a1.getFechaNacimiento(), a1.getAnio(), a1.isEstado()});
+                    String activo = ((a1.isEstado())? "Activo":"Inactivo");
+                    modelo.addRow(new Object[]{a1.getIdAlumno(), a1.getApellido(), a1.getNombre(), a1.getDni(), a1.getFechaNacimiento(), a1.getAnio(), activo});
                 }
             } else if (filtroBusqueda == 1) {
-                modelo.addRow(new Object[]{a1.getIdAlumno(), a1.getApellido(), a1.getNombre(), a1.getDni(), a1.getFechaNacimiento(), a1.getAnio(), a1.isEstado()});
+                String activo = ((a1.isEstado())? "Activo":"Inactivo");
+                modelo.addRow(new Object[]{a1.getIdAlumno(), a1.getApellido(), a1.getNombre(), a1.getDni(), a1.getFechaNacimiento(), a1.getAnio(), activo});
             }
         }
     }

@@ -346,9 +346,9 @@ public class ModificarMateria extends javax.swing.JInternalFrame {
             idMateria = (int) jTable1.getValueAt(filaSeleccionada, 0);
         }
 
-        if ((jTable1.getValueAt(filaSeleccionada, 4)).equals(true)) {
+        if ((jTable1.getValueAt(filaSeleccionada, 4)).equals("Activo")) {
             Activo.setSelected(true);
-        } else if ((jTable1.getValueAt(filaSeleccionada, 3)).toString().equals("false")) {
+        } else if ((jTable1.getValueAt(filaSeleccionada, 3)).toString().equals("Inactivo")) {
             Inactivo.setSelected(true);
         }
 
@@ -387,7 +387,7 @@ public class ModificarMateria extends javax.swing.JInternalFrame {
             Inactivo.setEnabled(false);
             if ((jTable1.getValueAt(filaSeleccionada, 4)).equals(true)) {
                 Activo.setSelected(true);
-            } else if ((jTable1.getValueAt(filaSeleccionada, 3)).toString().equals("false")) {
+            } else if ((jTable1.getValueAt(filaSeleccionada, 3)).toString().equals("Inactivo")) {
                 Inactivo.setSelected(true);
             }
         }
@@ -519,7 +519,8 @@ public class ModificarMateria extends javax.swing.JInternalFrame {
     
     private void llenarTabla(){
         for (Materia m1 : mD.buscarMateria(jTextField4.getText(), jComboBox1.getSelectedItem().toString())) {
-            modelo.addRow(new Object[]{m1.getIdMateria(), m1.getNombre(), m1.getAnio(), m1.getCupo(), m1.isEstado()});
+            String activo = ((m1.isEstado())? "Activo":"Inactivo");
+            modelo.addRow(new Object[]{m1.getIdMateria(), m1.getNombre(), m1.getAnio(), m1.getCupo(), activo});
         }
     }
 }

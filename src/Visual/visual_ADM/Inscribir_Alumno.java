@@ -265,9 +265,11 @@ public class Inscribir_Alumno extends javax.swing.JInternalFrame {
 
     private void jText_insAlumKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jText_insAlumKeyReleased
         borrarFilaAl();
+        String activo;
         for (Alumno a1 : aD.buscarAlumno(jText_insAlum.getText(), jComboBox_insAlum1.getSelectedItem().toString(), null)) {
             if (a1.isEstado() && a1.getCategoria() == 1){
-                modelo_al.addRow(new Object[]{a1.getIdAlumno(), a1.getApellido(), a1.getNombre(), a1.getDni(), a1.getFechaNacimiento(), a1.isEstado()});
+                activo = ((a1.isEstado())? "Activo":"Inactivo");
+                modelo_al.addRow(new Object[]{a1.getIdAlumno(), a1.getApellido(), a1.getNombre(), a1.getDni(), a1.getFechaNacimiento(), activo});
             }
         }
         alumno = aD.buscarAlumno(jText_insAlum.getText(), jComboBox_insAlum1.getSelectedItem().toString(), null).get(0);
@@ -323,9 +325,11 @@ public class Inscribir_Alumno extends javax.swing.JInternalFrame {
 
     private void jText_insMatKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jText_insMatKeyReleased
         borrarFilaMat();
+        String activo;
         for (Materia materia : mD.buscarMateria(jText_insMat.getText(), jComboBox_insMat.getSelectedItem().toString())) {
             if (materia.isEstado()) {
-                modelo_mat.addRow(new Object[]{materia.getIdMateria(), materia.getNombre(), materia.getAnio(), materia.isEstado()});
+                activo = ((materia.isEstado())? "Activo":"Inactivo");
+                modelo_mat.addRow(new Object[]{materia.getIdMateria(), materia.getNombre(), materia.getAnio(), activo});
             }
         }
     }//GEN-LAST:event_jText_insMatKeyReleased
@@ -368,8 +372,8 @@ public class Inscribir_Alumno extends javax.swing.JInternalFrame {
         modelo_mat.setColumnCount(0);
         modelo_mat.addColumn("iD Materia");
         modelo_mat.addColumn("Nombre");
-        modelo_mat.addColumn("AÑO");
-        modelo_mat.addColumn("ESTADO");
+        modelo_mat.addColumn("Año");
+        modelo_mat.addColumn("Estado");
         jTable_insMat.setModel(modelo_mat);
         jTable_insMat.getTableHeader().setReorderingAllowed(false);
     }
@@ -389,9 +393,11 @@ public class Inscribir_Alumno extends javax.swing.JInternalFrame {
     }
 
     private void llenarTablaMaterias() {
+        String activo;
         for (Materia materia : mD.buscarMateria(Integer.toString(alumno.getIdAlumno()),"NO_INSCRIPTO")) {
             if (materia.isEstado()){
-            modelo_mat.addRow(new Object[]{materia.getIdMateria(), materia.getNombre(), materia.getAnio(), materia.isEstado()});
+            activo = ((materia.isEstado())? "Activo":"Inactivo");
+            modelo_mat.addRow(new Object[]{materia.getIdMateria(), materia.getNombre(), materia.getAnio(), activo});
         }
         }
     }

@@ -228,18 +228,20 @@ public class Listar_Alumnos_o_Materias extends javax.swing.JInternalFrame {
 
     private void jTexto_Buscar1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTexto_Buscar1KeyReleased
         jDateChooser_buscar.setEnabled(false);
-
+        String activo;
         borrarFila();
 
         if (jRadioButton1.isSelected()) {
             for (Alumno a1 : aD.buscarAlumno(jTexto_Buscar1.getText(), jComboBox_busqueda.getSelectedItem().toString(), null)) {
                 if (a1.getCategoria()==1){
-                modelo.addRow(new Object[]{a1.getIdAlumno(), a1.getApellido(), a1.getNombre(), a1.getDni(), a1.getFechaNacimiento(), a1.isEstado()});
+                     activo = ((a1.isEstado())? "Activo":"Inactivo");
+                modelo.addRow(new Object[]{a1.getIdAlumno(), a1.getApellido(), a1.getNombre(), a1.getDni(), a1.getFechaNacimiento(), activo});
             }
             }
         } else if (jRadioButton2.isSelected()) {
-            for (Materia m1 : mD.buscarMateria(jTexto_Buscar1.getText(), jComboBox_busqueda.getSelectedItem().toString())) {             
-                modelo.addRow(new Object[]{m1.getIdMateria(), m1.getNombre(), m1.getAnio(), m1.isEstado()});
+            for (Materia m1 : mD.buscarMateria(jTexto_Buscar1.getText(), jComboBox_busqueda.getSelectedItem().toString())) {  
+                 activo = ((m1.isEstado())? "Activo":"Inactivo");
+                modelo.addRow(new Object[]{m1.getIdMateria(), m1.getNombre(), m1.getAnio(), activo});
             }
         }
     }//GEN-LAST:event_jTexto_Buscar1KeyReleased
@@ -271,14 +273,15 @@ public class Listar_Alumnos_o_Materias extends javax.swing.JInternalFrame {
     private void jDateChooser_buscarPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jDateChooser_buscarPropertyChange
         if (jDateChooser_buscar.getDate() != null) {
             borrarFila();
+            String activo;
             LocalDate fechaLD = jDateChooser_buscar.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
             for (Alumno a1 : aD.buscarAlumno(null, "FECHA NACIMIENTO", fechaLD)) {
                 if (a1.getCategoria() == 1){
-                modelo.addRow(new Object[]{a1.getIdAlumno(), a1.getApellido(), a1.getNombre(), a1.getDni(), a1.getFechaNacimiento(), a1.isEstado()});
+                 activo = ((a1.isEstado())? "Activo":"Inactivo");
+                modelo.addRow(new Object[]{a1.getIdAlumno(), a1.getApellido(), a1.getNombre(), a1.getDni(), a1.getFechaNacimiento(), activo});
             }
             }
         }
-
     }//GEN-LAST:event_jDateChooser_buscarPropertyChange
 
     private void jRadioButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton2ActionPerformed

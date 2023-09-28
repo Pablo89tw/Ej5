@@ -344,12 +344,14 @@ public class Modificar_Inscripciones extends javax.swing.JInternalFrame {
         if (jRadioButton2.isSelected()) {
             for (Alumno a1 : aD.buscarAlumno(jTextField1.getText(), jComboBox1.getSelectedItem().toString(), null)) {
                 if (a1.getCategoria() == 1) {
-                    modelo.addRow(new Object[]{a1.getIdAlumno(), a1.getApellido(), a1.getNombre(), a1.getDni(), a1.getFechaNacimiento(), a1.isEstado()});
+                    String activo = ((a1.isEstado())? "Activo":"Inactivo");
+                    modelo.addRow(new Object[]{a1.getIdAlumno(), a1.getApellido(), a1.getNombre(), a1.getDni(), a1.getFechaNacimiento(), activo});
                 }
             }
         } else if (jRadioButton1.isSelected()) {
             for (Materia m1 : mD.buscarMateria(jTextField1.getText(), jComboBox1.getSelectedItem().toString())) {
-                modelo.addRow(new Object[]{m1.getIdMateria(), m1.getNombre(), m1.getAnio(), m1.isEstado()});
+               String activo = ((m1.isEstado())? "Activo":"Inactivo");
+                modelo.addRow(new Object[]{m1.getIdMateria(), m1.getNombre(), m1.getAnio(),activo});
             }
         }
     }//GEN-LAST:event_jTextField1KeyReleased
@@ -362,7 +364,8 @@ public class Modificar_Inscripciones extends javax.swing.JInternalFrame {
                 materia = mD.buscarMateria(Integer.toString((int)jTable1.getValueAt(filaSeleccionada, 0)),"ID MATERIA").get(0);
                 for (Alumno a1 : aD.alumnosXmateria(materia.getIdMateria())) {
                     if (a1.getCategoria() == 1) {
-                        modelo2.addRow(new Object[]{a1.getIdAlumno(), a1.getApellido(), a1.getNombre(), a1.getDni(), a1.getFechaNacimiento(), a1.isEstado()});
+                        String activo = ((a1.isEstado())? "Activo":"Inactivo");
+                        modelo2.addRow(new Object[]{a1.getIdAlumno(), a1.getApellido(), a1.getNombre(), a1.getDni(), a1.getFechaNacimiento(),activo});
                     }
                 }
             }
@@ -371,7 +374,8 @@ public class Modificar_Inscripciones extends javax.swing.JInternalFrame {
                 alumno = aD.buscarAlumno(Integer.toString((int) jTable1.getValueAt(filaSeleccionada, 0)),"ID ALUMNO", null).get(0);
                 System.out.println(alumno);
                 for (Materia m1 : mD.materiaXalumno(alumno.getIdAlumno())) {
-                    modelo2.addRow(new Object[]{m1.getIdMateria(), m1.getNombre(), m1.getAnio(), m1.isEstado()});
+                    String activo = ((m1.isEstado())? "Activo":"Inactivo");
+                    modelo2.addRow(new Object[]{m1.getIdMateria(), m1.getNombre(), m1.getAnio(), activo});
                 }
             }
         }
@@ -600,6 +604,7 @@ public class Modificar_Inscripciones extends javax.swing.JInternalFrame {
 
     private void completarTabla3(){
         borrarFila3();
-        modelo3.addRow(new Object[]{ins.getIdInscripcion(),alumno.getApellido(), alumno.getNombre(), materia.getNombre(),ins.isEstado()});
+        String activo = ((ins.isEstado()==0)? "Activo":"Inactivo");
+        modelo3.addRow(new Object[]{ins.getIdInscripcion(),alumno.getApellido(), alumno.getNombre(), materia.getNombre(),activo});
     }
 }

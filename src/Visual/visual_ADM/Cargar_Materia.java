@@ -208,7 +208,7 @@ public class Cargar_Materia extends javax.swing.JInternalFrame {
         }
         int cupo = Integer.parseInt(jSpinner2.getValue().toString());
 
-        if (nombre != "") {
+        if (!jText_agrMat.getText().isBlank()) {
             mD.cargarMateria(nombre, anio, estado, cupo);
         } else {
             JOptionPane.showMessageDialog(null, "Nombre incorreto");

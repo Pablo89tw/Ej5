@@ -188,19 +188,22 @@ public class Listar_Alumno_x_Materia extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jTextFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldKeyReleased
-        borrarFila1();borrarFila2();
+        borrarFila1();borrarFila2();String activo;
         for (Materia m1 : mD.buscarMateria(jTextField.getText(), "NOMBRE")) {
-            modelo.addRow(new Object[]{m1.getIdMateria(), m1.getNombre(), m1.getAnio(), m1.isEstado()});
+            activo = ((m1.isEstado())? "Activo":"Inactivo");
+            modelo.addRow(new Object[]{m1.getIdMateria(), m1.getNombre(), m1.getAnio(), activo});
         }
        
     }//GEN-LAST:event_jTextFieldKeyReleased
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
         borrarFila2();
+        String activo;
         int idMateria = (int) jTable1.getValueAt(jTable1.getSelectedRow(), 0);
         for (Alumno a1 : aD.alumnosXmateria(idMateria)) {
             if (a1.getCategoria() == 1){
-            modelo2.addRow(new Object[]{a1.getIdAlumno(), a1.getApellido(), a1.getNombre(), a1.getDni(), a1.getFechaNacimiento(), a1.isEstado()});
+                activo = ((a1.isEstado())? "Activo":"Inactivo");
+            modelo2.addRow(new Object[]{a1.getIdAlumno(), a1.getApellido(), a1.getNombre(), a1.getDni(), a1.getFechaNacimiento(), activo});
         }
         }
     }//GEN-LAST:event_jTable1MouseClicked
@@ -231,7 +234,7 @@ public class Listar_Alumno_x_Materia extends javax.swing.JInternalFrame {
         modelo.addColumn("iD Materia");
         modelo.addColumn("Nombre");
         modelo.addColumn("AÑO");
-        modelo.addColumn("ESTADO");
+        modelo.addColumn("Estado");
         jTable1.setModel(modelo);
         jTable1.getTableHeader().setReorderingAllowed(false);
 

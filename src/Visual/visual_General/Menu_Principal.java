@@ -6,6 +6,7 @@ import Visual.visual_ALUMNO.Menu_Alumno;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.util.ArrayList;
+import java.util.Set;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
@@ -274,6 +275,8 @@ public class Menu_Principal extends javax.swing.JFrame {
                     }
                     jPas_logIN.setText("");
                     jText_usuLIN.setText("");
+                    jCheckBox1.setSelected(false);
+                    
                     Administrador admin = new Administrador(usuario, aD, mD, iD, iN);
                     pantalla_principal.add(admin);
                     admin.setVisible(true);
@@ -283,10 +286,14 @@ public class Menu_Principal extends javax.swing.JFrame {
                     break;
 
                 case 1:
-                    if (!jCheckBox1.isSelected()) {
-                        jPas_logIN.setText("");
-                        jText_usuLIN.setText("");
+                     if (!jCheckBox1.isSelected()) {
+                        iN.actualizarRecordar(0, usuario);
+                        logIN = iN.cuentasA_Recordar();
+                    } else if (jCheckBox1.isSelected()){
+                        iN.actualizarRecordar(1, usuario);
+                        logIN = iN.cuentasA_Recordar();    
                     }
+                    jCheckBox1.setSelected(false);
                     jPas_logIN.setText("");
                     jText_usuLIN.setText("");
                     
@@ -296,15 +303,14 @@ public class Menu_Principal extends javax.swing.JFrame {
                     
                     pantalla_principal.moveToFront(MenuALM);
                     MenuALM.setLocation((int) pantalla_principal.getLocation().getX() + 112, (int) pantalla_principal.getLocation().getY() + 50);
-                    
-                    
-                    
                     break;
             }
 
         } catch (NumberFormatException ex) {
             jText_usuLIN.setText("");
             jPas_logIN.setText("");
+            jCheckBox1.setSelected(false);
+            
             JOptionPane.showMessageDialog(null, "Usurio Incorrecto");
         }
     

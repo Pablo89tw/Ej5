@@ -241,7 +241,7 @@ public class CargarAlumno extends javax.swing.JInternalFrame {
             alumno.setAnio((int) (jSpinner1.getValue()));
         
             
-           /* if (!jTextoApellido.getText().isBlank()
+           if (!jTextoApellido.getText().isBlank()
                     && !TextoNombre.getText().isBlank()
                     && !TextoDni.getText().isBlank()
                     && jCalenderAlumno.getDate() != null) {
@@ -251,8 +251,7 @@ public class CargarAlumno extends javax.swing.JInternalFrame {
             } else {
                 JOptionPane.showMessageDialog(null, "Complete todos los campos.");
             }
-*/
-        } catch (NumberFormatException ex) {
+       } catch (NumberFormatException ex) {
             TextoDni.setText("");
             JOptionPane.showMessageDialog(null, "Formato de datos incorrecto.");
         } 
