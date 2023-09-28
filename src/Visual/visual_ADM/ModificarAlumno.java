@@ -769,11 +769,13 @@ public class ModificarAlumno extends javax.swing.JInternalFrame {
             if (filtroBusqueda == 0) {
                 if (a1.getCategoria() == 1) {
                     String activo = ((a1.isEstado())? "Activo":"Inactivo");
-                    modelo.addRow(new Object[]{a1.getIdAlumno(), a1.getApellido(), a1.getNombre(), a1.getDni(), a1.getFechaNacimiento(), a1.getAnio(), activo});
+                    String anio = ((a1.getAnio() == 0)? "ADM":Integer.toString(a1.getAnio()));
+                    modelo.addRow(new Object[]{a1.getIdAlumno(), a1.getApellido(), a1.getNombre(), a1.getDni(), a1.getFechaNacimiento(), anio, activo});
                 }
             } else if (filtroBusqueda == 1) {
                 String activo = ((a1.isEstado())? "Activo":"Inactivo");
-                modelo.addRow(new Object[]{a1.getIdAlumno(), a1.getApellido(), a1.getNombre(), a1.getDni(), a1.getFechaNacimiento(), a1.getAnio(), activo});
+                String anio = ((a1.getAnio() == 0)? "ADM":Integer.toString(a1.getAnio()));
+                modelo.addRow(new Object[]{a1.getIdAlumno(), a1.getApellido(), a1.getNombre(), a1.getDni(), a1.getFechaNacimiento(), anio, activo});
             }
         }
     }
