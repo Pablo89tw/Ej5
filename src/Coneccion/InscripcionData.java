@@ -92,7 +92,7 @@ public class InscripcionData {
                 arrayInscripciones_x_alumno.add(inscripcion);
             }
         } catch (SQLException sqlE) {
-            JOptionPane.showMessageDialog(null, "Error en la búsqueda: ");
+            JOptionPane.showMessageDialog(null, "Error en la búsqueda.");
         }
         return arrayInscripciones_x_alumno;
     }

@@ -5,7 +5,6 @@ import Visual.visual_ADM.Administrador;
 import Visual.visual_ALUMNO.Menu_Alumno;
 import java.awt.Graphics;
 import java.awt.Image;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
@@ -293,15 +292,14 @@ public class Menu_Principal extends javax.swing.JFrame {
                     MenuALM.setVisible(true);
                     break;
             }
-        }
-         catch (NumberFormatException ex) {
+
+        } catch (NumberFormatException ex) {
             jText_usuLIN.setText("");
             jPas_logIN.setText("");
             JOptionPane.showMessageDialog(null, "Usurio Incorrecto");
-        } 
         }
     
     }
-
+}
 
 

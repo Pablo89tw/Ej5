@@ -499,36 +499,25 @@ public class ModificarAlumno extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_CheckBox_APELLIDOActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        if (!Text_DNI.getText().isBlank()
-                && !Text_NOMBRE.getText().isBlank()
-                && !Text_APELLIDO.getText().isBlank()
-                && jDC_nF.getDate() != null) {
-            try{
-            dni = Integer.parseInt(Text_DNI.getText());
-            } catch (NumberFormatException ex) {
-             JOptionPane.showMessageDialog(null, "Formato de DNI erroneo");
-            }
+       
+        dni = Integer.parseInt(Text_DNI.getText());
+        nombre = Text_NOMBRE.getText();
+        apellido = Text_APELLIDO.getText();
+        estado = ((Activo.isSelected()) ? true : false);
+        fechaNacimiento = jDC_nF.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        anio = (int) jS_nA.getValue();
 
-            nombre = Text_NOMBRE.getText();
-            apellido = Text_APELLIDO.getText();
-            estado = ((Activo.isSelected()) ? true : false);
-            fechaNacimiento = jDC_nF.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-            anio = (int) jS_nA.getValue();
-            
-            alumno = new Alumno(idAlumno_Mod, dni, apellido, nombre, fechaNacimiento, estado, anio, 1);
-            aD.modificarDataAlumno(alumno);
-        
-            int data = 0;
-            if (LogIN_inactivo.isSelected()) {
+        alumno = new Alumno(idAlumno_Mod, dni, apellido, nombre, fechaNacimiento, estado, anio, 1);
+        aD.modificarDataAlumno(alumno);
+
+        int data = 0;
+        if (LogIN_inactivo.isSelected()) {
             data = 1;
-            }
-            logD.activarUsuarioLogIN(data, dni);
-
-            borrarFila();
-            llenarTabla();
-        } else {
-            JOptionPane.showMessageDialog(null, "Complete todos los campos.");
         }
+        logD.activarUsuarioLogIN(data, dni);
+
+        borrarFila();
+        llenarTabla();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void CheckBox_NOMBREActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CheckBox_NOMBREActionPerformed
@@ -579,7 +568,7 @@ public class ModificarAlumno extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_CheckBox_ELIMINARActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-
+      
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -635,6 +624,7 @@ public class ModificarAlumno extends javax.swing.JInternalFrame {
         jS_nA.setValue(jTable1.getValueAt(filaSeleccionada, 5));
         jDC_nF.setDate(java.sql.Date.valueOf((LocalDate) jTable1.getValueAt(filaSeleccionada, 4)));
 
+        
         apellido = jTable1.getValueAt(filaSeleccionada, 1).toString();
         nombre = jTable1.getValueAt(filaSeleccionada, 2).toString();
         anio = Integer.parseInt(jTable1.getValueAt(filaSeleccionada, 5).toString());
